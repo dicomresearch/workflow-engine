@@ -1,0 +1,22 @@
+{
+    "states": {
+        "new": {
+            "properties": {
+                "id": ["required"]
+            }
+        },
+        "done": {
+            "properties": {
+                "id": ["required"]
+            }
+        }
+    },
+    "transitions":
+        [
+            {
+                "oldState": "new",
+                "newState": "done",
+                "actionName": "Appoint to consultant"
+            }
+        ]
+}

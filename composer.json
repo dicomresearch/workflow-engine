@@ -1,0 +1,19 @@
+{
+    "name": "workflow",
+    "description": "This library used to work with workflow",
+    "license": "DICOM Consulting",
+    "authors": [
+        {
+            "name": "Rinat Gizatullin",
+            "email": "rgizatullin@kirkazan.ru"
+        }
+    ],
+    "require": {
+    },
+    "autoload": {
+        "psr-4": {
+            "dicom\\workflow\\": "source/"
+        }
+    }
+}
+
