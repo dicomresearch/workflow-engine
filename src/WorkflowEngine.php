@@ -6,7 +6,7 @@
  * Time: 16:28
  */
 
-namespace workflow;
+namespace dicom\workflow;
 
 
 use dicom\workflow\config\WorkflowDescription;
