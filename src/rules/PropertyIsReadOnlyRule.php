@@ -6,12 +6,12 @@
  * Time: 5:48 PM
  */
 
-namespace workflow\rules;
+namespace dicom\workflow\rules;
 
 
-use workflow\rules\exception\RuleExecutionException;
-use workflow\rules\executionResult\RuleExecutionResult;
-use workflow\rules\RuleInterface\IRuleCompareTwoValueInterface;
+use dicom\workflow\rules\exception\RuleExecutionException;
+use dicom\workflow\rules\executionResult\RuleExecutionResult;
+use dicom\workflow\rules\RuleInterface\IRuleCompareTwoValueInterface;
 
 class PropertyIsReadOnlyRule extends Rule implements IRuleCompareTwoValueInterface
 {

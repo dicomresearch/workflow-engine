@@ -9,15 +9,12 @@
 namespace workflow;
 
 
-use workflow\config\WorkflowDescription;
-use workflow\exception\WorkflowEngineException;
-use workflow\factory\StateFactory;
-use workflow\state\State;
-use workflow\state\StateEngine;
-use workflow\transition\Transition;
-use workflow\transition\TransitionEngine;
-use workflow\transition\TransitionSpecification;
-use workflow\transition\TransitionSpecificationFactory;
+use dicom\workflow\config\WorkflowDescription;
+use dicom\workflow\state\State;
+use dicom\workflow\state\StateEngine;
+use dicom\workflow\transition\Transition;
+use dicom\workflow\transition\TransitionEngine;
+use dicom\workflow\transition\TransitionSpecification;
 
 /**
  * Class WorkflowEngine
@@ -105,7 +102,7 @@ class WorkflowEngine
     /**
      * Отдать список возможных состояния
      *
-     * @return \workflow\state\State[]
+     * @return \dicom\workflow\state\State[]
      */
     public function getStateList()
     {

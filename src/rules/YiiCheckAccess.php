@@ -6,19 +6,19 @@
  * Time: 11:30
  */
 
-namespace workflow\rules;
-use workflow\rules\exception\RuleCreationException;
-use workflow\rules\exception\RuleExecutionException;
-use workflow\rules\executionResult\RuleExecutionResult;
-use workflow\rules\RuleInterface\IConfiguredRule;
-use workflow\rules\RuleInterface\IRuleCheckingWithoutArguments;
+namespace dicom\workflow\rules;
+use dicom\workflow\rules\exception\RuleCreationException;
+use dicom\workflow\rules\exception\RuleExecutionException;
+use dicom\workflow\rules\executionResult\RuleExecutionResult;
+use dicom\workflow\rules\RuleInterface\IConfiguredRule;
+use dicom\workflow\rules\RuleInterface\IRuleCheckingWithoutArguments;
 
 /**
  * Class YiiCheckAccess
  *
  * Проверяет права пользователя методом Yii::app()->user->checkAccess()
  *
- * @package workflow\rules
+ * @package dicom\workflow\rules
  */
 class YiiCheckAccess extends Rule implements IConfiguredRule, IRuleCheckingWithoutArguments
 {

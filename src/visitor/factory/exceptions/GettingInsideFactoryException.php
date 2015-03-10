@@ -6,7 +6,7 @@
  * Time: 18:01
  */
 
-namespace workflow\visitor\factory\exceptions;
+namespace dicom\workflow\visitor\factory\exceptions;
 
 
 class GettingInsideFactoryException extends \Exception

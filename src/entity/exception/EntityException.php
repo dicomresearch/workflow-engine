@@ -6,12 +6,10 @@
  * Time: 17:41
  */
 
-namespace workflow\entity\exception;
+namespace dicom\workflow\entity\exception;
 
 
-use Ddeboer\Imap\Exception\Exception;
-
-class EntityException extends Exception
+class EntityException extends \Exception
 {
 
 } 

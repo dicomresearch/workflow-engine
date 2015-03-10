@@ -6,14 +6,14 @@
  * Time: 12:12
  */
 
-namespace workflow\tests\unit\rules\creation;
+namespace dicom\workflow\tests\unit\rules\creation;
 
 
-use workflow\rules\AlwaysTrueRule;
-use workflow\rules\creation\RulesFactory;
-use workflow\rules\executionResult\RuleExecutionResult;
-use workflow\rules\GreaterThan;
-use workflow\rules\RuleInterface\IRule;
+use dicom\workflow\rules\AlwaysTrueRule;
+use dicom\workflow\rules\creation\RulesFactory;
+use dicom\workflow\rules\executionResult\RuleExecutionResult;
+use dicom\workflow\rules\GreaterThan;
+use dicom\workflow\rules\RuleInterface\IRule;
 
 class RulesFactoryTest extends \CTestCase
 {

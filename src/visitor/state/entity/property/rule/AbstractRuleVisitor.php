@@ -6,15 +6,15 @@
  * Time: 17:01
  */
 
-namespace workflow\visitor\state\entity\property\rule;
-use workflow\rules\Rule;
+namespace dicom\workflow\visitor\state\entity\property\rule;
+use dicom\workflow\rules\Rule;
 
 /**
  * Class AbstractRuleVisitor
  *
  * Визитор, посещающий Правило (rule)
  *
- * @package workflow\visitor\state\entity\property\rule
+ * @package dicom\workflow\visitor\state\entity\property\rule
  */
 abstract class AbstractRuleVisitor
 {

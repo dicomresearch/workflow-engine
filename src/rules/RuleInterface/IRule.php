@@ -6,14 +6,14 @@
  * Time: 21:45
  */
 
-namespace workflow\rules\RuleInterface;
+namespace dicom\workflow\rules\RuleInterface;
 
 /**
  * Interface IRule
  *
  * base interface for Rules
  *
- * @package workflow\rules\RuleInterface
+ * @package dicom\workflow\rules\RuleInterface
  */
 interface IRule
 {

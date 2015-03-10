@@ -6,13 +6,12 @@
  * Time: 16:19
  */
 
-namespace workflow\config\exception;
+namespace dicom\workflow\config\exception;
 
 
-use Ddeboer\Imap\Exception\Exception;
-use workflow\config\WorkflowDescription;
+use dicom\workflow\config\WorkflowDescription;
 
-class WorkflowConfigurationException extends Exception
+class WorkflowConfigurationException extends \Exception
 {
     public static function mustContainsStates()
     {

@@ -6,13 +6,13 @@
  * Time: 21:12
  */
 
-namespace workflow\tests\unit\rules\adapter;
+namespace dicom\workflow\tests\unit\rules\adapter;
 
 
-use workflow\rules\adapter\RuleAdapter;
-use workflow\rules\AlwaysTrueRule;
-use workflow\rules\executionResult\RuleExecutionResult;
-use workflow\rules\PropertyIsRequiredRule;
+use dicom\workflow\rules\adapter\RuleAdapter;
+use dicom\workflow\rules\AlwaysTrueRule;
+use dicom\workflow\rules\executionResult\RuleExecutionResult;
+use dicom\workflow\rules\PropertyIsRequiredRule;
 
 class AdapterTest extends \CTestCase
 {

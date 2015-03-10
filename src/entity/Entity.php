@@ -6,18 +6,18 @@
  * Time: 15:35
  */
 
-namespace workflow\entity;
+namespace dicom\workflow\entity;
 
-use workflow\entity\executionResult\EntityExecutionResult;
-use workflow\entity\property\Property;
-use workflow\visitor\VisitorInterface;
+use dicom\workflow\entity\executionResult\EntityExecutionResult;
+use dicom\workflow\entity\property\Property;
+use dicom\workflow\visitor\VisitorInterface;
 
 /**
  * Class Entity
  *
  * Сущность - содержащая набор свойств
  *
- * @package workflow\models\entity
+ * @package dicom\workflow\models\entity
  */
 class Entity
 {

@@ -6,12 +6,10 @@
  * Time: 17:32
  */
 
-namespace workflow\exception;
+namespace dicom\workflow\exception;
 
 
-use Ddeboer\Imap\Exception\Exception;
-
-class WorkflowEngineException extends Exception
+class WorkflowEngineException extends \Exception
 {
     public static function youTryUseNonExistingState($wrongState, $registeredStates)
     {

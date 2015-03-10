@@ -6,21 +6,21 @@
  * Time: 15:34
  */
 
-namespace workflow\rules;
+namespace dicom\workflow\rules;
 
 
-use workflow\rules\exception\RuleConfigurationException;
-use workflow\rules\exception\RuleExecutionException;
-use workflow\rules\executionResult\RuleExecutionResult;
-use workflow\rules\RuleInterface\IConfiguredRule;
-use workflow\rules\RuleInterface\IRuleCheckingPropertyValue;
+use dicom\workflow\rules\exception\RuleConfigurationException;
+use dicom\workflow\rules\exception\RuleExecutionException;
+use dicom\workflow\rules\executionResult\RuleExecutionResult;
+use dicom\workflow\rules\RuleInterface\IConfiguredRule;
+use dicom\workflow\rules\RuleInterface\IRuleCheckingPropertyValue;
 
 /**
  * Class GreaterThan
  *
  * Проверяет что новое значение сущности больше опредленного значения, заданого в конфиге Workflow
  *
- * @package workflow\rules
+ * @package dicom\workflow\rules
  */
 class GreaterThan extends Rule implements IConfiguredRule, IRuleCheckingPropertyValue
 {

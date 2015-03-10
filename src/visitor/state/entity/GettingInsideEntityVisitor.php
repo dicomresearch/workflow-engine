@@ -6,18 +6,18 @@
  * Time: 17:18
  */
 
-namespace workflow\visitor\state\entity;
+namespace dicom\workflow\visitor\state\entity;
 
 
-use workflow\entity\Entity;
-use workflow\visitor\state\entity\property\AbstractPropertyVisitor;
+use dicom\workflow\entity\Entity;
+use dicom\workflow\visitor\state\entity\property\AbstractPropertyVisitor;
 
 /**
  * Class GettingInsideEntityVisitor
  *
  * Визитор, проходящийся по свойствам Entity
  *
- * @package workflow\visitor\state\entity
+ * @package dicom\workflow\visitor\state\entity
  */
 class GettingInsideEntityVisitor extends AbstractEntityVisitor
 {

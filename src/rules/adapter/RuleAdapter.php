@@ -6,22 +6,22 @@
  * Time: 21:11
  */
 
-namespace workflow\rules\adapter;
+namespace dicom\workflow\rules\adapter;
 
 
-use workflow\rules\adapter\exception\RuleAdapterException;
-use workflow\rules\executionResult\RuleExecutionResult;
-use workflow\rules\RuleInterface\IRule;
-use workflow\rules\RuleInterface\IRuleCheckingPropertyValue;
-use workflow\rules\RuleInterface\IRuleCheckingWithoutArguments;
-use workflow\rules\RuleInterface\IRuleCompareTwoValueInterface;
+use dicom\workflow\rules\adapter\exception\RuleAdapterException;
+use dicom\workflow\rules\executionResult\RuleExecutionResult;
+use dicom\workflow\rules\RuleInterface\IRule;
+use dicom\workflow\rules\RuleInterface\IRuleCheckingPropertyValue;
+use dicom\workflow\rules\RuleInterface\IRuleCheckingWithoutArguments;
+use dicom\workflow\rules\RuleInterface\IRuleCompareTwoValueInterface;
 
 /**
  * Class Adapter
  *
  * It allows use different Rule interfaces identically
  *
- * @package workflow\rules\adapter
+ * @package dicom\workflow\rules\adapter
  */
 class RuleAdapter
 {

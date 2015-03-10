@@ -6,14 +6,14 @@
  * Time: 14:27
  */
 
-namespace workflow\rules\RuleInterface;
+namespace dicom\workflow\rules\RuleInterface;
 
 /**
  * Interface RuleCompareTwoValueInterface
  *
  * Правило, которое для валидации использует сравнение значений 2х сущностей, либо только новой
  *
- * @package workflow\models\entity\property\rule
+ * @package dicom\workflow\models\entity\property\rule
  */
 interface IRuleCompareTwoValueInterface
 {

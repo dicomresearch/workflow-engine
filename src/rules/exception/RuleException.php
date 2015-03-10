@@ -6,14 +6,14 @@
  * Time: 12:24
  */
 
-namespace workflow\rules\exception;
+namespace dicom\workflow\rules\exception;
 
 /**
  * Class RuleException
  *
  * Any Rule exception must be extends this class
  *
- * @package workflow\rules\exception
+ * @package dicom\workflow\rules\exception
  */
 abstract class RuleException extends \Exception
 {

@@ -6,10 +6,10 @@
  * Time: 14:56
  */
 
-namespace workflow\rules;
-use workflow\rules\exception\RuleExecutionException;
-use workflow\rules\executionResult\RuleExecutionResult;
-use workflow\rules\RuleInterface\IRuleCheckingWithoutArguments;
+namespace dicom\workflow\rules;
+use dicom\workflow\rules\exception\RuleExecutionException;
+use dicom\workflow\rules\executionResult\RuleExecutionResult;
+use dicom\workflow\rules\RuleInterface\IRuleCheckingWithoutArguments;
 
 /**
  * Class AlwaysFalseRule
@@ -17,7 +17,7 @@ use workflow\rules\RuleInterface\IRuleCheckingWithoutArguments;
  * Правило, возврщающее при проверка всегда false
  * Нужно для тестирования в первую очередь
  *
- * @package workflow\models\entity\property\rule
+ * @package dicom\workflow\models\entity\property\rule
  */
 class AlwaysFalseRule extends Rule implements IRuleCheckingWithoutArguments
 {

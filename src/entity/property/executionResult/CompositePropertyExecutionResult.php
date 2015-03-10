@@ -6,7 +6,7 @@
  * Time: 13:52
  */
 
-namespace workflow\entity\property\executionResult;
+namespace dicom\workflow\entity\property\executionResult;
 
 
 class CompositePropertyExecutionResult extends PropertyExecutionResult

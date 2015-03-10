@@ -6,19 +6,19 @@
  * Time: 11:42
  */
 
-namespace workflow\transition;
+namespace dicom\workflow\transition;
 
 
-use workflow\rules\exception\RuleExecutionException;
-use workflow\rules\executionResult\RuleExecutionResult;
-use workflow\state\executionResult\StateExecutionResult;
+use dicom\workflow\rules\exception\RuleExecutionException;
+use dicom\workflow\rules\executionResult\RuleExecutionResult;
+use dicom\workflow\state\executionResult\StateExecutionResult;
 
 /**
  * Class Transition
  *
  * Отражает состояние конеретного перехода. Успешен ли переход, какие ошибки?
  *
- * @package workflow\transition
+ * @package dicom\workflow\transition
  */
 class Transition
 {

@@ -6,7 +6,7 @@
  * Time: 16:17
  */
 
-namespace workflow\transition\exceptions;
+namespace dicom\workflow\transition\exceptions;
 
 
 class TransitionSpecificationNotValid extends \Exception

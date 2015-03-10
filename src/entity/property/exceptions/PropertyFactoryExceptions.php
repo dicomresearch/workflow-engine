@@ -6,7 +6,7 @@
  * Time: 14:02
  */
 
-namespace workflow\entity\property\exceptions;
+namespace dicom\workflow\entity\property\exceptions;
 
 
 class PropertyFactoryExceptions extends \Exception

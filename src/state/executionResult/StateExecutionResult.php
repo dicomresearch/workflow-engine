@@ -6,11 +6,11 @@
  * Time: 14:19
  */
 
-namespace workflow\state\executionResult;
+namespace dicom\workflow\state\executionResult;
 
 
-use workflow\entity\executionResult\EntityExecutionResult;
-use workflow\state\State;
+use dicom\workflow\entity\executionResult\EntityExecutionResult;
+use dicom\workflow\state\State;
 
 class StateExecutionResult
 {

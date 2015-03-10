@@ -6,15 +6,15 @@
  * Time: 5:21 PM
  */
 
-namespace workflow\rules;
-use workflow\rules\RuleInterface\IRule;
+namespace dicom\workflow\rules;
+use dicom\workflow\rules\RuleInterface\IRule;
 
 /**
  * Class Attribute
  *
  * Параметры имеют аттрибуты, которые описывают правила, по которым будут валидироватсья значения сущностей
  *
- * @package modules\workflow\models
+ * @package modules\dicom\workflow\models
  */
 abstract class Rule implements IRule
 {

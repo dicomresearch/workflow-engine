@@ -6,18 +6,18 @@
  * Time: 16:14
  */
 
-namespace workflow\transition;
+namespace dicom\workflow\transition;
 
-use workflow\rules\creation\RulesFactory;
-use workflow\transition\exceptions\TransitionSpecificationNotValid;
-use workflow\WorkflowEngine;
+use dicom\workflow\rules\creation\RulesFactory;
+use dicom\workflow\transition\exceptions\TransitionSpecificationNotValid;
+use dicom\workflow\WorkflowEngine;
 
 /**
  * Factory for Transition Specification.
  *
  * Create TransitionSpecification by transition description
  *
- * @package workflow\transition
+ * @package dicom\workflow\transition
  */
 class TransitionSpecificationFactory
 {

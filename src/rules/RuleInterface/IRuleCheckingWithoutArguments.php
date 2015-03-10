@@ -6,14 +6,14 @@
  * Time: 21:35
  */
 
-namespace workflow\rules\RuleInterface;
+namespace dicom\workflow\rules\RuleInterface;
 
 /**
  * Interface IRuleCheckingWithoutArguments
  *
  * don't need arguments for rule checking
  *
- * @package workflow\rules\RuleInterface
+ * @package dicom\workflow\rules\RuleInterface
  */
 interface IRuleCheckingWithoutArguments extends IRule
 {

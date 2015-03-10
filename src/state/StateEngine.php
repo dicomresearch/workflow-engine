@@ -6,23 +6,21 @@
  * Time: 13:05
  */
 
-namespace workflow\state;
+namespace dicom\workflow\state;
 
 
-use workflow\config\WorkflowDescription;
-use workflow\exception\WorkflowEngineException;
-use workflow\factory\StateFactory;
-use workflow\state\State;
-use workflow\visitor\factory\exceptions\GettingInsideFactoryException;
-use workflow\visitor\factory\GettingInsideVisitorFactory;
-use workflow\visitor\state\entity\property\rule\GetNameRuleVisitor;
+use dicom\workflow\config\WorkflowDescription;
+use dicom\workflow\exception\WorkflowEngineException;
+use dicom\workflow\factory\StateFactory;
+use dicom\workflow\visitor\factory\GettingInsideVisitorFactory;
+use dicom\workflow\visitor\state\entity\property\rule\GetNameRuleVisitor;
 
 /**
  * Class StateEngine
  *
  * Движек отвечающйи за состояние сущности
  *
- * @package workflow\state
+ * @package dicom\workflow\state
  */
 class StateEngine
 {
@@ -45,7 +43,7 @@ class StateEngine
     /**
      * Получить список состояний, зарегистрированных в системе
      *
-     * @return \workflow\state\State[]
+     * @return \dicom\workflow\state\State[]
      */
     public function getStateList()
     {

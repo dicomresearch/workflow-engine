@@ -6,19 +6,19 @@
  * Time: 12:13
  */
 
-namespace workflow\transition;
+namespace dicom\workflow\transition;
 
 
-use workflow\config\WorkflowDescription;
-use workflow\exception\WorkflowEngineException;
-use workflow\WorkflowEngine;
+use dicom\workflow\config\WorkflowDescription;
+use dicom\workflow\exception\WorkflowEngineException;
+use dicom\workflow\WorkflowEngine;
 
 /**
  * Class TransitionEngine
  *
  * Движек, отвечающий за перемещение сущности
  *
- * @package workflow\transition
+ * @package dicom\workflow\transition
  */
 class TransitionEngine
 {

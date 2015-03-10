@@ -6,11 +6,11 @@
  * Time: 14:36
  */
 
-namespace workflow\rules;
-use workflow\rules\exception\RuleExecutionException;
-use workflow\rules\executionResult\RuleExecutionResult;
-use workflow\rules\RuleInterface\IConfiguredRule;
-use workflow\rules\RuleInterface\IRuleCheckingPropertyValue;
+namespace dicom\workflow\rules;
+use dicom\workflow\rules\exception\RuleExecutionException;
+use dicom\workflow\rules\executionResult\RuleExecutionResult;
+use dicom\workflow\rules\RuleInterface\IConfiguredRule;
+use dicom\workflow\rules\RuleInterface\IRuleCheckingPropertyValue;
 
 /**
  * Class inRule
@@ -20,7 +20,7 @@ use workflow\rules\RuleInterface\IRuleCheckingPropertyValue;
  * В качестве проверяемого значения можно передавать как простое значение, так и массив значений, в этом случае будет
  * искаться пересечение значений, если хоть одно из значений ссовпадает проверка вернет true
  *
- * @package workflow\rules
+ * @package dicom\workflow\rules
  */
 class InRule extends Rule implements IConfiguredRule, IRuleCheckingPropertyValue
 {

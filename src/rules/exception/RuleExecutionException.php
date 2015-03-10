@@ -6,7 +6,7 @@
  * Time: 15:09
  */
 
-namespace workflow\rules\exception;
+namespace dicom\workflow\rules\exception;
 
 
 /**

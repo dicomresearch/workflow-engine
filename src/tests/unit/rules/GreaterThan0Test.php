@@ -6,12 +6,12 @@
  * Time: 12:17
  */
 
-namespace workflow\tests\unit\rules;
+namespace dicom\workflow\tests\unit\rules;
 
 
-use workflow\rules\exception\RuleConfigurationException;
-use workflow\rules\executionResult\RuleExecutionResult;
-use workflow\rules\GreaterThan;
+use dicom\workflow\rules\exception\RuleConfigurationException;
+use dicom\workflow\rules\executionResult\RuleExecutionResult;
+use dicom\workflow\rules\GreaterThan;
 
 class GreaterThan0Test extends \CTestCase
 {

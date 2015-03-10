@@ -6,12 +6,10 @@
  * Time: 16:39
  */
 
-namespace workflow\entity\exception;
+namespace dicom\workflow\entity\exception;
 
 
-use Ddeboer\Imap\Exception\Exception;
-
-class EntityFactoryException extends Exception
+class EntityFactoryException extends \Exception
 {
     public static function descriptionMustContainsProperty()
     {

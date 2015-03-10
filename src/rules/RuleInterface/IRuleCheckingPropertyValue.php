@@ -6,14 +6,14 @@
  * Time: 21:37
  */
 
-namespace workflow\rules\RuleInterface;
+namespace dicom\workflow\rules\RuleInterface;
 
 /**
  * Interface IRuleCheckingPropertyValue
  *
  * Правило проверяет новое значение свойства
  *
- * @package workflow\rules\RuleInterface
+ * @package dicom\workflow\rules\RuleInterface
  */
 interface IRuleCheckingPropertyValue extends IRule
 {

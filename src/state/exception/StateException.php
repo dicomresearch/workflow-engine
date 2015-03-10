@@ -6,7 +6,7 @@
  * Time: 17:42
  */
 
-namespace workflow\state\exception;
+namespace dicom\workflow\state\exception;
 
 
 class StateException

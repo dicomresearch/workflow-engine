@@ -6,11 +6,11 @@
  * Time: 11:43
  */
 
-namespace workflow\tests\unit\transition;
+namespace dicom\workflow\tests\unit\transition;
 
 
-use workflow\transition\Transition;
-use workflow\transition\TransitionSpecification;
+use dicom\workflow\transition\Transition;
+use dicom\workflow\transition\TransitionSpecification;
 
 class TransitionTest extends \PHPUnit_Framework_TestCase
 {

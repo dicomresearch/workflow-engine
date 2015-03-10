@@ -6,11 +6,11 @@
  * Time: 12:31
  */
 
-namespace workflow\entity\property\executionResult;
+namespace dicom\workflow\entity\property\executionResult;
 
 
-use workflow\entity\property\Property;
-use workflow\rules\executionResult\RuleExecutionResult;
+use dicom\workflow\entity\property\Property;
+use dicom\workflow\rules\executionResult\RuleExecutionResult;
 
 class PropertyExecutionResult
 {
@@ -101,7 +101,7 @@ class PropertyExecutionResult
     }
 
     /**
-     * @return \workflow\rules\executionResult\RuleExecutionResult[]
+     * @return \dicom\workflow\rules\executionResult\RuleExecutionResult[]
      */
     public function getRulesExecutionResult()
     {

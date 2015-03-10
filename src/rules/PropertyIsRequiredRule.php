@@ -6,18 +6,17 @@
  * Time: 5:26 PM
  */
 
-namespace workflow\rules;
-use workflow\rules\exception\RuleExecutionException;
-use workflow\rules\executionResult\RuleExecutionResult;
-use workflow\rules\RuleInterface\IRuleCheckingPropertyValue;
-use workflow\rules\RuleInterface\IRuleCompareTwoValueInterface;
+namespace dicom\workflow\rules;
+use dicom\workflow\rules\exception\RuleExecutionException;
+use dicom\workflow\rules\executionResult\RuleExecutionResult;
+use dicom\workflow\rules\RuleInterface\IRuleCheckingPropertyValue;
 
 /**
  * Class RequiredAttribute
  *
  * Значение аттрибута должны быть обязательно задано для сущности
  *
- * @package modules\workflow\models
+ * @package modules\dicom\workflow\models
  */
 class PropertyIsRequiredRule extends Rule implements IRuleCheckingPropertyValue
 {

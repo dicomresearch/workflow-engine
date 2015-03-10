@@ -6,17 +6,17 @@
  * Time: 17:03
  */
 
-namespace workflow\visitor\state\entity\property;
+namespace dicom\workflow\visitor\state\entity\property;
 
 
-use workflow\entity\property\Property;
+use dicom\workflow\entity\property\Property;
 
 /**
  * Class AbstractPropertyVisitor
  *
  * Визитор, посещающий Property
  *
- * @package workflow\visitor\state\entity\property
+ * @package dicom\workflow\visitor\state\entity\property
  */
 abstract class AbstractPropertyVisitor
 {

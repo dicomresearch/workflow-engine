@@ -6,10 +6,10 @@
  * Time: 16:15
  */
 
-namespace workflow\config;
+namespace dicom\workflow\config;
 
 
-use workflow\config\exception\WorkflowConfigurationException;
+use dicom\workflow\config\exception\WorkflowConfigurationException;
 
 class WorkflowDescription
 {

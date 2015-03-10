@@ -6,7 +6,7 @@
  * Time: 18:25
  */
 
-namespace workflowtest;
+namespace dicom\workflowtest;
 
 abstract class AbstractWorkflowTest extends \WorkflowTestCase {
 

@@ -6,10 +6,10 @@
  * Time: 16:57
  */
 
-namespace workflow\visitor\state;
+namespace dicom\workflow\visitor\state;
 
 
-use workflow\state\State;
+use dicom\workflow\state\State;
 
 /**
  * Class AbstractStateVisitor
@@ -19,7 +19,7 @@ use workflow\state\State;
  * Если имется необходимость заглянуть внутрь состояния - пощупать entity и глубже, можно воспользоваться
  * GettingInsideVisitor'ом
  *
- * @package workflow\visitor\state
+ * @package dicom\workflow\visitor\state
  */
 abstract class AbstractStateVisitor
 {

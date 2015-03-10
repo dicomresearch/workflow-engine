@@ -5,8 +5,8 @@
  * Date: 08.10.14
  * Time: 17:30
  */
-//use workflow\config\WorkflowDescription;
-//use workflow\WorkflowEngine;
+//use dicom\workflow\config\WorkflowDescription;
+//use dicom\workflow\WorkflowEngine;
 //
 //
 //define('PATH_TO_WORKFLOW_DESCRIPTION', dirname(__FILE__));

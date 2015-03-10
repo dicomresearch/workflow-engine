@@ -6,11 +6,11 @@
  * Time: 16:14
  */
 
-namespace workflow\factory;
+namespace dicom\workflow\factory;
 
 
-use workflow\entity\EntityFactory;
-use workflow\state\State;
+use dicom\workflow\entity\EntityFactory;
+use dicom\workflow\state\State;
 
 class StateFactory
 {

@@ -6,14 +6,14 @@
  * Time: 17:27
  */
 
-namespace workflow\visitor\factory;
+namespace dicom\workflow\visitor\factory;
 
 
-use workflow\visitor\factory\exceptions\GettingInsideFactoryException;
-use workflow\visitor\state\entity\GettingInsideEntityVisitor;
-use workflow\visitor\state\entity\property\GettingInsidePropertyVisitor;
-use workflow\visitor\state\entity\property\rule\AbstractRuleVisitor;
-use workflow\visitor\state\GettingInsideStateVisitor;
+use dicom\workflow\visitor\factory\exceptions\GettingInsideFactoryException;
+use dicom\workflow\visitor\state\entity\GettingInsideEntityVisitor;
+use dicom\workflow\visitor\state\entity\property\GettingInsidePropertyVisitor;
+use dicom\workflow\visitor\state\entity\property\rule\AbstractRuleVisitor;
+use dicom\workflow\visitor\state\GettingInsideStateVisitor;
 
 /**
  * Class GettingInsideVisitorFactory
@@ -26,7 +26,7 @@ use workflow\visitor\state\GettingInsideStateVisitor;
  * Необходимо указать какой визитор будет использоваться для Rule
  *
  *
- * @package workflow\visitor\factory
+ * @package dicom\workflow\visitor\factory
  */
 class GettingInsideVisitorFactory
 {

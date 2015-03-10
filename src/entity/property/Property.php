@@ -6,18 +6,18 @@
  * Time: 5:20 PM
  */
 
-namespace workflow\entity\property;
-use workflow\entity\property\executionResult\PropertyExecutionResult;
-use workflow\rules\adapter\RuleAdapter;
-use workflow\rules\Rule;
-use workflow\transition\Transition;
+namespace dicom\workflow\entity\property;
+use dicom\workflow\entity\property\executionResult\PropertyExecutionResult;
+use dicom\workflow\rules\adapter\RuleAdapter;
+use dicom\workflow\rules\Rule;
+use dicom\workflow\transition\Transition;
 
 /**
  * Class Property of Entity
  *
  * Класс описывает одно из свойств сущности. Содержит правила валидации свойства
  *
- * @package workflow\models\entity
+ * @package dicom\workflow\models\entity
  */
 class Property
 {

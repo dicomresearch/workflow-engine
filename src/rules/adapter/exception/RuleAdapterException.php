@@ -6,7 +6,7 @@
  * Time: 21:39
  */
 
-namespace workflow\rules\adapter\exception;
+namespace dicom\workflow\rules\adapter\exception;
 
 
 class RuleAdapterException extends \Exception

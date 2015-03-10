@@ -6,10 +6,10 @@
  * Time: 12:35
  */
 
-namespace workflow\entity\property;
+namespace dicom\workflow\entity\property;
 
 
-use workflow\entity\property\executionResult\CompositePropertyExecutionResult;
+use dicom\workflow\entity\property\executionResult\CompositePropertyExecutionResult;
 
 class CompositeProperty extends Property
 {

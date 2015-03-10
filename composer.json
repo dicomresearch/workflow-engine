@@ -1,6 +1,6 @@
 {
     "name": "workflow",
-    "description": "This library used to work with workflow",
+    "description": "Workflow library",
     "license": "DICOM Consulting",
     "authors": [
         {
@@ -12,7 +12,7 @@
     },
     "autoload": {
         "psr-4": {
-            "dicom\\workflow\\": "source/"
+            "dicom\\workflow\\": "src/"
         }
     }
 }

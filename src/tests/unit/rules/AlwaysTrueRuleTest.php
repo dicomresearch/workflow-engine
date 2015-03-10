@@ -6,11 +6,11 @@
  * Time: 21:24
  */
 
-namespace workflow\tests\unit\rules;
+namespace dicom\workflow\tests\unit\rules;
 
 
-use workflow\rules\AlwaysTrueRule;
-use workflow\rules\executionResult\RuleExecutionResult;
+use dicom\workflow\rules\AlwaysTrueRule;
+use dicom\workflow\rules\executionResult\RuleExecutionResult;
 
 class AlwaysTrueRuleTest extends \CTestCase
 {

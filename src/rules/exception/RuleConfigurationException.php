@@ -6,14 +6,14 @@
  * Time: 12:24
  */
 
-namespace workflow\rules\exception;
+namespace dicom\workflow\rules\exception;
 
 /**
  * Class RuleConfigurationException
  *
  * Error on rule configuration
  *
- * @package workflow\rules\exception
+ * @package dicom\workflow\rules\exception
  */
 class RuleConfigurationException extends RuleCreationException
 {

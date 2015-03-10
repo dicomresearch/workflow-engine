@@ -6,11 +6,11 @@
  * Time: 12:14
  */
 
-namespace workflowtest;
+namespace dicom\workflowtest;
 
 
-use workflow\config\WorkflowDescription;
-use workflow\WorkflowEngine;
+use dicom\workflow\config\WorkflowDescription;
+use dicom\workflow\WorkflowEngine;
 
 class ReadonlyRuleTest extends AbstractWorkflowTest {
 

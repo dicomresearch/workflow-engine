@@ -6,10 +6,9 @@
  * Time: 16:46
  */
 
-namespace workflow\rules\creation;
-use workflow\rules\Rule;
-use workflow\rules\creation\RuleAliasMapping;
-use workflow\rules\RuleInterface\IConfiguredRule;
+namespace dicom\workflow\rules\creation;
+use dicom\workflow\rules\Rule;
+use dicom\workflow\rules\RuleInterface\IConfiguredRule;
 
 
 /**
@@ -17,7 +16,7 @@ use workflow\rules\RuleInterface\IConfiguredRule;
  *
  * Create property Rules
  *
- * @package workflow\models\entity\property\rule
+ * @package dicom\workflow\models\entity\property\rule
  */
 class RulesFactory
 {

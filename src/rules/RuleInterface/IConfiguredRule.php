@@ -6,14 +6,14 @@
  * Time: 14:28
  */
 
-namespace workflow\rules\RuleInterface;
+namespace dicom\workflow\rules\RuleInterface;
 
 /**
  * Interface ConfiguredRule
  *
  * Rule must configured on instance before using
  *
- * @package workflow\rules\RuleInterface
+ * @package dicom\workflow\rules\RuleInterface
  */
 interface IConfiguredRule
 {

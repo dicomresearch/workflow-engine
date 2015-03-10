@@ -6,12 +6,10 @@
  * Time: 16:52
  */
 
-namespace workflow\rules\exception;
+namespace dicom\workflow\rules\exception;
 
 
-use Ddeboer\Imap\Exception\Exception;
-
-class PropertyRuleMappingException extends Exception
+class PropertyRuleMappingException extends \Exception
 {
     public static function cantMapRuleName($wrongRuleName, $allRulesName)
     {

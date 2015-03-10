@@ -6,22 +6,21 @@
  * Time: 5:18 PM
  */
 
-namespace workflow\state;
+namespace dicom\workflow\state;
 
 
-use workflow\entity\Entity;
-use workflow\entity\Property;
-use workflow\state\exception\StateException;
-use workflow\state\executionResult\StateExecutionResult;
-use workflow\visitor\state\AbstractStateVisitor;
-use workflow\visitor\VisitorInterface;
+use dicom\workflow\entity\Entity;
+use dicom\workflow\entity\Property;
+use dicom\workflow\state\exception\StateException;
+use dicom\workflow\state\executionResult\StateExecutionResult;
+use dicom\workflow\visitor\VisitorInterface;
 
 /**
  * Class State
  *
  * Состояния сущности. Отражает конечную или промежуточную точку, куда может переместится сущность
  *
- * @package workflow\state
+ * @package dicom\workflow\state
  */
 class State
 {
@@ -81,7 +80,7 @@ class State
     /**
      * get entity or throw exception if entity not set
      *
-     * @throws \workflow\state\exception\StateException
+     * @throws \dicom\workflow\state\exception\StateException
      * @return Entity
      */
     public function getEntity()

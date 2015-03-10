@@ -6,7 +6,7 @@
  * Time: 11:48
  */
 
-namespace workflowtest;
+namespace dicom\workflowtest;
 
 
 class RequiredRuleTest extends AbstractWorkflowTest {

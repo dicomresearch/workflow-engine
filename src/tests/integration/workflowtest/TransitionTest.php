@@ -6,8 +6,8 @@
  * Time: 13:16
  */
 
-namespace workflowtest;
-use workflow;
+namespace dicom\workflowtest;
+use dicom\workflow;
 
 class TransitionTest extends AbstractWorkflowTest {
 
@@ -28,7 +28,7 @@ class TransitionTest extends AbstractWorkflowTest {
     }
 
     /**
-     * @expectedException workflow\exception\WorkflowEngineException
+     * @expectedException dicom\workflow\exception\WorkflowEngineException
      */
     public function testBakedInNewPie()
     {
@@ -41,7 +41,7 @@ class TransitionTest extends AbstractWorkflowTest {
     }
 
     /**
-     * @expectedException workflow\exception\WorkflowEngineException
+     * @expectedException dicom\workflow\exception\WorkflowEngineException
      */
 
     public function testUnknownStatesPie()

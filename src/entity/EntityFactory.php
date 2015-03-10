@@ -6,11 +6,11 @@
  * Time: 16:37
  */
 
-namespace workflow\entity;
+namespace dicom\workflow\entity;
 
 
-use workflow\entity\exception\EntityFactoryException;
-use workflow\entity\property\PropertyFactory;
+use dicom\workflow\entity\exception\EntityFactoryException;
+use dicom\workflow\entity\property\PropertyFactory;
 
 class EntityFactory
 {

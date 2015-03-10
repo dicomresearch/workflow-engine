@@ -6,12 +6,12 @@
  * Time: 16:43
  */
 
-namespace workflow\entity\property;
+namespace dicom\workflow\entity\property;
 
 
-use workflow\entity\property\exceptions\PropertyFactoryExceptions;
-use workflow\entity\property\rule\PropertyRuleFactory;
-use workflow\rules\creation\RulesFactory;
+use dicom\workflow\entity\property\exceptions\PropertyFactoryExceptions;
+use dicom\workflow\entity\property\rule\PropertyRuleFactory;
+use dicom\workflow\rules\creation\RulesFactory;
 
 class PropertyFactory
 {

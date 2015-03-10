@@ -7,7 +7,7 @@
  */
 
 namespace workflowtest;
-use workflow;
+use dicom\workflow;
 
 
 class ContextTest extends AbstractWorkflowTest {
@@ -19,7 +19,7 @@ class ContextTest extends AbstractWorkflowTest {
 
     /**
      *
-     * @expectedException workflow\context\exception\ContextSpecificationException
+     * @expectedException dicom\workflow\context\exception\ContextSpecificationException
      */
     public function testOutContext()
     {

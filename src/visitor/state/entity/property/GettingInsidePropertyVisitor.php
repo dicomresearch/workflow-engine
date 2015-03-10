@@ -6,19 +6,19 @@
  * Time: 17:05
  */
 
-namespace workflow\visitor\state\entity\property;
+namespace dicom\workflow\visitor\state\entity\property;
 
 
-use workflow\entity\property\CompositeProperty;
-use workflow\entity\property\Property;
-use workflow\visitor\state\entity\property\rule\AbstractRuleVisitor;
+use dicom\workflow\entity\property\CompositeProperty;
+use dicom\workflow\entity\property\Property;
+use dicom\workflow\visitor\state\entity\property\rule\AbstractRuleVisitor;
 
 /**
  * Class GettingInsidePropertyVisitor
  *
  * Визитор, посещающий свойства и проходящий по всем ее правилам
  *
- * @package workflow\visitor\state\entity\property
+ * @package dicom\workflow\visitor\state\entity\property
  */
 class GettingInsidePropertyVisitor extends AbstractPropertyVisitor
 {

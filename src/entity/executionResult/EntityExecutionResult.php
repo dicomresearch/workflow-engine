@@ -6,18 +6,18 @@
  * Time: 14:00
  */
 
-namespace workflow\entity\executionResult;
+namespace dicom\workflow\entity\executionResult;
 
 
-use workflow\entity\Entity;
-use workflow\entity\property\executionResult\PropertyExecutionResult;
+use dicom\workflow\entity\Entity;
+use dicom\workflow\entity\property\executionResult\PropertyExecutionResult;
 
 /**
  * Class EntityExecutionResult
  *
  * Result of rules execution. Contains rule execution result of properties
  *
- * @package workflow\entity\executionResult
+ * @package dicom\workflow\entity\executionResult
  */
 class EntityExecutionResult
 {

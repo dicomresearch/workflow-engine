@@ -6,21 +6,21 @@
  * Time: 10:14
  */
 
-namespace workflow\rules\creation;
+namespace dicom\workflow\rules\creation;
 
-use workflow\rules\exception\PropertyRuleMappingException;
+use dicom\workflow\rules\exception\PropertyRuleMappingException;
 
 class RuleAliasMapping
 {
     private static $ruleNameMapping = [
-        'readonly'              => 'workflow\rules\PropertyIsReadOnlyRule',
-        'required'              => 'workflow\rules\PropertyIsRequiredRule',
-        'alwaystrue'            => 'workflow\rules\AlwaysTrueRule',
-        'alwaysfalse'           => 'workflow\rules\AlwaysFalseRule',
-        'greaterthan'           => 'workflow\rules\GreaterThan',
-        'in'                    => '\workflow\rules\InRule',
-        'yiicheckaccess'        => '\workflow\rules\YiiCheckAccess',
-        'currentuserisreceiver' => '\workflow\rules\CurrentUserIsReceiver'
+        'readonly'              => 'dicom\workflow\rules\PropertyIsReadOnlyRule',
+        'required'              => 'dicom\workflow\rules\PropertyIsRequiredRule',
+        'alwaystrue'            => 'dicom\workflow\rules\AlwaysTrueRule',
+        'alwaysfalse'           => 'dicom\workflow\rules\AlwaysFalseRule',
+        'greaterthan'           => 'dicom\workflow\rules\GreaterThan',
+        'in'                    => '\dicom\workflow\rules\InRule',
+        'yiicheckaccess'        => '\dicom\workflow\rules\YiiCheckAccess',
+        'currentuserisreceiver' => '\dicom\workflow\rules\CurrentUserIsReceiver'
     ];
 
     public static function getClassNameByAlias($alias)

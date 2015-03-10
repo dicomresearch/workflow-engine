@@ -6,9 +6,9 @@
  * Time: 18:24
  */
 
-namespace workflow\visitor\state\entity\property\rule;
-use workflow\rules\Rule;
-use workflow\rules\creation\RuleAliasMapping;
+namespace dicom\workflow\visitor\state\entity\property\rule;
+use dicom\workflow\rules\Rule;
+use dicom\workflow\rules\creation\RuleAliasMapping;
 
 
 /**
@@ -16,7 +16,7 @@ use workflow\rules\creation\RuleAliasMapping;
  *
  * Визитор, получающий короткое имя свойства
  *
- * @package workflow\visitor\state\entity\property\rule
+ * @package dicom\workflow\visitor\state\entity\property\rule
  */
 class GetNameRuleVisitor extends AbstractRuleVisitor
 {

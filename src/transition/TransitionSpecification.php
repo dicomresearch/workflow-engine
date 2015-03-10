@@ -6,19 +6,19 @@
  * Time: 15:06
  */
 
-namespace workflow\transition;
+namespace dicom\workflow\transition;
 
-use workflow\rules\adapter\RuleAdapter;
-use workflow\rules\RuleInterface\IRule;
-use workflow\state\State;
-use workflow\visitor\VisitorInterface;
+use dicom\workflow\rules\adapter\RuleAdapter;
+use dicom\workflow\rules\RuleInterface\IRule;
+use dicom\workflow\state\State;
+use dicom\workflow\visitor\VisitorInterface;
 
 /**
  * Class TransitionSpecification
  *
  * Перемещение из одного состоянияч в другое
  *
- * @package workflow\transition
+ * @package dicom\workflow\transition
  */
 class TransitionSpecification
 {
@@ -72,7 +72,7 @@ class TransitionSpecification
      * @param array $oldEntityValues
      *
      * @return Transition
-     * @throws \workflow\rules\adapter\exception\RuleAdapterException
+     * @throws \dicom\workflow\rules\adapter\exception\RuleAdapterException
      */
     public function makeTransition($newEntityValues, $oldEntityValues)
     {
@@ -90,7 +90,7 @@ class TransitionSpecification
      * @param $oldEntityValues
      * @param Transition $transition
      * @return Transition
-     * @throws \workflow\rules\adapter\exception\RuleAdapterException
+     * @throws \dicom\workflow\rules\adapter\exception\RuleAdapterException
      */
     public function executeTransitionRules($newEntityValues, $oldEntityValues = null, Transition $transition = null)
     {

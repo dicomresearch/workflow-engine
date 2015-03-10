@@ -1,17 +1,17 @@
 <?php
 
-namespace workflow\rules\executionResult;
+namespace dicom\workflow\rules\executionResult;
 
 
-use workflow\rules\exception\RuleExecutionException;
-use workflow\rules\RuleInterface\IRule;
+use dicom\workflow\rules\exception\RuleExecutionException;
+use dicom\workflow\rules\RuleInterface\IRule;
 
 /**
  * Result of rule execution
  *
  * it contains rule is success, error if not success
  *
- * @package workflow\rules\executionResult
+ * @package dicom\workflow\rules\executionResult
  */
 class RuleExecutionResult
 {
