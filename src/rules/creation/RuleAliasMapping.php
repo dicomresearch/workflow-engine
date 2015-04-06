@@ -15,6 +15,7 @@ class RuleAliasMapping
     private static $ruleNameMapping = [
         'readonly'              => 'dicom\workflow\rules\PropertyIsReadOnlyRule',
         'required'              => 'dicom\workflow\rules\PropertyIsRequiredRule',
+        'empty'                 => 'dicom\workflow\rules\IsEmptyRule',
         'alwaystrue'            => 'dicom\workflow\rules\AlwaysTrueRule',
         'alwaysfalse'           => 'dicom\workflow\rules\AlwaysFalseRule',
         'greaterthan'           => 'dicom\workflow\rules\GreaterThan',
