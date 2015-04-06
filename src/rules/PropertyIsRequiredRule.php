@@ -24,11 +24,10 @@ class PropertyIsRequiredRule extends Rule implements IRuleCheckingPropertyValue
      * проверяет соответсвует ли значение сущности условиям аттрибута
      *
      * @param $propertyValue
-     * @param $outError
      *
      * @return RuleExecutionResult
      */
-    public function execute($propertyValue, &$outError = null)
+    public function execute($propertyValue)
     {
         $result = new RuleExecutionResult($this);
         $isValid = $this->isValid($propertyValue);
