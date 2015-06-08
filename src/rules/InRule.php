@@ -44,7 +44,7 @@ class InRule extends Rule implements IConfiguredRule, IRuleCheckingPropertyValue
      * @param null $outError
      * @return RuleExecutionResult
      */
-    public function execute($value = null, &$outError = null)
+    public function execute($value = null)
     {
         $result = new RuleExecutionResult($this);
         $isValid = $this->isValid($value);
