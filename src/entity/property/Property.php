@@ -10,6 +10,7 @@ namespace dicom\workflow\entity\property;
 use dicom\workflow\entity\property\executionResult\PropertyExecutionResult;
 use dicom\workflow\rules\adapter\RuleAdapter;
 use dicom\workflow\rules\Rule;
+use dicom\workflow\rules\RuleInterface\IRule;
 use dicom\workflow\transition\Transition;
 
 /**
@@ -45,7 +46,7 @@ class Property
      *
      * @param Rule $rule
      */
-    public function addPropertyRule($rule)
+    public function addPropertyRule(IRule $rule)
     {
         $this->rules[$rule->getName()] = $rule;
     }
