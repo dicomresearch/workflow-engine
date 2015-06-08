@@ -23,7 +23,7 @@ class PropertyIsReadOnlyRule extends Rule implements IRuleCompareTwoValueInterfa
      * @return RuleExecutionResult
      * @internal param $propertyValue
      */
-    function execute($newValue, $oldValue)
+    public function execute($newValue, $oldValue)
     {
         $result = new RuleExecutionResult($this);
         $isValid = $this->isValid($newValue, $oldValue);
