@@ -4,11 +4,19 @@
     "license": "DICOM Consulting",
     "authors": [
         {
+          "name": "Bukharov Sergey",
+          "email": "sbukharov@dicomresearch.com"
+        },
+        {
             "name": "Rinat Gizatullin",
             "email": "rgizatullin@kirkazan.ru"
         }
     ],
     "require": {
+
+    },
+    "require-dev": {
+      "phpunit/phpunit": "4.*"
     },
     "autoload": {
         "psr-4": {
