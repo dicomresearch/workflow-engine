@@ -11,6 +11,14 @@ namespace dicom\workflow\entity\property;
 
 use dicom\workflow\entity\property\executionResult\CompositePropertyExecutionResult;
 
+/**
+ * Class CompositeProperty
+ *
+ * Описывает свойство, представляющее из себя объект (entity),
+ * который в свою очередь содержит вложеные свйоства
+ *
+ * @package dicom\workflow\entity\property
+ */
 class CompositeProperty extends Property
 {
     /**
@@ -24,7 +32,7 @@ class CompositeProperty extends Property
      * @param null|mixed $propertyNewValue новое значение аттрибута (например перед сохранением в базу данных)
      * @param null|mixed $propertyOldValue старое значение аттрибута (например причтении из базы)
      *
-     * @return bool
+     * @return CompositePropertyExecutionResult
      */
     public function executeRules($propertyNewValue = null, $propertyOldValue = null)
     {
@@ -42,11 +50,21 @@ class CompositeProperty extends Property
         return $propertyExecutionResult;
     }
 
+    /**
+     * app sub property
+     *
+     * @param Property $property
+     */
     public function addProperty(Property $property)
     {
         $this->properties[$property->getName()] = $property;
     }
 
+    /**
+     * Get list of properties
+     *
+     * @return Property[]
+     */
     public function getProperties()
     {
         return $this->properties;
