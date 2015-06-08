@@ -13,6 +13,13 @@ use dicom\workflow\rules\exception\RuleExecutionException;
 use dicom\workflow\rules\executionResult\RuleExecutionResult;
 use dicom\workflow\rules\RuleInterface\IRuleCompareTwoValueInterface;
 
+/**
+ * Class PropertyIsReadOnlyRule
+ *
+ * Check new value == old value
+ *
+ * @package dicom\workflow\rules
+ */
 class PropertyIsReadOnlyRule extends Rule implements IRuleCompareTwoValueInterface
 {
     /**
@@ -21,7 +28,6 @@ class PropertyIsReadOnlyRule extends Rule implements IRuleCompareTwoValueInterfa
      * @param $newValue
      * @param $oldValue
      * @return RuleExecutionResult
-     * @internal param $propertyValue
      */
     public function execute($newValue, $oldValue)
     {
