@@ -6,8 +6,7 @@
  * Time: 13:16
  */
 
-namespace dicom\workflowtest;
-use dicom\workflow;
+namespace dicom\workflow\tests\integration;
 
 class TransitionTest extends AbstractWorkflowTest {
 

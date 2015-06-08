@@ -6,7 +6,7 @@
  * Time: 12:14
  */
 
-namespace dicom\workflowtest;
+namespace dicom\workflow\tests\integration;
 
 
 use dicom\workflow\config\WorkflowDescription;

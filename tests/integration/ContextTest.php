@@ -6,20 +6,19 @@
  * Time: 12:39
  */
 
-namespace workflowtest;
-use dicom\workflow;
+namespace dicom\workflow\tests\integration;
 
 
 class ContextTest extends AbstractWorkflowTest {
 
     public function __construct()
     {
-        parent::__construct(dirname(__FILE__).'/../configs/contextConfig.json');
+        parent::__construct(dirname(__FILE__).'/configs/contextConfig.json');
     }
 
     /**
      *
-     * @expectedException dicom\workflow\context\exception\ContextSpecificationException
+     * @expectedException ContextSpecificationExcept
      */
     public function testOutContext()
     {

@@ -6,9 +6,9 @@
  * Time: 18:25
  */
 
-namespace dicom\workflowtest;
+namespace dicom\workflow\tests\integration;
 
-abstract class AbstractWorkflowTest extends \WorkflowTestCase {
+abstract class AbstractWorkflowTest extends \PHPUnit_Framework_TestCase {
 
 
     private $oldEntity;
