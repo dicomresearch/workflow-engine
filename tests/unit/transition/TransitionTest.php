@@ -16,14 +16,14 @@ class TransitionTest extends \PHPUnit_Framework_TestCase
 {
     public function testCreate()
     {
-        $transition = new Transition();
-        $transition->addTransitionRuleExecutionResult($rulesExecutionResult);
+//        $transition = new Transition();
+//        $transition->addTransitionRuleExecutionResult($rulesExecutionResult);
     }
 
     public function testGetActions()
     {
-        $transition = new Transition();
-        $transition->getActions();
+//        $transition = new Transition();
+//        $transition->getActions();
     }
 
     /**
@@ -31,14 +31,14 @@ class TransitionTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetErrors()
     {
-        $transition = new Transition();
-        $transition->getErrors();
+//        $transition = new Transition();
+//        $transition->getErrors();
     }
 
     public function testGetErrorForProperty()
     {
-        $transition = new Transition();
-        $transition->getPropperty($propertyName)->getErrors();
+//        $transition = new Transition();
+//        $transition->getPropperty($propertyName)->getErrors();
     }
 
 
