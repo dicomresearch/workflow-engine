@@ -15,7 +15,7 @@ namespace dicom\workflow\rules\RuleInterface;
  *
  * @package dicom\workflow\rules\RuleInterface
  */
-interface IConfiguredRule
+interface IConfiguredRule extends IRule
 {
     /**
      * Set configuration
