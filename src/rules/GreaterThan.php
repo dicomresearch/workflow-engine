@@ -12,7 +12,6 @@ namespace dicom\workflow\rules;
 use dicom\workflow\rules\exception\RuleConfigurationException;
 use dicom\workflow\rules\exception\RuleExecutionException;
 use dicom\workflow\rules\executionResult\RuleExecutionResult;
-use dicom\workflow\rules\RuleInterface\IConfiguredRule;
 use dicom\workflow\rules\RuleInterface\IRuleCheckingPropertyValue;
 
 /**
@@ -22,14 +21,8 @@ use dicom\workflow\rules\RuleInterface\IRuleCheckingPropertyValue;
  *
  * @package dicom\workflow\rules
  */
-class GreaterThan extends Rule implements IConfiguredRule, IRuleCheckingPropertyValue
+class GreaterThan extends ConfiguredRule implements IRuleCheckingPropertyValue
 {
-
-    /**
-     *
-     * @var double
-     */
-    private $config;
 
     /**
      * проверяет соответсвует ли значение сущности условиям аттрибута
@@ -77,38 +70,12 @@ class GreaterThan extends Rule implements IConfiguredRule, IRuleCheckingProperty
         return $e;
     }
 
-    /**
-     * Set configuration
-     *
-     * @param mixed $config
-     * @return mixed
-     */
-    public function setConfig($config)
-    {
-        $this->validateConfig($config);
-        $this->config = $config;
-    }
 
     protected function validateConfig($config)
     {
         if (! is_numeric($config)) {
-            throw new RuleConfigurationException(sprintf(
-                'config for %s must be a numeric, but given: %s',
-                $this->getName(),
-                var_export($config, true))
-            );
+            throw $this->createConfigurationException('config for must be a numeric', $config);
         }
     }
-
-    /**
-     * Get configuration
-     *
-     * @return mixed
-     */
-    public function getConfig()
-    {
-        return $this->config;
-    }
-
 
 } 

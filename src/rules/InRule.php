@@ -22,26 +22,14 @@ use dicom\workflow\rules\RuleInterface\IRuleCheckingPropertyValue;
  *
  * @package dicom\workflow\rules
  */
-class InRule extends Rule implements IConfiguredRule, IRuleCheckingPropertyValue
+class InRule extends ConfiguredRule implements IRuleCheckingPropertyValue
 {
-
-    /**
-     * Перечисление значений, удовлетворея одному из них правило будет выполнено
-     *
-     * @var array
-     */
-    private $config = [];
-
-    public function __construct($arguments)
-    {
-        $this->setConfig($arguments);
-    }
 
     /**
      * проверяет соответсвует ли значение сущности условиям аттрибут
      *
      * @param mixed $value
-     * @param null $outError
+     *
      * @return RuleExecutionResult
      */
     public function execute($value = null)
@@ -86,18 +74,20 @@ class InRule extends Rule implements IConfiguredRule, IRuleCheckingPropertyValue
     }
 
     /**
-     * @return array
+     * Validate config
+     *
+     * must throw exception if config don`t valid
+     *
+     * @param $config
+     * @return mixed|void
+     * @throws exception\RuleConfigurationException
      */
-    public function getConfig()
+    protected function validateConfig($config)
     {
-        return $this->config;
+        if (!is_array($config)) {
+            throw $this->createConfigurationException('config for must be a array', $config);
+        }
     }
 
-    /**
-     * @param array $config
-     */
-    public function setConfig($config)
-    {
-        $this->config = $config;
-    }
+
 } 
