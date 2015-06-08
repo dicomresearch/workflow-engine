@@ -15,7 +15,7 @@ use dicom\workflow\rules\executionResult\RuleExecutionResult;
 use dicom\workflow\rules\GreaterThan;
 use dicom\workflow\rules\RuleInterface\IRule;
 
-class RulesFactoryTest extends \CTestCase
+class RulesFactoryTest extends \PHPUnit_Framework_TestCase
 {
     public function testCreateByShortNameWithoutConfig()
     {

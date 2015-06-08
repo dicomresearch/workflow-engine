@@ -13,7 +13,7 @@ use dicom\workflow\rules\exception\RuleConfigurationException;
 use dicom\workflow\rules\executionResult\RuleExecutionResult;
 use dicom\workflow\rules\GreaterThan;
 
-class GreaterThan0Test extends \CTestCase
+class GreaterThan0Test extends \PHPUnit_Framework_TestCase
 {
     public function testConfigureForNumeric()
     {

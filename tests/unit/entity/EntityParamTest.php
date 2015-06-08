@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: sergey
- * Date: 10/3/14
- * Time: 10:38 AM
- */
 use dicom\workflow\entity;
 
 class EntityParamTest extends PHPUnit_Framework_TestCase
@@ -14,20 +8,18 @@ class EntityParamTest extends PHPUnit_Framework_TestCase
     {
         $property = new entity\property\Property('car');
         $property->addPropertyRule(new \dicom\workflow\rules\AlwaysFalseRule());
-        $isValid = $property->executeRules('4 wheel', '4 wheel', $errors);
+        $executionResult = $property->executeRules('4 wheel', '4 wheel');
 
-        $this->assertFalse($isValid);
-        $this->assertCount(1, $errors);
+        static::assertFalse($executionResult->isSuccess());
     }
 
     public function testErrorsIfAssertionIsValid()
     {
         $property = new entity\property\Property('car');
         $property->addPropertyRule(new \dicom\workflow\rules\AlwaysTrueRule());
-        $isValid = $property->executeRules('4 wheel', '4 wheel', $errors = []);
+        $executionResult = $property->executeRules('4 wheel', '4 wheel', $errors = []);
 
-        $this->assertTrue($isValid);
-        $this->assertCount(0, $errors);
+        static::assertTrue($executionResult->isSuccess());
     }
 }
  

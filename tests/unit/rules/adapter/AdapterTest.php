@@ -14,7 +14,7 @@ use dicom\workflow\rules\AlwaysTrueRule;
 use dicom\workflow\rules\executionResult\RuleExecutionResult;
 use dicom\workflow\rules\PropertyIsRequiredRule;
 
-class AdapterTest extends \CTestCase
+class AdapterTest extends \PHPUnit_Framework_TestCase
 {
     public function testTrue()
     {

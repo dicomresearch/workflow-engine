@@ -12,14 +12,14 @@ namespace dicom\workflow\tests\unit\rules;
 use dicom\workflow\rules\AlwaysTrueRule;
 use dicom\workflow\rules\executionResult\RuleExecutionResult;
 
-class AlwaysTrueRuleTest extends \CTestCase
+class AlwaysTrueRuleTest extends \PHPUnit_Framework_TestCase
 {
     public function testExecute()
     {
         $rule = new AlwaysTrueRule();
         $result = $rule->execute();
 
-        $this->assertInstanceOf(RuleExecutionResult::class, $result, 'Rule must return RuleExecutionResult object');
-        $this->assertTrue($result->isSuccess());
+        static::assertInstanceOf(RuleExecutionResult::class, $result, 'Rule must return RuleExecutionResult object');
+        static::assertTrue($result->isSuccess());
     }
 }
