@@ -27,11 +27,10 @@ class AlwaysFalseRule extends Rule implements IRuleCheckingWithoutArguments
     /**
      * проверяет соответсвует ли значение сущности условиям аттрибута
      *
-     * @param $outError
      * @return RuleExecutionResult
      *
      */
-    public function execute(&$outError = null)
+    public function execute()
     {
         $executionResult = new RuleExecutionResult($this);
 
