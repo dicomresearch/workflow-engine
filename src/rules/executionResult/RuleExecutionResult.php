@@ -30,6 +30,23 @@ class RuleExecutionResult
      */
     protected $error;
 
+    /**
+     * Create Rule Execution Result
+     *
+     * @param IRule $rule
+     * @param bool $result
+     * @param null|RuleExecutionException $error
+     * @return static
+     */
+    public static function create(IRule $rule, $result, $error = null)
+    {
+        $ruleExecutionResult = new static($rule);
+        $ruleExecutionResult->setResult($result);
+        $ruleExecutionResult->setError($error);
+
+        return $ruleExecutionResult;
+    }
+
     public function __construct(IRule $rule)
     {
         $this->setRule($rule);
