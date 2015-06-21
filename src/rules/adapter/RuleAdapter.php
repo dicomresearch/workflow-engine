@@ -12,7 +12,7 @@ namespace dicom\workflow\rules\adapter;
 use dicom\workflow\rules\adapter\exception\RuleAdapterException;
 use dicom\workflow\rules\executionResult\RuleExecutionResult;
 use dicom\workflow\rules\RuleInterface\IRule;
-use dicom\workflow\rules\RuleInterface\IRuleCheckingPropertyValue;
+use dicom\workflow\rules\RuleInterface\IRuleCheckingOneValue;
 use dicom\workflow\rules\RuleInterface\IRuleCheckingWithoutArguments;
 use dicom\workflow\rules\RuleInterface\IRuleCompareTwoValueInterface;
 
@@ -56,7 +56,7 @@ class RuleAdapter
             case ($this->getRule() instanceof IRuleCheckingWithoutArguments):
                 $result = $this->getRule()->execute();
                 break;
-            case ($this->getRule() instanceof IRuleCheckingPropertyValue):
+            case ($this->getRule() instanceof IRuleCheckingOneValue):
                 $result = $this->getRule()->execute($entityNewValue);
                 break;
             case ($this->getRule() instanceof IRuleCompareTwoValueInterface):
@@ -72,7 +72,7 @@ class RuleAdapter
 
 
     /**
-     * @return IRule|IRuleCheckingWithoutArguments|IRuleCheckingPropertyValue|IRuleCompareTwoValueInterface
+     * @return IRule|IRuleCheckingWithoutArguments|IRuleCheckingOneValue|IRuleCompareTwoValueInterface
      */
     public function getRule()
     {

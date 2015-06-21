@@ -3,7 +3,7 @@
 namespace dicom\workflow\rules;
 use dicom\workflow\rules\exception\RuleExecutionException;
 use dicom\workflow\rules\executionResult\RuleExecutionResult;
-use dicom\workflow\rules\RuleInterface\IRuleCheckingPropertyValue;;
+use dicom\workflow\rules\RuleInterface\IRuleCheckingOneValue;;
 
 /**
  * CurrentUserIsReceiver
@@ -14,7 +14,7 @@ use dicom\workflow\rules\RuleInterface\IRuleCheckingPropertyValue;;
  * todo если правило проверяет одно из свойств сущности, то в transition передается вся сущность
  * а в state только значение свойства. нужно унифицировать.
  */
-class CurrentUserIsReceiver extends Rule implements IRuleCheckingPropertyValue
+class CurrentUserIsReceiver extends Rule implements IRuleCheckingOneValue
 {
 
     /**

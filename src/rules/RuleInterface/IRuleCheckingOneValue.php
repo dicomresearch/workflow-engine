@@ -9,13 +9,13 @@
 namespace dicom\workflow\rules\RuleInterface;
 
 /**
- * Interface IRuleCheckingPropertyValue
+ * Interface IRuleCheckingOneValue
  *
  * Правило проверяет новое значение свойства
  *
  * @package dicom\workflow\rules\RuleInterface
  */
-interface IRuleCheckingPropertyValue extends IRule
+interface IRuleCheckingOneValue extends IRule
 {
     public function execute($propertyValue);
 }

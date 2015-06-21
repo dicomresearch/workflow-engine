@@ -6,9 +6,9 @@ namespace dicom\workflow\rules;
 
 use dicom\workflow\rules\exception\RuleExecutionException;
 use dicom\workflow\rules\executionResult\RuleExecutionResult;
-use dicom\workflow\rules\RuleInterface\IRuleCheckingPropertyValue;
+use dicom\workflow\rules\RuleInterface\IRuleCheckingOneValue;
 
-class IsEmptyRule extends Rule implements IRuleCheckingPropertyValue
+class IsEmptyRule extends Rule implements IRuleCheckingOneValue
 {
     /**
      * проверяет соответсвует ли значение сущности условиям аттрибута

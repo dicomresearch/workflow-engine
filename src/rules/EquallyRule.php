@@ -1,29 +1,16 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: sergey
- * Date: 03.12.14
- * Time: 15:34
- */
-
-namespace dicom\workflow\rules;
 
 
-use dicom\workflow\rules\exception\RuleConfigurationException;
+namespace rules;
+
+
+use dicom\workflow\rules\ConfiguredRule;
 use dicom\workflow\rules\exception\RuleExecutionException;
 use dicom\workflow\rules\executionResult\RuleExecutionResult;
 use dicom\workflow\rules\RuleInterface\IRuleCheckingOneValue;
 
-/**
- * Class GreaterThan
- *
- * Проверяет что новое значение сущности больше опредленного значения, заданого в конфиге Workflow
- *
- * @package dicom\workflow\rules
- */
-class GreaterThan extends ConfiguredRule implements IRuleCheckingOneValue
+class EquallyRule extends ConfiguredRule implements IRuleCheckingOneValue
 {
-
     /**
      * проверяет соответсвует ли значение сущности условиям аттрибута
      *
@@ -53,7 +40,7 @@ class GreaterThan extends ConfiguredRule implements IRuleCheckingOneValue
     protected function isValid($entityNewValue = null)
     {
         $entityNewValue = (int) $entityNewValue;
-        return $entityNewValue > $this->getConfig();
+        return $entityNewValue === $this->getConfig();
     }
 
     /**
@@ -78,4 +65,4 @@ class GreaterThan extends ConfiguredRule implements IRuleCheckingOneValue
         }
     }
 
-} 
+}

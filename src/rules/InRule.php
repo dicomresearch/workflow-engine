@@ -10,7 +10,7 @@ namespace dicom\workflow\rules;
 use dicom\workflow\rules\exception\RuleExecutionException;
 use dicom\workflow\rules\executionResult\RuleExecutionResult;
 use dicom\workflow\rules\RuleInterface\IConfiguredRule;
-use dicom\workflow\rules\RuleInterface\IRuleCheckingPropertyValue;
+use dicom\workflow\rules\RuleInterface\IRuleCheckingOneValue;
 
 /**
  * Class inRule
@@ -22,7 +22,7 @@ use dicom\workflow\rules\RuleInterface\IRuleCheckingPropertyValue;
  *
  * @package dicom\workflow\rules
  */
-class InRule extends ConfiguredRule implements IRuleCheckingPropertyValue
+class InRule extends ConfiguredRule implements IRuleCheckingOneValue
 {
 
     /**

@@ -9,7 +9,7 @@
 namespace dicom\workflow\rules;
 use dicom\workflow\rules\exception\RuleExecutionException;
 use dicom\workflow\rules\executionResult\RuleExecutionResult;
-use dicom\workflow\rules\RuleInterface\IRuleCheckingPropertyValue;
+use dicom\workflow\rules\RuleInterface\IRuleCheckingOneValue;
 
 /**
  * Class RequiredAttribute
@@ -18,7 +18,7 @@ use dicom\workflow\rules\RuleInterface\IRuleCheckingPropertyValue;
  *
  * @package modules\dicom\workflow\models
  */
-class PropertyIsRequiredRule extends Rule implements IRuleCheckingPropertyValue
+class PropertyIsRequiredRule extends Rule implements IRuleCheckingOneValue
 {
     /**
      * проверяет соответсвует ли значение сущности условиям аттрибута
