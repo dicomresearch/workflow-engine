@@ -20,8 +20,9 @@ class RuleAliasMapping
         'alwaysfalse'           => 'dicom\workflow\rules\AlwaysFalseRule',
         'greaterthan'           => 'dicom\workflow\rules\GreaterThan',
         'in'                    => '\dicom\workflow\rules\InRule',
+        'equally'               => 'dicom\workflow\rules\EquallyRule',
         'yiicheckaccess'        => '\dicom\workflow\rules\YiiCheckAccess',
-        'currentuserisreceiver' => '\dicom\workflow\rules\CurrentUserIsReceiver'
+        'currentuserisreceiver' => '\dicom\workflow\rules\CurrentUserIsReceiver',
     ];
 
     public static function getClassNameByAlias($alias)

@@ -8,9 +8,10 @@ use dicom\workflow\rules\ConfiguredRule;
 use dicom\workflow\rules\exception\RuleExecutionException;
 use dicom\workflow\rules\executionResult\RuleExecutionResult;
 use dicom\workflow\rules\Rule;
+use dicom\workflow\rules\RuleCheckingOneValue;
 use dicom\workflow\rules\RuleInterface\IRuleCheckingOneValue;
 
-class EquallyRule extends Rule implements IRuleCheckingOneValue
+class EquallyRule extends RuleCheckingOneValue
 {
     use ConfiguredRule;
 
@@ -36,8 +37,8 @@ class EquallyRule extends Rule implements IRuleCheckingOneValue
      */
     protected function constructValidationException($value = null)
     {
-        $e = new RuleExecutionException(sprintf('Value must be greater than 0. Given: %s', $value));
-        $e->setHumanFriendlyMessage('Must be greater than 0');
+        $e = new RuleExecutionException(sprintf('Value must be equally %s. Given: %s', $this->getConfig(), $value));
+        $e->setHumanFriendlyMessage('Must be greater than ' . $this->getConfig());
         return $e;
     }
 
