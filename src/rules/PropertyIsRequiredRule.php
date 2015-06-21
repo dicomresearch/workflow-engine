@@ -8,8 +8,6 @@
 
 namespace dicom\workflow\rules;
 use dicom\workflow\rules\exception\RuleExecutionException;
-use dicom\workflow\rules\executionResult\RuleExecutionResult;
-use dicom\workflow\rules\RuleInterface\IRuleCheckingOneValue;
 
 /**
  * Class RequiredAttribute
@@ -18,27 +16,8 @@ use dicom\workflow\rules\RuleInterface\IRuleCheckingOneValue;
  *
  * @package modules\dicom\workflow\models
  */
-class PropertyIsRequiredRule extends Rule implements IRuleCheckingOneValue
+class PropertyIsRequiredRule extends RuleCheckingOneValue
 {
-    /**
-     * проверяет соответсвует ли значение сущности условиям аттрибута
-     *
-     * @param $propertyValue
-     *
-     * @return RuleExecutionResult
-     */
-    public function execute($propertyValue)
-    {
-        $result = new RuleExecutionResult($this);
-        $isValid = $this->isValid($propertyValue);
-        $result->setResult($isValid);
-
-        if (!$isValid) {
-            $result->setError($this->constructException($propertyValue));
-        }
-
-        return $result;
-    }
 
 
     protected function isValid($entityNewValue)
@@ -46,7 +25,8 @@ class PropertyIsRequiredRule extends Rule implements IRuleCheckingOneValue
         return !empty($entityNewValue);
     }
 
-    protected function constructException($entityNewValue)
+
+    protected function constructValidationException($entityNewValue)
     {
         $error =  new RuleExecutionException(
             sprintf(

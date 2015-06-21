@@ -19,7 +19,7 @@ use dicom\workflow\rules\RuleInterface\IRuleCheckingWithoutArguments;
  *
  * @package dicom\workflow\models\entity\property\rule
  */
-class AlwaysFalseRule extends Rule implements IRuleCheckingWithoutArguments
+class AlwaysFalseRule extends RuleCheckingWithoutArguments implements IRuleCheckingWithoutArguments
 {
     private $hasBeenChecked = false;
 
@@ -32,17 +32,8 @@ class AlwaysFalseRule extends Rule implements IRuleCheckingWithoutArguments
      */
     public function execute()
     {
-        $executionResult = new RuleExecutionResult($this);
-
-        $isValid = $this->isValid();
-        $executionResult->setResult($isValid);
-
-        if (!$isValid) {
-            $executionResult->setError($this->constructException());
-        }
-
         $this->hasBeenChecked = true;
-        return $executionResult;
+        return parent::execute();
     }
 
     /**
@@ -60,7 +51,7 @@ class AlwaysFalseRule extends Rule implements IRuleCheckingWithoutArguments
      *
      * @return RuleExecutionException
      */
-    protected function constructException()
+    protected function constructValidationException()
     {
         $e = new RuleExecutionException('This rule is always return false');
         $e->setHumanFriendlyMessage('This rule is always return false');

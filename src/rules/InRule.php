@@ -22,31 +22,9 @@ use dicom\workflow\rules\RuleInterface\IRuleCheckingOneValue;
  *
  * @package dicom\workflow\rules
  */
-class InRule extends Rule implements IRuleCheckingOneValue
+class InRule extends RuleCheckingOneValue
 {
     use ConfiguredRule;
-
-    /**
-     * проверяет соответсвует ли значение сущности условиям аттрибут
-     *
-     * @param mixed $value
-     *
-     * @return RuleExecutionResult
-     */
-    public function execute($value = null)
-    {
-        $result = new RuleExecutionResult($this);
-        $isValid = $this->isValid($value);
-        $result->setResult($isValid);
-
-
-        if (!$isValid) {
-            $result->setError($this->constructValidationException($value));
-        }
-
-        return $result;
-    }
-
 
     /**
      * @param $value

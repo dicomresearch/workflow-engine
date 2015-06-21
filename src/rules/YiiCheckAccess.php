@@ -20,33 +20,12 @@ use dicom\workflow\rules\RuleInterface\IRuleCheckingWithoutArguments;
  *
  * @package dicom\workflow\rules
  */
-class YiiCheckAccess extends Rule implements IConfiguredRule, IRuleCheckingWithoutArguments
+class YiiCheckAccess extends RuleCheckingWithoutArguments implements IConfiguredRule, IRuleCheckingWithoutArguments
 {
     /**
      * @var array аргументы, с которыми будут вызываться проверка прав
      */
     protected $config;
-
-    /**
-     * проверяет есть ли доступ у пользователя к операции
-     *
-     * @return RuleExecutionResult
-     */
-    public function execute()
-    {
-        $result = new RuleExecutionResult($this);
-
-
-        $isValid = $this->isValid();
-        $result->setResult($isValid);
-
-        if (!$isValid) {
-            $result->setError($this->constructValidationException());
-        }
-
-        return $result;
-    }
-
 
     /**
      * @return bool
