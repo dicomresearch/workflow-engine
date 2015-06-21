@@ -21,8 +21,9 @@ use dicom\workflow\rules\RuleInterface\IRuleCheckingOneValue;
  *
  * @package dicom\workflow\rules
  */
-class GreaterThan extends ConfiguredRule implements IRuleCheckingOneValue
+class GreaterThan extends Rule implements IRuleCheckingOneValue
 {
+    use ConfiguredRule;
 
     /**
      * проверяет соответсвует ли значение сущности условиям аттрибута

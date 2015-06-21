@@ -7,10 +7,12 @@ namespace rules;
 use dicom\workflow\rules\ConfiguredRule;
 use dicom\workflow\rules\exception\RuleExecutionException;
 use dicom\workflow\rules\executionResult\RuleExecutionResult;
+use dicom\workflow\rules\Rule;
 use dicom\workflow\rules\RuleInterface\IRuleCheckingOneValue;
 
-class EquallyRule extends ConfiguredRule implements IRuleCheckingOneValue
+class EquallyRule extends Rule implements IRuleCheckingOneValue
 {
+    use ConfiguredRule;
     /**
      * проверяет соответсвует ли значение сущности условиям аттрибута
      *

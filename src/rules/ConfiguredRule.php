@@ -7,18 +7,18 @@ use dicom\workflow\rules\exception\RuleConfigurationException;
 use dicom\workflow\rules\RuleInterface\IConfiguredRule;
 
 /**
- * Class ConfiguredRule
+ * Trait ConfiguredRule
  *
  * For executing this rule config is required
  *
  *
  * @package dicom\workflow\rules
  */
-abstract class ConfiguredRule extends Rule implements IConfiguredRule
+trait ConfiguredRule
 {
     /**
      *
-     * @var double
+     * @var mixed
      */
     protected $config;
 

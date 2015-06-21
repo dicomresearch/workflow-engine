@@ -22,8 +22,9 @@ use dicom\workflow\rules\RuleInterface\IRuleCheckingOneValue;
  *
  * @package dicom\workflow\rules
  */
-class InRule extends ConfiguredRule implements IRuleCheckingOneValue
+class InRule extends Rule implements IRuleCheckingOneValue
 {
+    use ConfiguredRule;
 
     /**
      * проверяет соответсвует ли значение сущности условиям аттрибут
