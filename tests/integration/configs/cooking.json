@@ -5,7 +5,8 @@
             "properties": {
                 "id": ["required"],
                 "stuffing": ["required", "readonly"],
-                "pastry": ["required", "readonly"]
+                "pastry": ["required", "readonly"],
+                "baking_time": [{"equally": 0}]
             }
         },
 
@@ -13,7 +14,8 @@
             "properties": {
                 "id": ["required"],
                 "stuffing": ["required", "readonly"],
-                "pastry": ["required", "readonly"]
+                "pastry": ["required", "readonly"],
+                "baking_time": [{"equally": 50}]
             }
         },
 
@@ -21,7 +23,8 @@
             "properties": {
                 "id": ["required"],
                 "stuffing": ["required", "readonly"],
-                "pastry": ["required", "readonly"]
+                "pastry": ["required", "readonly"],
+                "baking_time": [{"greaterThan": 50}]
             }
         }
     },
@@ -30,20 +33,14 @@
             {
                 "oldState": "new",
                 "newState": "baked",
-                "allowedFor": [
-                    {"time_minut": [
-                        {"in": ["50"]}
-                    ]}
+                "rules": [
                 ],
                 "actionName": "yammee"
             },
             {
                 "oldState": "new",
                 "newState": "burnt",
-                "allowedFor": [
-                    {"time_minut": [
-                        {"in": ["80"]}
-                    ]}
+                "rules": [
                 ],
                 "actionName": "wow(("
             },
@@ -51,10 +48,7 @@
             {
                 "oldState": "baked",
                 "newState": "burnt",
-                "allowedFor": [
-                    {"time_minut": [
-                        {"in": ["30"]}
-                    ]}
+                "rules": [
                 ],
                 "actionName": "burnt pie"
             }
