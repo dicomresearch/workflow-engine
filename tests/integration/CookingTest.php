@@ -7,15 +7,15 @@ namespace integration;
 use dicom\workflow\config\WorkflowDescription;
 use dicom\workflow\WorkflowEngine;
 
-class StateTest extends \PHPUnit_Framework_TestCase
+class CookingTest extends \PHPUnit_Framework_TestCase
 {
-    public function testSimple()
+    public function testCookingBakingPie()
     {
         $jsonConfig = file_get_contents(__DIR__ . '/configs/cooking.json');
         $config = json_decode($jsonConfig, true);
 
-        $wfdescription = new WorkflowDescription($config);
-        $engine = new WorkflowEngine($wfdescription);
+        $wfDescription = new WorkflowDescription($config);
+        $engine = new WorkflowEngine($wfDescription);
 
         $rawPie = [
             'id' => 1,
