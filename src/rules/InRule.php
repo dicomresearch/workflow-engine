@@ -22,7 +22,7 @@ use dicom\workflow\rules\RuleInterface\IRuleCheckingOneValue;
  *
  * @package dicom\workflow\rules
  */
-class InRule extends RuleCheckingOneValue
+class InRule extends RuleCheckingOneValue implements IConfiguredRule
 {
     use ConfiguredRule;
 

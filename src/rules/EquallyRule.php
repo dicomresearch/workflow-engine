@@ -1,17 +1,12 @@
 <?php
 
 
-namespace rules;
+namespace dicom\workflow\rules;
 
-
-use dicom\workflow\rules\ConfiguredRule;
 use dicom\workflow\rules\exception\RuleExecutionException;
-use dicom\workflow\rules\executionResult\RuleExecutionResult;
-use dicom\workflow\rules\Rule;
-use dicom\workflow\rules\RuleCheckingOneValue;
-use dicom\workflow\rules\RuleInterface\IRuleCheckingOneValue;
+use dicom\workflow\rules\RuleInterface\IConfiguredRule;
 
-class EquallyRule extends RuleCheckingOneValue
+class EquallyRule extends RuleCheckingOneValue implements  IConfiguredRule
 {
     use ConfiguredRule;
 

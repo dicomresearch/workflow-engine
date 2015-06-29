@@ -12,6 +12,7 @@ namespace dicom\workflow\rules;
 use dicom\workflow\rules\exception\RuleConfigurationException;
 use dicom\workflow\rules\exception\RuleExecutionException;
 use dicom\workflow\rules\executionResult\RuleExecutionResult;
+use dicom\workflow\rules\RuleInterface\IConfiguredRule;
 use dicom\workflow\rules\RuleInterface\IRuleCheckingOneValue;
 
 /**
@@ -21,7 +22,7 @@ use dicom\workflow\rules\RuleInterface\IRuleCheckingOneValue;
  *
  * @package dicom\workflow\rules
  */
-class GreaterThan extends RuleCheckingOneValue implements IRuleCheckingOneValue
+class GreaterThan extends RuleCheckingOneValue implements IRuleCheckingOneValue, IConfiguredRule
 {
     use ConfiguredRule;
 
