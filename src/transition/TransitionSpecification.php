@@ -8,6 +8,7 @@
 
 namespace dicom\workflow\transition;
 
+use dicom\workflow\entity\Entity;
 use dicom\workflow\rules\adapter\RuleAdapter;
 use dicom\workflow\rules\RuleInterface\IRule;
 use dicom\workflow\state\State;
@@ -53,6 +54,11 @@ class TransitionSpecification
      */
     private $client = [];
 
+    /**
+     * @var Entity
+     */
+    private $entity;
+
 
     /**
      * @param State $newState
@@ -79,6 +85,7 @@ class TransitionSpecification
         $transition = $this->createTransition();
         $transition = $this->executeTransitionRules($newEntityValues, $oldEntityValues, $transition);
         $transition = $this->executeStateRules($newEntityValues, $oldEntityValues, $transition);
+        $transition = $this->executeEntityRules($newEntityValues, $oldEntityValues, $transition);
 
         return $transition;
     }
@@ -122,6 +129,26 @@ class TransitionSpecification
 
         return $transition;
 
+    }
+
+    /**
+     * are properties rules satisfied
+     *
+     * @param $newEntityValues
+     * @param $oldEntityValues
+     * @param Transition $transition
+     * @return transition
+     */
+    public function executeEntityRules($newEntityValues, $oldEntityValues, Transition $transition = null)
+    {
+        $transition = null !== $transition ? $transition: $this->createTransition();
+
+        if ($this->getEntity() !== null) {
+            $entityExecuteResult = $this->getEntity()->executeRules($newEntityValues, $oldEntityValues);
+            $transition->setEntityRulesExecutionResult($entityExecuteResult);
+        }
+
+        return $transition;
     }
 
     /**
@@ -279,6 +306,20 @@ class TransitionSpecification
         return $this->getNewState()->getActions();
     }
 
+    /**
+     * @return Entity
+     */
+    public function getEntity()
+    {
+        return $this->entity;
+    }
 
+    /**
+     * @param Entity $value
+     */
+    public function setEntity($value)
+    {
+        $this->entity = $value;
+    }
 
 }

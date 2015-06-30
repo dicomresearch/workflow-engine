@@ -180,6 +180,35 @@ class WorkflowEngine
         return $this->stateEngine->getStatePropertiesRules($stateName);
     }
 
+    /**
+     * Получаем список свойств при переходе между статусами
+     *
+     * @param $oldStateName
+     * @param $newStateName
+     *
+     * @return array
+     */
+    public function getTransitionProperties($oldStateName, $newStateName)
+    {
+        return $this->getTransitionEngine()->getTransitionSpecification($oldStateName, $newStateName)->getProperties();
+    }
 
+    /**
+     * Получить список свойств из state и transition
+     *
+     * @param string $oldStateName
+     * @param string $newStateName
+     * @return mixed
+     */
+    public function getPropertiesRules($oldStateName, $newStateName)
+    {
+        $stateProperty = $this->getStatePropertiesRules($newStateName);
+        $transition = $this->getTransitionEngine()->getTransitionSpecification($oldStateName, $newStateName);
+        $transitionProperty = $this->getTransitionEngine()->getTransitionPropertiesRules($transition);
+
+        $result = array_merge($stateProperty, $transitionProperty);
+
+        return $result;
+    }
 
 } 
