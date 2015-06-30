@@ -46,14 +46,14 @@ class CookingTest extends \PHPUnit_Framework_TestCase
             'id' => 1,
             'stuffing' => 'cherry',
             'pastry' => 'yeast dough',
-            'baking_time' => 0,
+            'baking_time' => 0
         ];
 
         $bakedPie = [
             'id' => 1,
             'stuffing' => 'cherry',
             'pastry' => 'yeast dough',
-            'baking_time' => 50,
+            'baking_time' => 50
         ];
 
         $transitionResult = $this->engine->makeTransition('new', 'baked', $bakedPie, $rawPie);
@@ -71,7 +71,7 @@ class CookingTest extends \PHPUnit_Framework_TestCase
             'id' => 1,
             'stuffing' => 'cherry',
             'pastry' => 'yeast dough',
-            'baking_time' => 0,
+            'baking_time' => 0
         ];
 
         $bakedPie = [
@@ -79,7 +79,7 @@ class CookingTest extends \PHPUnit_Framework_TestCase
             'stuffing' => 'strawberry', // меняем параметр, который нельзя менять.
                                         // в результате transitions не должна быть выполнена
             'pastry' => 'yeast dough',
-            'baking_time' => 50,
+            'baking_time' => 50
         ];
 
         $transitionResult = $this->engine->makeTransition('new', 'baked', $bakedPie, $rawPie);
@@ -97,15 +97,15 @@ class CookingTest extends \PHPUnit_Framework_TestCase
             'id' => 1,
             'stuffing' => 'cherry',
             'pastry' => 'yeast dough',
-            'baking_time' => 0,
+            'baking_time' => 0
         ];
 
         $bakedPie = [
             'id' => 1,
             'stuffing' => 'cherry',
             'pastry' => 'yeast dough',
-            'baking_time' => 60,    // при значениях более 50, пирог считается пригоревшим.
-                                    // transitions выполняться не должна
+            'baking_time' => 60 // при значениях более 50, пирог считается пригоревшим.
+                                // transitions выполняться не должна
         ];
 
         $transitionResult = $this->engine->makeTransition('new', 'baked', $bakedPie, $rawPie);
@@ -124,10 +124,36 @@ class CookingTest extends \PHPUnit_Framework_TestCase
             'id' => 1,
             'stuffing' => 'cherry',
             'pastry' => 'yeast dough',
-            'baking_time' => 0,
+            'baking_time' => 0
         ];
 
         $transitions = $this->engine->getAvailableStates('new', $rawPie);
         $this->assertTrue(count($transitions) === 2);
+    }
+
+    /**
+     * Готовоим без начинки.
+     * Не указываем required поле
+     *
+     * @return false
+     */
+    public function testCookingWithoutStuffing()
+    {
+        $rawPie = [
+            'id' => 1,
+            'stuffing' => 'cherry',
+            'pastry' => 'yeast dough',
+            'baking_time' => 0
+        ];
+
+        // не указываем начинку. transition не должна выполниться
+        $bakedPie = [
+            'id' => 1,
+            'pastry' => 'yeast dough',
+            'baking_time' => 50
+        ];
+
+        $transitionResult = $this->engine->makeTransition('new', 'baked', $bakedPie, $rawPie);
+        $this->assertFalse($transitionResult->isSuccess());
     }
 }
