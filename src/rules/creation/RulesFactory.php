@@ -7,6 +7,7 @@
  */
 
 namespace dicom\workflow\rules\creation;
+use dicom\workflow\expressions\creation\ExpressionBuilder;
 use dicom\workflow\rules\Rule;
 use dicom\workflow\rules\RuleInterface\IConfiguredRule;
 
@@ -62,6 +63,11 @@ class RulesFactory
 
         $rule = new $className();
         if ($rule instanceof IConfiguredRule) {
+
+            //todo вынести отсюда в постройку конфига
+            if (is_array($ruleDescription) && ExpressionBuilder::isExpressionConfig($ruleDescription)) {
+                $ruleDescription = ExpressionBuilder::buildExpression($ruleDescription);
+            }
             $rule->setConfig($ruleDescription);
         }
 

@@ -5,7 +5,8 @@ namespace dicom\workflow\expressions\creation;
 
 
 use dicom\workflow\expressions\creation\exceptions\ExpressionBuildException;
-
+//todo вынести создание в корень, вотдельную папку
+//todo сделать этот конфиг объектно-ориентированным
 class ExpressionBuilder
 {
     public static function buildExpression($config)

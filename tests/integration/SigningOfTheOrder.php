@@ -42,7 +42,7 @@ class SignatureingOfTheOrder extends \PHPUnit_Framework_TestCase
             'description' => 'Приказываю всем выдать шапки-ушанки с целью предотвращения обморажения',
         ];
 
-        $neworder = [
+        $newOrder = [
             'id' => 1,
             'title' => 'Приказ на выдачу шапок-ушанок',
             'description' => 'Приказываю всем выдать шапки-ушанки с целью предотвращения обморажения',
@@ -50,7 +50,7 @@ class SignatureingOfTheOrder extends \PHPUnit_Framework_TestCase
             'creatorSignature' => true
         ];
 
-        $transition = $this->engine->makeTransition('draft', 'new', $neworder, $draftOrder);
+        $transition = $this->engine->makeTransition('draft', 'new', $newOrder, $draftOrder);
         $this->assertTrue($transition->isSuccess());
 
 

@@ -22,7 +22,7 @@
         "bigBossSignature": ["empty"]
       }
     },
-    "bossSignatureed": {
+    "bossSigned": {
       "properties": {
         "id": [
           "required",
