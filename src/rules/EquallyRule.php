@@ -8,7 +8,10 @@ use dicom\workflow\rules\RuleInterface\IConfiguredRule;
 
 class EquallyRule extends RuleCheckingOneValue implements  IConfiguredRule
 {
-    use ConfiguredRule;
+    use ConfiguredRule{
+        ConfiguredRule::validateConfig as configuratorValidateConfig;
+    }
+
 
     /**
      * Проверить удовлятеворяют ли переданые значения правилу
@@ -19,8 +22,10 @@ class EquallyRule extends RuleCheckingOneValue implements  IConfiguredRule
      */
     protected function isValid($entityNewValue = null)
     {
-        $entityNewValue = (int) $entityNewValue;
-        return $entityNewValue === $this->getConfig();
+        $expectedValue = $this->getConfiguredValue();
+
+
+        return $entityNewValue === $expectedValue;
     }
 
     /**
@@ -40,9 +45,19 @@ class EquallyRule extends RuleCheckingOneValue implements  IConfiguredRule
 
     protected function validateConfig($config)
     {
-        if (! is_numeric($config)) {
-            throw $this->createConfigurationException('config for must be a numeric', $config);
+        if ($this->configuratorValidateConfig($config)) {
+            return true;
         }
+
+        if (is_numeric($config)) {
+            return true;
+        }
+
+        if (is_string($config)) {
+            return true;
+        }
+
+        throw $this->createConfigurationException('config for must be a numeric', $config);
     }
 
 }

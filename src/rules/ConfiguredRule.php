@@ -3,6 +3,7 @@
 
 namespace dicom\workflow\rules;
 
+use dicom\workflow\expressions\ExpressionInterface;
 use dicom\workflow\rules\exception\RuleConfigurationException;
 use dicom\workflow\rules\RuleInterface\IConfiguredRule;
 
@@ -29,6 +30,26 @@ trait ConfiguredRule
         }
     }
 
+    /**
+     * get a value from config
+     *
+     * @return mixed
+     */
+    public function getConfiguredValue()
+    {
+        if (is_array($this->config) && array_key_exists('value', $this->config['value'])) {
+            $value = $this->config['value'];
+        } else {
+            $value = $this->config;
+        }
+
+        if ($value instanceof ExpressionInterface) {
+            $value = $value->run();
+        }
+
+        return $value;
+    }
+
 
     /**
      * Set configuration
@@ -51,7 +72,14 @@ trait ConfiguredRule
      * @param $config
      * @return mixed
      */
-    abstract protected function validateConfig($config);
+    protected function validateConfig($config)
+    {
+        if ($config instanceof ExpressionInterface) {
+            return true;
+        }
+
+        return false;
+    }
 
     /**
      * Get configuration
