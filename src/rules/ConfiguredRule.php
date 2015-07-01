@@ -99,8 +99,8 @@ trait ConfiguredRule
     protected function createConfigurationException($message, $config)
     {
         return new RuleConfigurationException(sprintf(
-                'Configuration error for rule %s: ' . $message, ' .Config: %s',
-                $this->getName(),
+                'Configuration error for rule %s: Config: %s',
+                $message,
                 var_export($config, true))
         );
     }
