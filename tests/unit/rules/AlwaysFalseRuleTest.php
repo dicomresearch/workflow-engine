@@ -5,7 +5,7 @@ namespace unit\rules;
 
 
 use dicom\workflow\rules\AlwaysFalseRule;
-use dicom\workflow\rules\exception\RuleExecutionError;
+use dicom\workflow\rules\error\RuleExecutionError;
 
 class AlwaysFalseRuleTest extends \PHPUnit_Framework_TestCase
 {

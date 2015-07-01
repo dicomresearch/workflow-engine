@@ -22,7 +22,7 @@ abstract class RuleCheckingWithoutArguments extends Rule implements IRuleCheckin
         $result->setResult($isValid);
 
         if (!$isValid) {
-            $result->setError($this->constructValidationException());
+            $result->setError($this->constructValidationError());
         }
 
         return $result;
@@ -31,6 +31,6 @@ abstract class RuleCheckingWithoutArguments extends Rule implements IRuleCheckin
 
     abstract protected function isValid();
 
-    abstract protected function constructValidationException();
+    abstract protected function constructValidationError();
 
 }

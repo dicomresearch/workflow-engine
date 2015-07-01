@@ -7,8 +7,9 @@
  */
 
 namespace dicom\workflow\rules;
+use dicom\workflow\rules\error\CheckAccessRuleExecutionError;
 use dicom\workflow\rules\exception\RuleCreationException;
-use dicom\workflow\rules\exception\RuleExecutionError;
+use dicom\workflow\rules\error\RuleExecutionError;
 use dicom\workflow\rules\executionResult\RuleExecutionResult;
 use dicom\workflow\rules\RuleInterface\IConfiguredRule;
 use dicom\workflow\rules\RuleInterface\IRuleCheckingWithoutArguments;
@@ -41,14 +42,9 @@ class YiiCheckAccess extends RuleCheckingWithoutArguments implements IConfigured
         return $result;
     }
 
-    protected function constructValidationException()
+    protected function constructValidationError()
     {
-        return new RuleExecutionError(sprintf(
-            'Rule "Yii Check Access" checking failed: User id: "%s", login: "%s" cant access to operation: %s',
-            \Yii::app()->getUser()->getId(),
-            \Yii::app()->getUser()->getLogin(),
-            var_export($this->getConfig(), true)
-            ));
+        return CheckAccessRuleExecutionError::create($this->getConfig());
     }
 
     /**

@@ -5,6 +5,7 @@ namespace integration;
 
 
 use dicom\workflow\config\WorkflowDescription;
+use dicom\workflow\rules\error\EquallyRuleExecutionError;
 use dicom\workflow\WorkflowEngine;
 
 class CookingTest extends \PHPUnit_Framework_TestCase
@@ -115,7 +116,7 @@ class CookingTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($transitionResult->isSuccess());
 
         $this->assertCount(1, $transitionResult->getErrors());
-        $this->assertEquals('baking_time', $transitionResult->getErrors()[0]->getPropertyName());
+        $this->assertInstanceOf('dicom\workflow\rules\error\EquallyRuleExecutionError', $transitionResult->getErrors()[0]);
     }
 
     /**

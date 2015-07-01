@@ -7,7 +7,8 @@
  */
 
 namespace dicom\workflow\rules;
-use dicom\workflow\rules\exception\RuleExecutionError;
+use dicom\workflow\rules\error\AlwaysTrueRuleExecutionError;
+use dicom\workflow\rules\error\RuleExecutionError;
 use dicom\workflow\rules\executionResult\RuleExecutionResult;
 use dicom\workflow\rules\RuleInterface\IRuleCheckingWithoutArguments;
 
@@ -57,11 +58,9 @@ class AlwaysTrueRule extends RuleCheckingWithoutArguments
      *
      * @return mixed
      */
-    protected function constructValidationException()
+    protected function constructValidationError()
     {
-        $e = new RuleExecutionError('You never been saw this exception. This rule always true');
-        $e->setHumanFriendlyMessage('You never been saw this exception. This rule always true');
-        return $e;
+        return AlwaysTrueRuleExecutionError::create();
     }
 
 
