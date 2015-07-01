@@ -5,6 +5,7 @@ namespace integration;
 
 
 use dicom\workflow\config\WorkflowDescription;
+use dicom\workflow\exception\WorkflowEngineException;
 use dicom\workflow\WorkflowEngine;
 
 class CookingTest extends \PHPUnit_Framework_TestCase
@@ -155,5 +156,64 @@ class CookingTest extends \PHPUnit_Framework_TestCase
 
         $transitionResult = $this->engine->makeTransition('new', 'baked', $bakedPie, $rawPie);
         $this->assertFalse($transitionResult->isSuccess());
+    }
+
+    /**
+     * Пытаемся выполнить переход в статус, который не описан в конфиге
+     *
+     * @return false
+     */
+    public function testCookingDriedPie()
+    {
+        $rawPie = [
+            'id' => 1,
+            'stuffing' => 'cherry',
+            'pastry' => 'yeast dough',
+            'baking_time' => 0
+        ];
+
+        $driedPie = [
+            'id' => 1,
+            'pastry' => 'yeast dough',
+            'stuffing' => 'cherry',
+            'baking_time' => 50
+        ];
+
+        // при попытке перевести в неописанный статус выкидывается исключение
+        try {
+            $transitionResult = $this->engine->makeTransition('new', 'dried', $driedPie, $rawPie);
+            $this->assertFalse($transitionResult->isSuccess());
+        } catch (\Exception $e) {
+            $this->assertTrue($e instanceof WorkflowEngineException);
+        }
+    }
+
+    /**
+     * Переход между статусами, который не описан в конфиге
+     *
+     * @return false
+     */
+    public function testCookingNewPieFromBaked()
+    {
+        $rawPie = [
+            'id' => 1,
+            'stuffing' => 'cherry',
+            'pastry' => 'yeast dough',
+            'baking_time' => 0
+        ];
+
+        $bakedPie = [
+            'id' => 1,
+            'pastry' => 'yeast dough',
+            'baking_time' => 50
+        ];
+
+        try {
+            $transitionResult = $this->engine->makeTransition('baked', 'new', $rawPie, $bakedPie);
+            $this->assertFalse($transitionResult->isSuccess());
+        } catch (\Exception $e) {
+            $this->assertTrue($e instanceof WorkflowEngineException);
+        }
+
     }
 }
