@@ -3,7 +3,7 @@
 
 namespace dicom\workflow\rules;
 
-use dicom\workflow\rules\exception\RuleExecutionException;
+use dicom\workflow\rules\exception\RuleExecutionError;
 use dicom\workflow\rules\RuleInterface\IConfiguredRule;
 
 class EquallyRule extends RuleCheckingOneValue implements  IConfiguredRule
@@ -32,9 +32,7 @@ class EquallyRule extends RuleCheckingOneValue implements  IConfiguredRule
      */
     protected function constructValidationException($value = null)
     {
-        $e = new RuleExecutionException(sprintf('Value must be equally %s. Given: %s', $this->getConfig(), $value));
-        $e->setHumanFriendlyMessage('Must be greater than ' . $this->getConfig());
-        return $e;
+        return EquallyRuleExecutionError::create($value, $this->getConfig());
     }
 
 
@@ -45,4 +43,15 @@ class EquallyRule extends RuleCheckingOneValue implements  IConfiguredRule
         }
     }
 
+}
+
+class EquallyRuleExecutionError extends RuleExecutionError
+{
+    public static function create($valueGiven, $valueExpected)
+    {
+        $error =  new static(sprintf('Value must be equally %s. Given: %s', $valueGiven, $valueExpected));
+        $error->setHumanFriendlyMessage('Must be greater than ' . $valueExpected);
+
+        return $error;
+    }
 }

@@ -10,7 +10,7 @@ namespace dicom\workflow\transition;
 
 
 use dicom\workflow\entity\executionResult\EntityExecutionResult;
-use dicom\workflow\rules\exception\RuleExecutionException;
+use dicom\workflow\rules\exception\RuleExecutionError;
 use dicom\workflow\rules\executionResult\RuleExecutionResult;
 use dicom\workflow\state\executionResult\StateExecutionResult;
 
@@ -136,7 +136,7 @@ class Transition
     /**
      * Получить список ошибок, которые возникли в результате перемещения сущности
      *
-     * @return RuleExecutionException[]
+     * @return RuleExecutionError[]
      */
     public function getErrors()
     {

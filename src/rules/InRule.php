@@ -7,7 +7,7 @@
  */
 
 namespace dicom\workflow\rules;
-use dicom\workflow\rules\exception\RuleExecutionException;
+use dicom\workflow\rules\exception\RuleExecutionError;
 use dicom\workflow\rules\executionResult\RuleExecutionResult;
 use dicom\workflow\rules\RuleInterface\IConfiguredRule;
 use dicom\workflow\rules\RuleInterface\IRuleCheckingOneValue;
@@ -45,7 +45,7 @@ class InRule extends RuleCheckingOneValue implements IConfiguredRule
 
     protected function constructValidationException($value)
     {
-        return new RuleExecutionException(sprintf(
+        return new RuleExecutionError(sprintf(
             'Value: "%s" not In %s',
             var_export($value, true),
             var_export($this->getConfig(), true)

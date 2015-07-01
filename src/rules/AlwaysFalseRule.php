@@ -7,7 +7,7 @@
  */
 
 namespace dicom\workflow\rules;
-use dicom\workflow\rules\exception\RuleExecutionException;
+use dicom\workflow\rules\exception\RuleExecutionError;
 use dicom\workflow\rules\executionResult\RuleExecutionResult;
 use dicom\workflow\rules\RuleInterface\IRuleCheckingWithoutArguments;
 
@@ -49,11 +49,11 @@ class AlwaysFalseRule extends RuleCheckingWithoutArguments implements IRuleCheck
     /**
      * Создать Exception, описывающий ошибку проверки
      *
-     * @return RuleExecutionException
+     * @return RuleExecutionError
      */
     protected function constructValidationException()
     {
-        $e = new RuleExecutionException('This rule is always return false');
+        $e = new RuleExecutionError('This rule is always return false');
         $e->setHumanFriendlyMessage('This rule is always return false');
         return $e;
     }

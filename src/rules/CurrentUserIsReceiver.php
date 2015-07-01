@@ -1,7 +1,7 @@
 <?php
 
 namespace dicom\workflow\rules;
-use dicom\workflow\rules\exception\RuleExecutionException;
+use dicom\workflow\rules\exception\RuleExecutionError;
 use dicom\workflow\rules\executionResult\RuleExecutionResult;
 use dicom\workflow\rules\RuleInterface\IRuleCheckingOneValue;;
 
@@ -48,7 +48,7 @@ class CurrentUserIsReceiver extends Rule implements IRuleCheckingOneValue
     {
         //todo вынести в отдельный класс ошибок
         if (!isset($newEntityValues['receiver_id']) or empty($newEntityValues['receiver_id'])) {
-            return new RuleExecutionException(sprintf(
+            return new RuleExecutionError(sprintf(
                 'Rule "Current user is receiver" checking failed because receiver_id is missing. Access denied'
             ));
         }
@@ -75,11 +75,11 @@ class CurrentUserIsReceiver extends Rule implements IRuleCheckingOneValue
     }
 
     /**
-     * @return RuleExecutionException
+     * @return RuleExecutionError
      */
     protected function constructException()
     {
-        return new RuleExecutionException(sprintf(
+        return new RuleExecutionError(sprintf(
             'Rule "Current user is receiver" checking. Access denied'
         ));
     }

@@ -7,7 +7,7 @@
  */
 
 namespace dicom\workflow\rules;
-use dicom\workflow\rules\exception\RuleExecutionException;
+use dicom\workflow\rules\exception\RuleExecutionError;
 
 /**
  * Class RequiredAttribute
@@ -28,7 +28,7 @@ class PropertyIsRequiredRule extends RuleCheckingOneValue
 
     protected function constructValidationException($entityNewValue)
     {
-        $error =  new RuleExecutionException(
+        $error =  new RuleExecutionError(
             sprintf(
                 'Property is required: but given: %s',
                 var_export($entityNewValue, true)

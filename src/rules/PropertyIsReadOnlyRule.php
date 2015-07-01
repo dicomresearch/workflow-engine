@@ -9,7 +9,7 @@
 namespace dicom\workflow\rules;
 
 
-use dicom\workflow\rules\exception\RuleExecutionException;
+use dicom\workflow\rules\exception\RuleExecutionError;
 use dicom\workflow\rules\executionResult\RuleExecutionResult;
 use dicom\workflow\rules\RuleInterface\IRuleCompareTwoValueInterface;
 
@@ -60,11 +60,11 @@ class PropertyIsReadOnlyRule extends Rule implements IRuleCompareTwoValueInterfa
      * @param null|mixed $entityNewValue
      * @param null|mixed $entityOldValue
      *
-     * @return RuleExecutionException
+     * @return RuleExecutionError
      */
     protected function constructException($entityNewValue = null, $entityOldValue = null)
     {
-        $error = new RuleExecutionException(
+        $error = new RuleExecutionError(
             sprintf(
                 'Property is readOnly. But value has been modified:, Old Value: %s, New value: %s',
                 var_export($entityOldValue, true),

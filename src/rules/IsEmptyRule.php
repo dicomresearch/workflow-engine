@@ -4,7 +4,7 @@
 namespace dicom\workflow\rules;
 
 
-use dicom\workflow\rules\exception\RuleExecutionException;
+use dicom\workflow\rules\exception\RuleExecutionError;
 use dicom\workflow\rules\executionResult\RuleExecutionResult;
 use dicom\workflow\rules\RuleInterface\IRuleCheckingOneValue;
 
@@ -19,7 +19,7 @@ class IsEmptyRule extends RuleCheckingOneValue
 
     protected function constructValidationException($entityNewValue)
     {
-        $error =  new RuleExecutionException(
+        $error =  new RuleExecutionError(
             sprintf(
                 'Property is must be empty: but given: %s',
                 var_export($entityNewValue, true)

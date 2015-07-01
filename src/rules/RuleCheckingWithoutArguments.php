@@ -12,7 +12,7 @@ abstract class RuleCheckingWithoutArguments extends Rule implements IRuleCheckin
     /**
      * execute a rule.
      *
-     * If rule dont match than throw RuleExecutionException
+     * If rule dont match than throw RuleExecutionError
      */
     public function execute()
     {
