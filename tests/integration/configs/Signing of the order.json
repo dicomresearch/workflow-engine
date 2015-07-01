@@ -15,7 +15,7 @@
         "description": ["required"],
         "creationDate": [
           "required",
-          {"lte": {"expr": "currentDateTime"}}
+          {"lte": {"expr": "currentDate"}}
         ],
         "creatorSignature": ["required"],
         "bossSignature": ["empty"],
