@@ -9,7 +9,7 @@ use dicom\workflow\rules\Lte;
 
 class LteTest extends \PHPUnit_Framework_TestCase
 {
-    public function trueNumericDataProvider()
+    public function trueDataProvider()
     {
         return
         [
@@ -24,7 +24,7 @@ class LteTest extends \PHPUnit_Framework_TestCase
         ];
     }
 
-    public function falseNumericDataProvider()
+    public function falseDataProvider()
     {
         return
         [
@@ -38,7 +38,7 @@ class LteTest extends \PHPUnit_Framework_TestCase
 
     /**
      *
-     * @dataProvider trueNumericDataProvider
+     * @dataProvider trueDataProvider
      *
      * @param $value
      * @param $config
@@ -55,7 +55,7 @@ class LteTest extends \PHPUnit_Framework_TestCase
 
     /**
      *
-     * @dataProvider falseNumericDataProvider
+     * @dataProvider falseDataProvider
      *
      * @param $value
      * @param $config
