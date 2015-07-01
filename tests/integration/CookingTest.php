@@ -84,6 +84,9 @@ class CookingTest extends \PHPUnit_Framework_TestCase
 
         $transitionResult = $this->engine->makeTransition('new', 'baked', $bakedPie, $rawPie);
         $this->assertFalse($transitionResult->isSuccess());
+
+        $this->assertCount(1, $transitionResult->getErrors());
+        $this->assertEquals('stuffing', $transitionResult->getErrors()[0]->getPropertyName());
     }
 
     /**
@@ -110,6 +113,9 @@ class CookingTest extends \PHPUnit_Framework_TestCase
 
         $transitionResult = $this->engine->makeTransition('new', 'baked', $bakedPie, $rawPie);
         $this->assertFalse($transitionResult->isSuccess());
+
+        $this->assertCount(1, $transitionResult->getErrors());
+        $this->assertEquals('baking_time', $transitionResult->getErrors()[0]->getPropertyName());
     }
 
     /**
@@ -128,7 +134,7 @@ class CookingTest extends \PHPUnit_Framework_TestCase
         ];
 
         $transitions = $this->engine->getAvailableStates('new', $rawPie);
-        $this->assertTrue(count($transitions) === 2);
+        $this->assertCount(2, $transitions);
     }
 
     /**
