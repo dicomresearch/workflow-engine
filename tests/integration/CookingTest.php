@@ -162,6 +162,9 @@ class CookingTest extends \PHPUnit_Framework_TestCase
 
         $transitionResult = $this->engine->makeTransition('new', 'baked', $bakedPie, $rawPie);
         $this->assertFalse($transitionResult->isSuccess());
+
+        $this->assertCount(2, $transitionResult->getErrors());
+        $this->assertEquals('stuffing', $transitionResult->getErrors()[0]->getPropertyName());
     }
 
     /**
