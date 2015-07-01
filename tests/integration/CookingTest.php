@@ -28,9 +28,8 @@ class CookingTest extends \PHPUnit_Framework_TestCase
         parent::__construct();
 
         $jsonConfig = file_get_contents(__DIR__ . $this->configFile);
-        $config = json_decode($jsonConfig, true);
 
-        $wfDescription = new WorkflowDescription($config);
+        $wfDescription = new WorkflowDescription($jsonConfig);
         $this->engine = new WorkflowEngine($wfDescription);
     }
 
