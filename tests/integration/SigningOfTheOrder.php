@@ -5,6 +5,7 @@ namespace integration;
 
 
 use dicom\workflow\config\WorkflowDescription;
+use dicom\workflow\rules\exception\RuleExecutionException;
 use dicom\workflow\WorkflowEngine;
 
 class SignatureingOfTheOrder extends \PHPUnit_Framework_TestCase
@@ -34,7 +35,7 @@ class SignatureingOfTheOrder extends \PHPUnit_Framework_TestCase
         $this->engine = new WorkflowEngine($wfDescription);
     }
 
-    public function testExpression()
+    public function testExpressionDateNow()
     {
         $draftOrder = [
             'id' => 1,
@@ -46,13 +47,34 @@ class SignatureingOfTheOrder extends \PHPUnit_Framework_TestCase
             'id' => 1,
             'title' => 'Приказ на выдачу шапок-ушанок',
             'description' => 'Приказываю всем выдать шапки-ушанки с целью предотвращения обморажения',
-            'creationDate' => (new \DateTime())->format('Y-m-d'),
+            'creationDate' => (new \DateTime('now'))->format('Y-m-d'),
             'creatorSignature' => true
         ];
 
         $transition = $this->engine->makeTransition('draft', 'new', $newOrder, $draftOrder);
         $this->assertTrue($transition->isSuccess());
+    }
 
+    public function testExpressionDateTomorrow()
+    {
+        $draftOrder = [
+            'id' => 1,
+            'title' => 'Приказ на выдачу шапок-ушанок',
+            'description' => 'Приказываю всем выдать шапки-ушанки с целью предотвращения обморажения',
+        ];
 
+        $newOrder = [
+            'id' => 1,
+            'title' => 'Приказ на выдачу шапок-ушанок',
+            'description' => 'Приказываю всем выдать шапки-ушанки с целью предотвращения обморажения',
+            'creationDate' => (new \DateTime('tomorrow'))->format('Y-m-d'),
+            'creatorSignature' => true
+        ];
+
+        $transition = $this->engine->makeTransition('draft', 'new', $newOrder, $draftOrder);
+        
+        $this->assertFalse($transition->isSuccess());
+        $this->assertCount(1, $transition->getErrors());
+        $this->assertTrue($transition->getErrors()[0] instanceof RuleExecutionException);
     }
 }
