@@ -87,7 +87,7 @@ class CookingTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($transitionResult->isSuccess());
 
         $this->assertCount(1, $transitionResult->getErrors());
-        $this->assertEquals('stuffing', $transitionResult->getErrors()[0]->getPropertyName());
+        $this->assertInstanceOf('dicom\workflow\rules\error\IsReadOnlyRuleExecutionError', $transitionResult->getErrors()[0]);
     }
 
     /**
@@ -116,7 +116,7 @@ class CookingTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($transitionResult->isSuccess());
 
         $this->assertCount(1, $transitionResult->getErrors());
-        $this->assertEquals('baking_time', $transitionResult->getErrors()[0]->getPropertyName());
+        $this->assertInstanceOf('dicom\workflow\rules\error\EquallyRuleExecutionError', $transitionResult->getErrors()[0]);
     }
 
     /**
@@ -164,7 +164,8 @@ class CookingTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($transitionResult->isSuccess());
 
         $this->assertCount(2, $transitionResult->getErrors());
-        $this->assertEquals('stuffing', $transitionResult->getErrors()[0]->getPropertyName());
+        $this->assertInstanceOf('dicom\workflow\rules\error\IsRequiredRuleExecutionError', $transitionResult->getErrors()[0]);
+        $this->assertInstanceOf('dicom\workflow\rules\error\IsReadOnlyRuleExecutionError', $transitionResult->getErrors()[1]);
     }
 
     /**

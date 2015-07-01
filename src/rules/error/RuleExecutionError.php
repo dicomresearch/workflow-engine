@@ -6,16 +6,16 @@
  * Time: 15:09
  */
 
-namespace dicom\workflow\rules\exception;
+namespace dicom\workflow\rules\error;
 
 
 /**
- * Class RuleException
+ * Class RuleExecutionError
  *
  * Ошибка валидации. Это не Exception, это ошибка, говорящая о том, аттрибут не прошел какое-то правило валидации
  *
  */
-class RuleExecutionException extends RuleException
+class RuleExecutionError
 {
     protected $humanFriendlyMessage;
 
@@ -23,12 +23,9 @@ class RuleExecutionException extends RuleException
 
     /**
      * @param string $message
-     * @param int $code
-     * @param \Exception $previous
      */
-    public function __construct($message = '', $code = 0, \Exception $previous = null)
+    public function __construct($message = '')
     {
-        parent::__construct($message, $code, $previous);
         $this->humanFriendlyMessage = $message;
     }
 
