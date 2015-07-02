@@ -5,7 +5,6 @@ namespace integration;
 
 
 use dicom\workflow\config\WorkflowDescription;
-use dicom\workflow\rules\error\EquallyRuleExecutionError;
 use dicom\workflow\WorkflowEngine;
 
 class CookingTest extends \PHPUnit_Framework_TestCase
