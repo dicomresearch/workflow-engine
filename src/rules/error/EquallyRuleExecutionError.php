@@ -18,7 +18,7 @@ class EquallyRuleExecutionError extends RuleExecutionError
      */
     public static function create($valueGiven, $valueExpected)
     {
-        $error =  new static(sprintf('Value must be equally %s. Given: %s', $valueExpected, $valueGiven));
+        $error =  new static(sprintf('Value must be equally %s. Given: %s', var_export($valueExpected, true), var_export($valueGiven, true)));
 
         return $error;
     }

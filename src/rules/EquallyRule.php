@@ -55,6 +55,10 @@ class EquallyRule extends RuleCheckingOneValue implements  IConfiguredRule
             return true;
         }
 
+        if (is_array($config)) {
+            return true;
+        }
+
         throw $this->createConfigurationException('config for must be a numeric', $config);
     }
 

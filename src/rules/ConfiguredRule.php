@@ -37,7 +37,7 @@ trait ConfiguredRule
      */
     public function getConfiguredValue()
     {
-        if (is_array($this->config) && array_key_exists('value', $this->config['value'])) {
+        if (is_array($this->config) && array_key_exists('value', $this->config)) {
             $value = $this->config['value'];
         } else {
             $value = $this->config;
