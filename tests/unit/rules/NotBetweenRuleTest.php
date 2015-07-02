@@ -13,27 +13,59 @@ use dicom\workflow\rules\NotBetweenRule;
 
 class NotBetweenRuleTest extends \PHPUnit_Framework_TestCase
 {
-    public function createNotBetweenRule()
+    /**
+     * [$config, $value]
+     *
+     * @return array
+     */
+    public function trueDataProvider()
+    {
+        return [
+            [[5, 15], 2],
+            [['c', 'q'], 'a']
+        ];
+    }
+
+    /**
+     * [$config, $value]
+     *
+     * @return array
+     */
+    public function falseDataProvider()
+    {
+        return [
+            [[5, 15], 7],
+            [['c', 'q'], 'e']
+        ];
+    }
+
+    /**
+     * @param $config
+     * @param $value
+     *
+     * @dataProvider trueDataProvider
+     */
+    public function testExecuteRuleIsTrue($config, $value)
     {
         $rule = new NotBetweenRule();
-        $rule->setConfig([5, 15]);
+        $rule->setConfig($config);
+        $ruleExecutionResult = $rule->execute($value);
 
-        return $rule;
+        $this->assertTrue($ruleExecutionResult->isSuccess());
     }
 
-    public function testExecuteRuleIsTrue()
+    /**
+     * @param $config
+     * @param $value
+     *
+     * @dataProvider falseDataProvider
+     */
+    public function testExecuteRuleIsFalse($config, $value)
     {
-        $rule = $this->createNotBetweenRule();
-        $ruleExecutionResult = $rule->execute(2);
+        $rule = new NotBetweenRule();
+        $rule->setConfig($config);
+        $ruleExecutionResult = $rule->execute($value);
 
-        $this->assertTrue($ruleExecutionResult->isSuccess(), '2 < 5');
-    }
-
-    public function testExecuteRuleIsFalse()
-    {
-        $rule = $this->createNotBetweenRule();
-        $ruleExecutionResult = $rule->execute(7);
-
-        $this->assertFalse($ruleExecutionResult->isSuccess(), '5 <= 7 <= 15');
+        $this->assertFalse($ruleExecutionResult->isSuccess());
     }
 }

@@ -13,27 +13,59 @@ use dicom\workflow\rules\BetweenRule;
 
 class BetweenRuleTest extends \PHPUnit_Framework_TestCase
 {
-    public function createBetweenRule()
+    /**
+     * [$config, $value]
+     *
+     * @return array
+     */
+    public function trueDataProvider()
+    {
+        return [
+            [[5, 15], 7],
+            [['c', 'q'], 'e']
+        ];
+    }
+
+    /**
+     * [$config, $value]
+     *
+     * @return array
+     */
+    public function falseDataProvider()
+    {
+        return [
+            [[5, 15], 2],
+            [['c', 'q'], 'a']
+        ];
+    }
+
+    /**
+     * @param $config
+     * @param $value
+     *
+     * @dataProvider trueDataProvider
+     */
+    public function testExecuteRuleIsTrue($config, $value)
     {
         $rule = new BetweenRule();
-        $rule->setConfig([5, 15]);
+        $rule->setConfig($config);
+        $ruleExecutionResult = $rule->execute($value);
 
-        return $rule;
+        $this->assertTrue($ruleExecutionResult->isSuccess());
     }
 
-    public function testExecuteRuleIsTrue()
+    /**
+     * @param $config
+     * @param $value
+     *
+     * @dataProvider falseDataProvider
+     */
+    public function testExecuteRuleIsFalse($config, $value)
     {
-        $rule = $this->createBetweenRule();
-        $ruleExecutionResult = $rule->execute(7);
+        $rule = new BetweenRule();
+        $rule->setConfig($config);
+        $ruleExecutionResult = $rule->execute($value);
 
-        $this->assertTrue($ruleExecutionResult->isSuccess(), ' 5 <= 7 <= 15');
-    }
-
-    public function testExecuteRuleIsFalse()
-    {
-        $rule = $this->createBetweenRule();
-        $ruleExecutionResult = $rule->execute(2);
-
-        $this->assertFalse($ruleExecutionResult->isSuccess(), ' 2 < 5');
+        $this->assertFalse($ruleExecutionResult->isSuccess());
     }
 }
