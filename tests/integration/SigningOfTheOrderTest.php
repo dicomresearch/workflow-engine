@@ -5,10 +5,11 @@ namespace integration;
 
 
 use dicom\workflow\config\WorkflowDescription;
+use dicom\workflow\rules\error\LteRuleExecutionResult;
 use dicom\workflow\rules\exception\RuleExecutionException;
 use dicom\workflow\WorkflowEngine;
 
-class SignatureingOfTheOrder extends \PHPUnit_Framework_TestCase
+class SigningOfTheOrderTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Название конфиг файла
@@ -35,6 +36,9 @@ class SignatureingOfTheOrder extends \PHPUnit_Framework_TestCase
         $this->engine = new WorkflowEngine($wfDescription);
     }
 
+    /**
+     * Its tests using expressions.
+     */
     public function testExpressionDateNow()
     {
         $draftOrder = [
@@ -55,6 +59,10 @@ class SignatureingOfTheOrder extends \PHPUnit_Framework_TestCase
         $this->assertTrue($transition->isSuccess());
     }
 
+    /**
+     * Its tests using expressions.
+     * Order creation date can't be "tomorrow"
+     */
     public function testExpressionDateTomorrow()
     {
         $draftOrder = [
@@ -75,6 +83,9 @@ class SignatureingOfTheOrder extends \PHPUnit_Framework_TestCase
         
         $this->assertFalse($transition->isSuccess());
         $this->assertCount(1, $transition->getErrors());
-        $this->assertTrue($transition->getErrors()[0] instanceof RuleExecutionException);
+
+        $ruleExecutionError = $transition->getErrors()[0];
+        $this->assertInstanceOf(LteRuleExecutionResult::class, $ruleExecutionError);
+        $this->assertEquals('creationDate', $ruleExecutionError->getPropertyName());
     }
 }

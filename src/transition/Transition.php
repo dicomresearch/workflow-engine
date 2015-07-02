@@ -10,7 +10,7 @@ namespace dicom\workflow\transition;
 
 
 use dicom\workflow\entity\executionResult\EntityExecutionResult;
-use dicom\workflow\rules\exception\RuleExecutionError;
+use dicom\workflow\rules\error\RuleExecutionError;
 use dicom\workflow\rules\executionResult\RuleExecutionResult;
 use dicom\workflow\state\executionResult\StateExecutionResult;
 
