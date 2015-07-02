@@ -1,26 +1,19 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: sergey
- * Date: 03.12.14
- * Time: 15:34
+ * User: rinat
+ * Date: 01.07.15
+ * Time: 17:48
  */
 
 namespace dicom\workflow\rules;
 
 
-use dicom\workflow\rules\error\GreaterThanRuleExecutionError;
+use dicom\workflow\rules\error\LessThanRuleExecutionError;
 use dicom\workflow\rules\RuleInterface\IConfiguredRule;
 use dicom\workflow\rules\RuleInterface\IRuleCheckingOneValue;
 
-/**
- * Class GreaterThan
- *
- * Проверяет что новое значение сущности больше опредленного значения, заданого в конфиге Workflow
- *
- * @package dicom\workflow\rules
- */
-class GreaterThan extends RuleCheckingOneValue implements IRuleCheckingOneValue, IConfiguredRule
+class LessThan extends RuleCheckingOneValue implements IRuleCheckingOneValue, IConfiguredRule
 {
     use ConfiguredRule;
 
@@ -34,7 +27,7 @@ class GreaterThan extends RuleCheckingOneValue implements IRuleCheckingOneValue,
     protected function isValid($entityNewValue = null)
     {
         $entityNewValue = (int) $entityNewValue;
-        return $entityNewValue > $this->getConfig();
+        return $entityNewValue < $this->getConfig();
     }
 
     /**
@@ -46,7 +39,7 @@ class GreaterThan extends RuleCheckingOneValue implements IRuleCheckingOneValue,
      */
     protected function constructValidationError($value = null)
     {
-        return GreaterThanRuleExecutionError::create($value, $this->getConfig());
+        return LessThanRuleExecutionError::create($value, $this->getConfig());
     }
 
 
@@ -56,5 +49,4 @@ class GreaterThan extends RuleCheckingOneValue implements IRuleCheckingOneValue,
             throw $this->createConfigurationException('config for must be a numeric', $config);
         }
     }
-
-} 
+}
