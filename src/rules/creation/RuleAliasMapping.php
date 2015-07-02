@@ -19,10 +19,13 @@ class RuleAliasMapping
         'alwaystrue'            => 'dicom\workflow\rules\AlwaysTrueRule',
         'alwaysfalse'           => 'dicom\workflow\rules\AlwaysFalseRule',
         'greaterthan'           => 'dicom\workflow\rules\GreaterThan',
+        'lte'                   => 'dicom\workflow\rules\Lte',
         'in'                    => '\dicom\workflow\rules\InRule',
         'equally'               => 'dicom\workflow\rules\EquallyRule',
         'yiicheckaccess'        => '\dicom\workflow\rules\YiiCheckAccess',
         'currentuserisreceiver' => '\dicom\workflow\rules\CurrentUserIsReceiver',
+        'between'               => 'dicom\workflow\rules\BetweenRule',
+        'notbetween'            => 'dicom\workflow\rules\NotBetweenRule',
     ];
 
     public static function getClassNameByAlias($alias)

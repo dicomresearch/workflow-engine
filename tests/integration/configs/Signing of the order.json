@@ -1,0 +1,122 @@
+{
+  "states": {
+    "draft": {
+      "properties": {
+        "id": ["required"],
+        "creatorSignature": ["empty"],
+        "bossSignature": ["empty"],
+        "bigBossSignature": ["empty"]
+      }
+    },
+    "new": {
+      "properties": {
+        "id": ["required"],
+        "title": ["required"],
+        "description": ["required"],
+        "creationDate": [
+          "required",
+          {"lte": {"expr": "currentDate"}}
+        ],
+        "creatorSignature": ["required"],
+        "bossSignature": ["empty"],
+        "bigBossSignature": ["empty"]
+      }
+    },
+    "bossSigned": {
+      "properties": {
+        "id": [
+          "required",
+          "readonly"
+        ],
+        "title": [
+          "required",
+          "readonly"
+        ],
+        "description": [
+          "required",
+          "readonly"
+        ],
+        "creatorSignature": [
+          "required",
+          "readonly"
+        ],
+        "bossSignature": [
+          "required",
+          "readonly"
+        ],
+        "bigBossSignature": ["empty"]
+      }
+    },
+    "bigBossSigned": {
+      "properties": {
+        "id": [
+          "required",
+          "readonly"
+        ],
+        "title": [
+          "required",
+          "readonly"
+        ],
+        "description": [
+          "required",
+          "readonly"
+        ],
+        "creatorSignature": [
+          "required",
+          "readonly"
+        ],
+        "bossSignature": [
+          "required",
+          "readonly"
+        ],
+        "bigBossSignature": ["required"]
+      }
+    },
+    "published": {
+      "properties": {
+      }
+    },
+    "removed": {
+      "properties": {
+      }
+    },
+    "reject": {
+      "properties": {
+      }
+    }
+  },
+  "transitions":
+  [
+    {
+      "oldState": "draft",
+      "newState": "new",
+      "rules": [
+      ],
+      "properties": {
+
+      },
+      "actionName": "create the order"
+    },
+    {
+      "oldState": "new",
+      "newState": "bossSigned",
+      "rules": [
+      ],
+      "properties": {
+
+      },
+      "actionName": "send to boss Signature"
+    },
+
+    {
+      "oldState": "draft",
+      "newState": "removed",
+      "rules": [
+      ],
+      "properties": {
+
+      },
+      "actionName": "send to garbage can"
+    }
+  ]
+}

@@ -17,9 +17,24 @@ namespace dicom\workflow\rules\error;
  */
 class RuleExecutionError
 {
+    /**
+     * Текст ошибки, выводимый пользователю
+     *
+     * @var string
+     */
     protected $humanFriendlyMessage;
 
+    /**
+     * @var
+     */
     protected $propertyName;
+
+    /**
+     * отладочная информация
+     *
+     * @var string
+     */
+    protected $errorMessage;
 
     /**
      * @param string $message
@@ -27,6 +42,7 @@ class RuleExecutionError
     public function __construct($message = '')
     {
         $this->humanFriendlyMessage = $message;
+        $this->errorMessage = $message;
     }
 
 

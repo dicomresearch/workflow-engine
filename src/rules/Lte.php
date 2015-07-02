@@ -1,17 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: sergey
- * Date: 03.12.14
- * Time: 15:34
- */
+
 
 namespace dicom\workflow\rules;
-
-
-use dicom\workflow\rules\error\GreaterThanRuleExecutionError;
-use dicom\workflow\rules\RuleInterface\IConfiguredRule;
+use dicom\workflow\rules\error\LteRuleExecutionResult;
 use dicom\workflow\rules\RuleInterface\IRuleCheckingOneValue;
+use dicom\workflow\rules\RuleInterface\IConfiguredRule;
+use dicom\workflow\rules\exception\RuleExecutionException;
+
 
 /**
  * Class GreaterThan
@@ -20,9 +15,11 @@ use dicom\workflow\rules\RuleInterface\IRuleCheckingOneValue;
  *
  * @package dicom\workflow\rules
  */
-class GreaterThan extends RuleCheckingOneValue implements IConfiguredRule
+class Lte extends RuleCheckingOneValue implements IRuleCheckingOneValue, IConfiguredRule
 {
-    use ConfiguredRule;
+    use ConfiguredRule{
+        ConfiguredRule::validateConfig as configuratorValidateConfig;
+    }
 
     /**
      * Проверить удовлятеворяют ли переданые значения правилу
@@ -33,7 +30,7 @@ class GreaterThan extends RuleCheckingOneValue implements IConfiguredRule
      */
     protected function isValid($entityNewValue = null)
     {
-        return $entityNewValue > $this->getConfiguredValue();
+        return $entityNewValue <= $this->getConfiguredValue();
     }
 
     /**
@@ -45,15 +42,22 @@ class GreaterThan extends RuleCheckingOneValue implements IConfiguredRule
      */
     protected function constructValidationError($value = null)
     {
-        return GreaterThanRuleExecutionError::create($value, $this->getConfig());
+        $e = new LteRuleExecutionResult($this->getConfiguredValue(), $value);
+        return $e;
     }
 
 
     protected function validateConfig($config)
     {
-        if (! is_numeric($config)) {
-            throw $this->createConfigurationException('config for must be a numeric', $config);
+        if ($this->configuratorValidateConfig($config)) {
+            return true;
         }
+
+        if ( is_numeric($config)) {
+            return true;
+        }
+
+        throw $this->createConfigurationException('config for must be a numeric or Expression', $config);
     }
 
-} 
+}
