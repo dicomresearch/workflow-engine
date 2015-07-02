@@ -23,6 +23,7 @@ class RuleAliasMapping
         'equally'               => 'dicom\workflow\rules\EquallyRule',
         'yiicheckaccess'        => '\dicom\workflow\rules\YiiCheckAccess',
         'currentuserisreceiver' => '\dicom\workflow\rules\CurrentUserIsReceiver',
+        'between'               => 'dicom\workflow\rules\BetweenRule',
     ];
 
     public static function getClassNameByAlias($alias)
