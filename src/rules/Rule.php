@@ -7,7 +7,7 @@
  */
 
 namespace dicom\workflow\rules;
-use dicom\workflow\rules\executionResult\RuleExecutionResult;
+
 use dicom\workflow\rules\RuleInterface\IRule;
 
 /**

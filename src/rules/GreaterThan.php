@@ -9,8 +9,9 @@
 namespace dicom\workflow\rules;
 
 
+use dicom\workflow\rules\error\GreaterThanRuleExecutionError;
 use dicom\workflow\rules\exception\RuleConfigurationException;
-use dicom\workflow\rules\exception\RuleExecutionException;
+use dicom\workflow\rules\error\RuleExecutionError;
 use dicom\workflow\rules\executionResult\RuleExecutionResult;
 use dicom\workflow\rules\RuleInterface\IConfiguredRule;
 use dicom\workflow\rules\RuleInterface\IRuleCheckingOneValue;
@@ -45,11 +46,9 @@ class GreaterThan extends RuleCheckingOneValue implements IRuleCheckingOneValue,
      *
      * @return mixed
      */
-    protected function constructValidationException($value = null)
+    protected function constructValidationError($value = null)
     {
-        $e = new RuleExecutionException(sprintf('Value must be greater than 0. Given: %s', $value));
-        $e->setHumanFriendlyMessage('Must be greater than 0');
-        return $e;
+        return GreaterThanRuleExecutionError::create($value);
     }
 
 

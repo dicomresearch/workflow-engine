@@ -1,9 +1,12 @@
 <?php
 
 namespace workflow\rules;
-use workflow\rules\exception\RuleExecutionException;
-use workflow\rules\executionResult\RuleExecutionResult;
-use workflow\rules\RuleInterface\IRuleCheckingPropertyValue;;
+
+
+use dicom\workflow\rules\error\IsCurrentUserRuleExecutionError;
+use dicom\workflow\rules\Rule;
+use dicom\workflow\rules\executionResult\RuleExecutionResult;
+use dicom\workflow\rules\error\RuleExecutionError;
 
 /**
  * IsCurrentUser
@@ -12,9 +15,8 @@ use workflow\rules\RuleInterface\IRuleCheckingPropertyValue;;
  *
  * todo вынести из workflow в srRequestWorkflow
  */
-class IsCurrentUser extends Rule implements IRuleCheckingPropertyValue
+class IsCurrentUser extends Rule
 {
-
     /**
      * проверяет есть ли доступ у пользователя к операции
      *
@@ -33,10 +35,7 @@ class IsCurrentUser extends Rule implements IRuleCheckingPropertyValue
         }
 
         return $result;
-
     }
-
-
 
     /**
      * @param array $newEntityValues
@@ -45,7 +44,7 @@ class IsCurrentUser extends Rule implements IRuleCheckingPropertyValue
     protected function isValid($newEntityValues)
     {
         if (empty($newEntityValues)) {
-            return new RuleExecutionException(sprintf(
+            return new RuleExecutionError(sprintf(
                 'Rule "Current user is receiver" checking failed because receiver_id is missing. Access denied'
             ));
         }
@@ -72,13 +71,11 @@ class IsCurrentUser extends Rule implements IRuleCheckingPropertyValue
     }
 
     /**
-     * @return RuleExecutionException
+     * @return RuleExecutionError
      */
     protected function constructException()
     {
-        return new RuleExecutionException(sprintf(
-            'Rule "Current user is receiver" checking. Access denied'
-        ));
+        return IsCurrentUserRuleExecutionError::create();
     }
 
 } 

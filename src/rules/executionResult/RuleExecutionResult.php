@@ -3,7 +3,7 @@
 namespace dicom\workflow\rules\executionResult;
 
 
-use dicom\workflow\rules\exception\RuleExecutionException;
+use dicom\workflow\rules\exception\RuleExecutionError;
 use dicom\workflow\rules\RuleInterface\IRule;
 
 /**
@@ -26,7 +26,7 @@ class RuleExecutionResult
     protected $resultIsSuccess;
 
     /**
-     * @var RuleExecutionException
+     * @var RuleExecutionError
      */
     protected $error;
 
@@ -35,7 +35,7 @@ class RuleExecutionResult
      *
      * @param IRule $rule
      * @param bool $result
-     * @param null|RuleExecutionException $error
+     * @param null|RuleExecutionError $error
      * @return static
      */
     public static function create(IRule $rule, $result, $error = null)
@@ -95,7 +95,7 @@ class RuleExecutionResult
     }
 
     /**
-     * @return RuleExecutionException
+     * @return RuleExecutionError
      */
     public function getError()
     {
@@ -103,7 +103,7 @@ class RuleExecutionResult
     }
 
     /**
-     * @param RuleExecutionException $error
+     * @param RuleExecutionError $error
      */
     public function setError($error)
     {
