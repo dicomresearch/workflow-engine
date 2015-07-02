@@ -8,6 +8,8 @@
 
 namespace dicom\workflow\transition;
 
+use dicom\workflow\entity\Entity;
+use dicom\workflow\entity\property\PropertyFactory;
 use dicom\workflow\rules\creation\RulesFactory;
 use dicom\workflow\transition\exceptions\TransitionSpecificationNotValid;
 use dicom\workflow\WorkflowEngine;
@@ -53,6 +55,7 @@ class TransitionSpecificationFactory
         $this->setActionName($this->getTransitionDescription());
         $this->addRulesToTransitionSpecification($this->getTransitionDescription());
         $this->addClientActionToTransitionSpecification($this->getTransitionDescription());
+        $this->addPropertiesToTransitionSpecification($this->getTransitionDescription());
 
         return $this->getTransitionSpecification();
     }
@@ -67,6 +70,22 @@ class TransitionSpecificationFactory
         if (array_key_exists('rules', $transitionDescription)) {
             $rules = RulesFactory::createBatchByShortNames($transitionDescription['rules']);
             $this->getTransitionSpecification()->setRules($rules);
+        }
+    }
+
+    /**
+     * parse and add properties to transition specification
+     *
+     * @param array $transitionDescription
+     */
+    protected function addPropertiesToTransitionSpecification($transitionDescription)
+    {
+        if (array_key_exists('properties', $transitionDescription)) {
+            $entity = new Entity();
+            foreach ($transitionDescription['properties'] as $propertyName => $rules) {
+                $entity->addProperty(PropertyFactory::create($propertyName, $rules));
+                $this->getTransitionSpecification()->setEntity($entity);
+            }
         }
     }
 

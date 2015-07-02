@@ -9,7 +9,8 @@
 namespace dicom\workflow\transition;
 
 
-use dicom\workflow\rules\exception\RuleExecutionException;
+use dicom\workflow\entity\executionResult\EntityExecutionResult;
+use dicom\workflow\rules\exception\RuleExecutionError;
 use dicom\workflow\rules\executionResult\RuleExecutionResult;
 use dicom\workflow\state\executionResult\StateExecutionResult;
 
@@ -37,6 +38,11 @@ class Transition
      * @var StateExecutionResult
      */
     protected $stateRuleExecutionResult;
+
+    /**
+     * @var EntityExecutionResult
+     */
+    protected $entityRuleExecutionResult;
 
     /**
      * Добавить результат выполнения правила перехода
@@ -73,6 +79,22 @@ class Transition
     }
 
     /**
+     * @param EntityExecutionResult $entityExecutionResult
+     */
+    public function setEntityRulesExecutionResult(EntityExecutionResult $entityExecutionResult)
+    {
+        $this->entityRuleExecutionResult = $entityExecutionResult;
+    }
+
+    /**
+     * @return EntityExecutionResult
+     */
+    public function getEntityRuleExecutionResult()
+    {
+        return $this->entityRuleExecutionResult;
+    }
+
+    /**
      * @return TransitionSpecification
      */
     public function getTransitionSpecification()
@@ -99,6 +121,10 @@ class Transition
             return false;
         }
 
+        if ($this->getEntityRuleExecutionResult() !== null && !$this->getEntityRuleExecutionResult()->isSuccess()) {
+            return false;
+        }
+
         foreach ($this->getTransitionRulesExecutionResult() as $ruleResult) {
             if (!$ruleResult->isSuccess()) {
                 return false;
@@ -110,7 +136,7 @@ class Transition
     /**
      * Получить список ошибок, которые возникли в результате перемещения сущности
      *
-     * @return RuleExecutionException[]
+     * @return RuleExecutionError[]
      */
     public function getErrors()
     {
@@ -119,6 +145,9 @@ class Transition
             $errors = $this->getStateRuleExecutionResult()->getErrors();
         }
 
+        if (null !== $this->getEntityRuleExecutionResult()) {
+            $errors = array_merge_recursive($errors, $this->getEntityRuleExecutionResult()->getErrors());
+        }
 
         foreach ($this->getTransitionRulesExecutionResult() as $ruleResult) {
             if (null !== $ruleResult->getError()) {

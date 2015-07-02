@@ -24,7 +24,7 @@ abstract class RuleCheckingOneValue extends Rule implements IRuleCheckingOneValu
         $result->setResult($isValid);
 
         if (!$isValid) {
-            $result->setError($this->constructValidationException($propertyValue));
+            $result->setError($this->constructValidationError($propertyValue));
         }
 
         return $result;
@@ -32,5 +32,5 @@ abstract class RuleCheckingOneValue extends Rule implements IRuleCheckingOneValu
 
     abstract protected function isValid($value);
 
-    abstract protected function constructValidationException($value);
+    abstract protected function constructValidationError($value);
 }

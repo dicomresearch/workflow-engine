@@ -11,6 +11,8 @@ namespace dicom\workflow\transition;
 
 use dicom\workflow\config\WorkflowDescription;
 use dicom\workflow\exception\WorkflowEngineException;
+use dicom\workflow\visitor\factory\GettingInsideVisitorFactory;
+use dicom\workflow\visitor\state\entity\property\rule\GetNameRuleVisitor;
 use dicom\workflow\WorkflowEngine;
 
 /**
@@ -169,5 +171,24 @@ class TransitionEngine
         $this->workflowEngine = $workflowEngine;
     }
 
+    /**
+     * получим список свойств для перехода
+     *
+     * @param TransitionSpecification $transitionSpecification
+     *
+     * @return array
+     */
+    public function getTransitionPropertiesRules(TransitionSpecification $transitionSpecification)
+    {
+        $entity = $transitionSpecification->getEntity();
+        if (is_null($entity)) {
+            return [];
+        }
 
+        $factory = new GettingInsideVisitorFactory(new GetNameRuleVisitor());
+
+        $configuredStateVisitor = $factory->createStateVisitor();
+
+        return $configuredStateVisitor->getEntityVisitor()->visit($entity);
+    }
 } 
