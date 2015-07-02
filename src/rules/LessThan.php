@@ -26,8 +26,7 @@ class LessThan extends RuleCheckingOneValue implements IRuleCheckingOneValue, IC
      */
     protected function isValid($entityNewValue = null)
     {
-        $entityNewValue = (int) $entityNewValue;
-        return $entityNewValue < $this->getConfig();
+        return $entityNewValue < $this->getConfiguredValue();
     }
 
     /**
