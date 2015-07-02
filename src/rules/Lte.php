@@ -2,6 +2,7 @@
 
 
 namespace dicom\workflow\rules;
+use dicom\workflow\rules\error\LteRuleExecutionResult;
 use dicom\workflow\rules\RuleInterface\IRuleCheckingOneValue;
 use dicom\workflow\rules\RuleInterface\IConfiguredRule;
 use dicom\workflow\rules\exception\RuleExecutionException;
@@ -39,10 +40,9 @@ class Lte extends RuleCheckingOneValue implements IRuleCheckingOneValue, IConfig
      *
      * @return mixed
      */
-    protected function constructValidationException($value = null)
+    protected function constructValidationError($value = null)
     {
-        $e = new RuleExecutionException(sprintf('Value must be greater than 0. Given: %s', $value));
-        $e->setHumanFriendlyMessage('Must be greater than 0');
+        $e = new LteRuleExecutionResult($this->getConfiguredValue(), $value);
         return $e;
     }
 

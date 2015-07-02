@@ -23,7 +23,7 @@ use dicom\workflow\rules\RuleInterface\IRuleCheckingOneValue;
  *
  * @package dicom\workflow\rules
  */
-class GreaterThan extends RuleCheckingOneValue implements IRuleCheckingOneValue, IConfiguredRule
+class GreaterThan extends RuleCheckingOneValue implements IConfiguredRule
 {
     use ConfiguredRule;
 
