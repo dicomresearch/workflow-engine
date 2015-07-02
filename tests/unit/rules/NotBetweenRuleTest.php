@@ -9,6 +9,7 @@
 namespace unit\rules;
 
 
+use dicom\workflow\rules\error\NotBetweenRuleExecutionError;
 use dicom\workflow\rules\NotBetweenRule;
 
 class NotBetweenRuleTest extends \PHPUnit_Framework_TestCase
@@ -67,5 +68,7 @@ class NotBetweenRuleTest extends \PHPUnit_Framework_TestCase
         $ruleExecutionResult = $rule->execute($value);
 
         $this->assertFalse($ruleExecutionResult->isSuccess());
+
+        $this->assertInstanceOf(NotBetweenRuleExecutionError::class, $ruleExecutionResult->getError());
     }
 }

@@ -10,6 +10,7 @@ namespace unit\rules;
 
 
 use dicom\workflow\rules\BetweenRule;
+use dicom\workflow\rules\error\BetweenRuleExecutionError;
 
 class BetweenRuleTest extends \PHPUnit_Framework_TestCase
 {
@@ -67,5 +68,6 @@ class BetweenRuleTest extends \PHPUnit_Framework_TestCase
         $ruleExecutionResult = $rule->execute($value);
 
         $this->assertFalse($ruleExecutionResult->isSuccess());
+        $this->assertInstanceOf(BetweenRuleExecutionError::class, $ruleExecutionResult->getError());
     }
 }
