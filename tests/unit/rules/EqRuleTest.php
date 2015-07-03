@@ -4,10 +4,11 @@
 namespace unit\rules;
 
 
-use dicom\workflow\rules\EquallyRule;
-use dicom\workflow\rules\error\EquallyRuleExecutionError;
 
-class EquallyRuleTest extends \PHPUnit_Framework_TestCase
+use dicom\workflow\rules\compare\EqRule;
+use dicom\workflow\rules\error\EqRuleExecutionError;
+
+class EqRuleTest extends \PHPUnit_Framework_TestCase
 {
 
     public function trueDataProvider()
@@ -43,7 +44,7 @@ class EquallyRuleTest extends \PHPUnit_Framework_TestCase
      */
     public function testTrue($value, $configuredValue)
     {
-        $rule = new EquallyRule();
+        $rule = new EqRule();
         $rule->setConfig($configuredValue);
 
         $ruleExecutionResult = $rule->execute($value);
@@ -59,13 +60,13 @@ class EquallyRuleTest extends \PHPUnit_Framework_TestCase
      */
     public function testFalse($value, $configuredValue)
     {
-        $rule = new EquallyRule();
+        $rule = new EqRule();
         $rule->setConfig($configuredValue);
 
         $ruleExecutionResult = $rule->execute($value);
 
         $this->assertFalse($ruleExecutionResult->isSuccess(), var_export($configuredValue, true) . 'must be not equally '. var_export($value, true));
-        $this->assertInstanceOf(EquallyRuleExecutionError::class, $ruleExecutionResult->getError());
+        $this->assertInstanceOf(EqRuleExecutionError::class, $ruleExecutionResult->getError());
     }
 
 }

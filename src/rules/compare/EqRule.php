@@ -1,12 +1,18 @@
 <?php
 
 
-namespace dicom\workflow\rules;
+namespace dicom\workflow\rules\compare;
 
-use dicom\workflow\rules\error\EquallyRuleExecutionError;
+use dicom\workflow\rules\ConfiguredRule;
+use dicom\workflow\rules\error\EqRuleExecutionError;
+use dicom\workflow\rules\RuleCheckingOneValue;
 use dicom\workflow\rules\RuleInterface\IConfiguredRule;
 
-class EquallyRule extends RuleCheckingOneValue implements  IConfiguredRule
+/**
+ * Class EqRule
+ * @package dicom\workflow\rules\compare
+ */
+class EqRule extends RuleCheckingOneValue implements  IConfiguredRule
 {
     use ConfiguredRule{
         ConfiguredRule::validateConfig as configuratorValidateConfig;
@@ -37,7 +43,7 @@ class EquallyRule extends RuleCheckingOneValue implements  IConfiguredRule
      */
     protected function constructValidationError($value = null)
     {
-        return EquallyRuleExecutionError::create($value, $this->getConfig());
+        return EqRuleExecutionError::create($value, $this->getConfig());
     }
 
 

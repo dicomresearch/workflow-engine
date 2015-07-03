@@ -8,8 +8,11 @@
 
 namespace dicom\workflow\rules\error;
 
-
-class GreaterThanRuleExecutionError extends RuleExecutionError
+/**
+ * Class GteRuleExecutionError
+ * @package dicom\workflow\rules\error
+ */
+class GteRuleExecutionError extends RuleExecutionError
 {
     /**
      * @param $value
@@ -19,7 +22,7 @@ class GreaterThanRuleExecutionError extends RuleExecutionError
      */
     public static function create($value, $config)
     {
-        $error =  new static(sprintf('Value must be greater than %s. Given: %s', $config, $value));
+        $error =  new static(sprintf('Value must be greater or equally than %s. Given: %s', $config, $value));
         $error->setHumanFriendlyMessage(sprintf('Must be greater than %s', $value));
 
         return $error;

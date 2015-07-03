@@ -6,7 +6,7 @@
                 "id": ["required"],
                 "stuffing": ["required", "readonly"],
                 "pastry": ["required", "readonly"],
-                "baking_time": [{"equally": 0}]
+                "baking_time": [{"eq": 0}]
             }
         },
 
@@ -36,7 +36,7 @@
                 "rules": [
                 ],
                 "properties": {
-                    "baking_time": [{"equally": 50}]
+                    "baking_time": [{"eq": 50}]
                 },
                 "actionName": "yammee"
             },
@@ -46,7 +46,7 @@
                 "rules": [
                 ],
                 "properties": {
-                    "baking_time": [{"greaterThan": 50}]
+                    "baking_time": [{"gt": 50}]
                 },
                 "actionName": "wow(("
             },
@@ -57,7 +57,7 @@
                 "rules": [
                 ],
                 "properties": {
-                    "baking_time": [{"greaterThan": 50}]
+                    "baking_time": [{"gt": 50}]
                 },
                 "actionName": "burnt pie"
             }

@@ -1,21 +1,22 @@
 <?php
 
 
-namespace dicom\workflow\rules;
-use dicom\workflow\rules\error\LteRuleExecutionResult;
-use dicom\workflow\rules\RuleInterface\IRuleCheckingOneValue;
-use dicom\workflow\rules\RuleInterface\IConfiguredRule;
-use dicom\workflow\rules\exception\RuleExecutionException;
+namespace dicom\workflow\rules\compare;
 
+
+use dicom\workflow\rules\ConfiguredRule;
+use dicom\workflow\rules\error\LteRuleExecutionResult;
+use dicom\workflow\rules\RuleCheckingOneValue;
+use dicom\workflow\rules\RuleInterface\IConfiguredRule;
 
 /**
  * Class GreaterThan
  *
  * Проверяет что новое значение сущности больше опредленного значения, заданого в конфиге Workflow
  *
- * @package dicom\workflow\rules
+ * @package dicom\workflow\rules\compare
  */
-class Lte extends RuleCheckingOneValue implements IRuleCheckingOneValue, IConfiguredRule
+class LteRule extends RuleCheckingOneValue implements IConfiguredRule
 {
     use ConfiguredRule{
         ConfiguredRule::validateConfig as configuratorValidateConfig;

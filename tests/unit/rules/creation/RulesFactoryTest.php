@@ -12,7 +12,7 @@ namespace dicom\workflow\tests\unit\rules\creation;
 use dicom\workflow\rules\AlwaysTrueRule;
 use dicom\workflow\rules\creation\RulesFactory;
 use dicom\workflow\rules\executionResult\RuleExecutionResult;
-use dicom\workflow\rules\GreaterThan;
+use dicom\workflow\rules\GtRule;
 use dicom\workflow\rules\RuleInterface\IRule;
 
 class RulesFactoryTest extends \PHPUnit_Framework_TestCase
@@ -28,9 +28,9 @@ class RulesFactoryTest extends \PHPUnit_Framework_TestCase
     public function testCreateByShortNameWithConfig()
     {
         $factory = new RulesFactory();
-        $rule = $factory->createByShortName('greaterthan', 0);
+        $rule = $factory->createByShortName('gt', 0);
 
-        $this->assertInstanceOf(GreaterThan::class, $rule);
+        $this->assertInstanceOf(GtRule::class, $rule);
         $result = $rule->execute(2);
 
         $this->assertInstanceOf(RuleExecutionResult::class, $result, 'Rule must return RuleExecutionResult object');
@@ -50,7 +50,7 @@ class RulesFactoryTest extends \PHPUnit_Framework_TestCase
     {
         $rules = [
             [
-               'greaterThen' => 43,
+               'gt' => 43,
             ],
             [
                 'lessThen' => 98,
@@ -65,14 +65,14 @@ class RulesFactoryTest extends \PHPUnit_Framework_TestCase
     public function testConvertToConfiguredRuleConfigNeedConvert()
     {
         $rules = [
-            'greaterThen',
+            'gt',
             'lessThen',
         ];
 
         $convertedRules = RulesFactory::convertToAssocRuleConfig($rules);
 
         $this->assertEquals([
-            ['greaterThen' => null],
+            ['gt' => null],
             ['lessThen' => null],
         ], $convertedRules, 'need to convert');
     }

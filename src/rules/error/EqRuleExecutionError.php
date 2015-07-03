@@ -9,7 +9,7 @@
 namespace dicom\workflow\rules\error;
 
 
-class EquallyRuleExecutionError extends RuleExecutionError
+class EqRuleExecutionError extends RuleExecutionError
 {
     /**
      * @param $valueGiven

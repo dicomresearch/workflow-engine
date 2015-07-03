@@ -6,21 +6,22 @@
  * Time: 15:34
  */
 
-namespace dicom\workflow\rules;
+namespace dicom\workflow\rules\compare;
 
 
-use dicom\workflow\rules\error\GreaterThanRuleExecutionError;
+use dicom\workflow\rules\ConfiguredRule;
+use dicom\workflow\rules\error\GteRuleExecutionError;
+use dicom\workflow\rules\RuleCheckingOneValue;
 use dicom\workflow\rules\RuleInterface\IConfiguredRule;
-use dicom\workflow\rules\RuleInterface\IRuleCheckingOneValue;
 
 /**
- * Class GreaterThan
+ * Class GteRule
  *
- * Проверяет что новое значение сущности больше опредленного значения, заданого в конфиге Workflow
+ * Проверяет что новое значение сущности больше или равно опредленного значения, заданого в конфиге Workflow
  *
- * @package dicom\workflow\rules
+ * @package dicom\workflow\rules\compare
  */
-class GreaterThan extends RuleCheckingOneValue implements IConfiguredRule
+class GteRule extends RuleCheckingOneValue implements IConfiguredRule
 {
     use ConfiguredRule;
 
@@ -33,7 +34,7 @@ class GreaterThan extends RuleCheckingOneValue implements IConfiguredRule
      */
     protected function isValid($entityNewValue = null)
     {
-        return $entityNewValue > $this->getConfiguredValue();
+        return $entityNewValue >= $this->getConfiguredValue();
     }
 
     /**
@@ -45,7 +46,7 @@ class GreaterThan extends RuleCheckingOneValue implements IConfiguredRule
      */
     protected function constructValidationError($value = null)
     {
-        return GreaterThanRuleExecutionError::create($value, $this->getConfig());
+        return GteRuleExecutionError::create($value, $this->getConfig());
     }
 
 
