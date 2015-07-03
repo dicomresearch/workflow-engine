@@ -46,7 +46,8 @@ class LtRule extends RuleCheckingOneValue implements IConfiguredRule
      */
     protected function constructValidationError($value = null)
     {
-        return LtRuleExecutionError::create($value, $this->getConfig());
+        $e = new LtRuleExecutionError($this->getConfiguredValue(), $value);
+        return $e;
     }
 
 
