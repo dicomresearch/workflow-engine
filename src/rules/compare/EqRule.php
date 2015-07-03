@@ -14,7 +14,7 @@ use dicom\workflow\rules\RuleInterface\IConfiguredRule;
  */
 class EqRule extends RuleCheckingOneValue implements  IConfiguredRule
 {
-    use ConfiguredRule{
+    use ConfiguredRule {
         ConfiguredRule::validateConfig as configuratorValidateConfig;
     }
 
