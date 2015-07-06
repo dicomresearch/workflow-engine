@@ -17,7 +17,7 @@ composer require dicomresearch/workflow-engine
 1) Download the project
 
 ```bash
-git@bitbucket.org:dicomresearch/workflow-engine.git
+git clone git@bitbucket.org:dicomresearch/workflow-engine.git
 ```
 
 2) Cd to project directory
