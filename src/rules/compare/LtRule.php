@@ -21,7 +21,9 @@ use dicom\workflow\rules\error\LtRuleExecutionError;
  */
 class LtRule extends RuleCheckingOneValue implements IConfiguredRule
 {
-    use ConfiguredRule;
+    use ConfiguredRule {
+        ConfiguredRule::validateConfig as configuratorValidateConfig;
+    }
 
     /**
      * Проверить удовлятеворяют ли переданые значения правилу
@@ -44,14 +46,29 @@ class LtRule extends RuleCheckingOneValue implements IConfiguredRule
      */
     protected function constructValidationError($value = null)
     {
-        return LtRuleExecutionError::create($value, $this->getConfig());
+        $e = new LtRuleExecutionError($this->getConfiguredValue(), $value);
+        return $e;
     }
 
 
     protected function validateConfig($config)
     {
-        if (! is_numeric($config)) {
-            throw $this->createConfigurationException('config for must be a numeric', $config);
+        if ($this->configuratorValidateConfig($config)) {
+            return true;
         }
+
+        if (is_numeric($config)) {
+            return true;
+        }
+
+        if (is_string($config)) {
+            return true;
+        }
+
+        if (is_array($config)) {
+            return true;
+        }
+
+        throw $this->createConfigurationException('config for must be a numeric', $config);
     }
 }

@@ -10,9 +10,9 @@ namespace dicom\workflow\tests\unit\rules\creation;
 
 
 use dicom\workflow\rules\AlwaysTrueRule;
+use dicom\workflow\rules\compare\GtRule;
 use dicom\workflow\rules\creation\RulesFactory;
 use dicom\workflow\rules\executionResult\RuleExecutionResult;
-use dicom\workflow\rules\GtRule;
 use dicom\workflow\rules\RuleInterface\IRule;
 
 class RulesFactoryTest extends \PHPUnit_Framework_TestCase
