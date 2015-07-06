@@ -1,17 +1,26 @@
 <?php
 
 
-namespace dicom\workflow\rules;
+namespace dicom\workflow\rules\compare;
 
-use dicom\workflow\rules\error\EquallyRuleExecutionError;
+
+use dicom\workflow\rules\ConfiguredRule;
+use dicom\workflow\rules\error\LteRuleExecutionResult;
+use dicom\workflow\rules\RuleCheckingOneValue;
 use dicom\workflow\rules\RuleInterface\IConfiguredRule;
 
-class EquallyRule extends RuleCheckingOneValue implements  IConfiguredRule
+/**
+ * Class GreaterThan
+ *
+ * Проверяет что новое значение сущности больше опредленного значения, заданого в конфиге Workflow
+ *
+ * @package dicom\workflow\rules\compare
+ */
+class LteRule extends RuleCheckingOneValue implements IConfiguredRule
 {
     use ConfiguredRule{
         ConfiguredRule::validateConfig as configuratorValidateConfig;
     }
-
 
     /**
      * Проверить удовлятеворяют ли переданые значения правилу
@@ -22,10 +31,7 @@ class EquallyRule extends RuleCheckingOneValue implements  IConfiguredRule
      */
     protected function isValid($entityNewValue = null)
     {
-        $expectedValue = $this->getConfiguredValue();
-
-
-        return $entityNewValue === $expectedValue;
+        return $entityNewValue <= $this->getConfiguredValue();
     }
 
     /**
@@ -37,7 +43,8 @@ class EquallyRule extends RuleCheckingOneValue implements  IConfiguredRule
      */
     protected function constructValidationError($value = null)
     {
-        return EquallyRuleExecutionError::create($value, $this->getConfig());
+        $e = new LteRuleExecutionResult($this->getConfiguredValue(), $value);
+        return $e;
     }
 
 
@@ -47,19 +54,11 @@ class EquallyRule extends RuleCheckingOneValue implements  IConfiguredRule
             return true;
         }
 
-        if (is_numeric($config)) {
+        if ( is_numeric($config)) {
             return true;
         }
 
-        if (is_string($config)) {
-            return true;
-        }
-
-        if (is_array($config)) {
-            return true;
-        }
-
-        throw $this->createConfigurationException('config for must be a numeric', $config);
+        throw $this->createConfigurationException('config for must be a numeric or Expression', $config);
     }
 
 }

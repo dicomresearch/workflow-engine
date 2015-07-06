@@ -5,7 +5,8 @@ namespace unit\rules;
 
 
 use dicom\workflow\expressions\CurrentDateExpression;
-use dicom\workflow\rules\EquallyRule;
+use dicom\workflow\rules\compare\EqRule;
+
 class RuleUsesExpressionTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -13,7 +14,7 @@ class RuleUsesExpressionTest extends \PHPUnit_Framework_TestCase
     {
         $expression = new CurrentDateExpression();
 
-        $rule = new EquallyRule();
+        $rule = new EqRule();
         $rule->setConfig($expression);
 
         $currentDate = (new \DateTime())->format('Y-m-d');

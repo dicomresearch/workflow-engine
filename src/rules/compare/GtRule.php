@@ -1,19 +1,27 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: rinat
- * Date: 01.07.15
- * Time: 17:48
+ * User: sergey
+ * Date: 03.12.14
+ * Time: 15:34
  */
 
-namespace dicom\workflow\rules;
+namespace dicom\workflow\rules\compare;
 
 
-use dicom\workflow\rules\error\LessThanRuleExecutionError;
+use dicom\workflow\rules\error\GtRuleExecutionError;
+use dicom\workflow\rules\RuleCheckingOneValue;
 use dicom\workflow\rules\RuleInterface\IConfiguredRule;
-use dicom\workflow\rules\RuleInterface\IRuleCheckingOneValue;
+use dicom\workflow\rules\ConfiguredRule;
 
-class LessThan extends RuleCheckingOneValue implements IRuleCheckingOneValue, IConfiguredRule
+/**
+ * Class GtRule
+ *
+ * Проверяет что новое значение сущности больше опредленного значения, заданого в конфиге Workflow
+ *
+ * @package dicom\workflow\rules\compare
+ */
+class GtRule extends RuleCheckingOneValue implements IConfiguredRule
 {
     use ConfiguredRule;
 
@@ -26,7 +34,7 @@ class LessThan extends RuleCheckingOneValue implements IRuleCheckingOneValue, IC
      */
     protected function isValid($entityNewValue = null)
     {
-        return $entityNewValue < $this->getConfiguredValue();
+        return $entityNewValue > $this->getConfiguredValue();
     }
 
     /**
@@ -38,7 +46,7 @@ class LessThan extends RuleCheckingOneValue implements IRuleCheckingOneValue, IC
      */
     protected function constructValidationError($value = null)
     {
-        return LessThanRuleExecutionError::create($value, $this->getConfig());
+        return GtRuleExecutionError::create($value, $this->getConfig());
     }
 
 
@@ -48,4 +56,5 @@ class LessThan extends RuleCheckingOneValue implements IRuleCheckingOneValue, IC
             throw $this->createConfigurationException('config for must be a numeric', $config);
         }
     }
-}
+
+} 

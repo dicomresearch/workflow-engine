@@ -18,14 +18,16 @@ class RuleAliasMapping
         'empty'                 => 'dicom\workflow\rules\IsEmptyRule',
         'alwaystrue'            => 'dicom\workflow\rules\AlwaysTrueRule',
         'alwaysfalse'           => 'dicom\workflow\rules\AlwaysFalseRule',
-        'greaterthan'           => 'dicom\workflow\rules\GreaterThan',
-        'lte'                   => 'dicom\workflow\rules\Lte',
         'in'                    => '\dicom\workflow\rules\InRule',
-        'equally'               => 'dicom\workflow\rules\EquallyRule',
         'yiicheckaccess'        => '\dicom\workflow\rules\YiiCheckAccess',
         'currentuserisreceiver' => '\dicom\workflow\rules\CurrentUserIsReceiver',
         'between'               => 'dicom\workflow\rules\BetweenRule',
         'notbetween'            => 'dicom\workflow\rules\NotBetweenRule',
+        'eq'                    => 'dicom\workflow\rules\compare\EqRule',
+        'gte'                   => 'dicom\workflow\rules\compare\GteRule',
+        'gt'                    => 'dicom\workflow\rules\compare\GtRule',
+        'lte'                   => 'dicom\workflow\rules\compare\LteRule',
+        'lt'                   => 'dicom\workflow\rules\compare\LtRule',
     ];
 
     public static function getClassNameByAlias($alias)

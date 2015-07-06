@@ -7,14 +7,15 @@ namespace unit\entity\property;
 use dicom\workflow\entity\property\CompositeProperty;
 use dicom\workflow\entity\property\Property;
 use dicom\workflow\rules\AlwaysTrueRule;
-use dicom\workflow\rules\GreaterThan;
+use dicom\workflow\rules\compare\GtRule;
+
 
 class CompositePropertyTest extends \PHPUnit_Framework_TestCase
 {
     protected function createTestGirl()
     {
         $boobsSize = new Property('boobsSize');
-        $greaterThenRule = new GreaterThan();
+        $greaterThenRule = new GtRule();
         $greaterThenRule->setConfig(2);
         $boobsSize->addPropertyRule($greaterThenRule);
 
