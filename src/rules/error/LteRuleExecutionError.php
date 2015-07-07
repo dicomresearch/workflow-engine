@@ -4,7 +4,7 @@
 namespace dicom\workflow\rules\error;
 
 
-class LteRuleExecutionResult extends RuleExecutionError
+class LteRuleExecutionError extends RuleExecutionError
 {
     public static function create($configValue, $value)
     {

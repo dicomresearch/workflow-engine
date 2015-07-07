@@ -1,0 +1,65 @@
+{
+    "states":
+    {
+        "norm": {
+            "properties": {
+                "id": ["required"],
+                "sex": ["required", {"eq": "man"}]
+            }
+        },
+
+        "belowNorm": {
+            "properties": {
+                "id": ["required"],
+                "sex": ["required", {"eq": "man"}]
+            }
+        },
+
+        "aboveNorm": {
+            "properties": {
+                "id": ["required"],
+                "sex": ["required", {"eq": "man"}]
+            }
+        },
+
+        "notNorm": {
+            "properties": {
+                "id": ["required"],
+                "sex": ["required", {"eq": "man"}]
+            }
+        }
+    },
+    "transitions":
+        [
+            {
+                "oldState": "norm",
+                "newState": "belowNorm",
+                "rules": [
+                ],
+                "properties": {
+                    "fasting": [{"lte": 3.2}]
+                },
+                "actionName": "below norm"
+            },
+            {
+                "oldState": "norm",
+                "newState": "notNorm",
+                "rules": [
+                ],
+                "properties": {
+                    "fasting": [{"notbetween": [3.3, 5.5]}]
+                },
+                "actionName": "not norm"
+            },
+            {
+                "oldState": "norm",
+                "newState": "aboveNorm",
+                "rules": [
+                ],
+                "properties": {
+                    "fasting": [{"gte": 5.6}]
+                },
+                "actionName": "above norm"
+            }
+        ]
+}
