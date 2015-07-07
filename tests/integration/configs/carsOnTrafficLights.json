@@ -1,0 +1,71 @@
+{
+    "states":
+    {
+        "go": {
+            "properties": {
+                "id": ["required"],
+                "model": ["required", "readonly"]
+            }
+        },
+
+        "stop": {
+            "properties": {
+                "id": ["required"],
+                "model": ["required", "readonly"]
+            }
+        },
+
+        "attention": {
+            "properties": {
+                "id": ["required"],
+                "model": ["required", "readonly"]
+            }
+        }
+    },
+    "transitions":
+        [
+            {
+                "oldState": "go",
+                "newState": "go",
+                "rules": [
+                ],
+                "properties": {
+                    "colorOfTrafficLights": [{"in": ["green", "yellow"]}]
+                },
+                "actionName": "go go"
+            },
+
+            {
+                "oldState": "go",
+                "newState": "stop",
+                "rules": [
+                ],
+                "properties": {
+                    "colorOfTrafficLights": [{"eq": "red"}]
+                },
+                "actionName": "stop"
+            },
+
+            {
+                "oldState": "stop",
+                "newState": "attention",
+                "rules": [
+                ],
+                "properties": {
+                    "colorOfTrafficLights": [{"eq": "yellow"}]
+                },
+                "actionName": "attention"
+            },
+
+            {
+                "oldState": "attention",
+                "newState": "go",
+                "rules": [
+                ],
+                "properties": {
+                    "colorOfTrafficLights": [{"eq": "green"}]
+                },
+                "actionName": "go"
+            }
+        ]
+}

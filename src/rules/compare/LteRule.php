@@ -5,6 +5,7 @@ namespace dicom\workflow\rules\compare;
 
 
 use dicom\workflow\rules\ConfiguredRule;
+use dicom\workflow\rules\error\LteRuleExecutionError;
 use dicom\workflow\rules\error\LteRuleExecutionResult;
 use dicom\workflow\rules\RuleCheckingOneValue;
 use dicom\workflow\rules\RuleInterface\IConfiguredRule;
@@ -43,7 +44,7 @@ class LteRule extends RuleCheckingOneValue implements IConfiguredRule
      */
     protected function constructValidationError($value = null)
     {
-        $e = new LteRuleExecutionResult($this->getConfiguredValue(), $value);
+        $e = new LteRuleExecutionError($this->getConfiguredValue(), $value);
         return $e;
     }
 
