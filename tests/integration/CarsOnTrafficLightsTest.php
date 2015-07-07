@@ -45,21 +45,21 @@ class CarsOnTrafficLightsTest extends \PHPUnit_Framework_TestCase{
      *
      * @return true
      */
-    public function testGoGo()
+    public function testPassWithoutStopping()
     {
-        $go1 = [
+        $go = [
             'id' => 1,
             'model' => 'policy crown victory',
             'colorOfTrafficLights' => 'green'
         ];
 
-        $go2 = [
+        $passWithoutStopping = [
             'id' => 1,
             'model' => 'policy crown victory',
             'colorOfTrafficLights' => 'yellow'
         ];
 
-        $transitionResult = $this->engine->makeTransition('go', 'go', $go2, $go1);
+        $transitionResult = $this->engine->makeTransition('go', 'passWithoutStopping', $passWithoutStopping, $go);
         $this->assertTrue($transitionResult->isSuccess());
     }
 
@@ -69,21 +69,21 @@ class CarsOnTrafficLightsTest extends \PHPUnit_Framework_TestCase{
      *
      * @return false
      */
-    public function testWrongGoGo()
+    public function testWrongPassWithoutStopping()
     {
-        $go1 = [
+        $go = [
             'id' => 1,
             'model' => 'policy crown victory',
             'colorOfTrafficLights' => 'green'
         ];
 
-        $go2 = [
+        $passWithoutStopping = [
             'id' => 1,
             'model' => 'policy crown victory',
             'colorOfTrafficLights' => 'red'
         ];
 
-        $transitionResult = $this->engine->makeTransition('go', 'go', $go2, $go1);
+        $transitionResult = $this->engine->makeTransition('go', 'passWithoutStopping', $passWithoutStopping, $go);
         $this->assertFalse($transitionResult->isSuccess());
         $this->assertEquals(1, count($transitionResult->getErrors()));
         $this->assertInstanceOf(InRuleExecutionError::class, $transitionResult->getErrors()[0]);

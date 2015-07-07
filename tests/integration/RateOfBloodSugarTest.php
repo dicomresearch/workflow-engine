@@ -110,7 +110,6 @@ class RateOfBloodSugarTest extends \PHPUnit_Framework_TestCase{
         ];
 
         $transitionResult = $this->engine->makeTransition('norm', 'notNorm', $notNorm, $norm);
-        var_dump($transitionResult->getErrors());
         $this->assertFalse($transitionResult->isSuccess());
         $this->assertEquals(1, count($transitionResult->getErrors()));
         $this->assertInstanceOf(EqRuleExecutionError::class, $transitionResult->getErrors()[0]);

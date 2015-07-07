@@ -48,19 +48,19 @@ class temperatureOfWaterTest extends \PHPUnit_Framework_TestCase{
      */
     public function testYetWater()
     {
-        $water1 = [
+        $water = [
             'id' => 1,
             'volume' => 1,
             'temperature' => 10
         ];
 
-        $water2 = [
+        $warmWater = [
             'id' => 1,
             'volume' => 1,
             'temperature' => 50
         ];
 
-        $transitionResult = $this->engine->makeTransition('water', 'water', $water2, $water1);
+        $transitionResult = $this->engine->makeTransition('water', 'water', $warmWater, $water);
         $this->assertTrue($transitionResult->isSuccess());
     }
 
@@ -73,44 +73,44 @@ class temperatureOfWaterTest extends \PHPUnit_Framework_TestCase{
      */
     public function testYetWaterLimitOfTemperature()
     {
-        $water1 = [
+        $coldWater = [
             'id' => 1,
             'volume' => 1,
             'temperature' => 0
         ];
 
-        $water2 = [
+        $hotWater = [
             'id' => 1,
             'volume' => 1,
             'temperature' => 100
         ];
 
-        $transitionResult = $this->engine->makeTransition('water', 'water', $water2, $water1);
+        $transitionResult = $this->engine->makeTransition('water', 'water', $hotWater, $coldWater);
         $this->assertTrue($transitionResult->isSuccess());
     }
 
     /**
      * Возможности перевести из одного статуса в другой
      * все условия выполняются
-     * проверяются на предельных температурах
+     * проверяются на десятичных значениях температур
      *
      * @return true
      */
     public function testYetWaterDecimalValuesOfTemperature()
     {
-        $water1 = [
+        $coldWater = [
             'id' => 1,
             'volume' => 1,
             'temperature' => 0.1
         ];
 
-        $water2 = [
+        $hotWater = [
             'id' => 1,
             'volume' => 1,
             'temperature' => 90.9
         ];
 
-        $transitionResult = $this->engine->makeTransition('water', 'water', $water2, $water1);
+        $transitionResult = $this->engine->makeTransition('water', 'water', $hotWater, $coldWater);
         $this->assertTrue($transitionResult->isSuccess());
     }
 
@@ -120,7 +120,7 @@ class temperatureOfWaterTest extends \PHPUnit_Framework_TestCase{
      *
      * @return false
      */
-    public function testWrongWaterWater()
+    public function testWrongWaterToWater()
     {
         $water = [
             'id' => 1,
@@ -149,19 +149,19 @@ class temperatureOfWaterTest extends \PHPUnit_Framework_TestCase{
      */
     public function testWrongBoilWaterLimitOfTemperature()
     {
-        $water1 = [
+        $coldWater = [
             'id' => 1,
             'volume' => 1,
             'temperature' => 5
         ];
 
-        $water2 = [
+        $hotWater = [
             'id' => 1,
             'volume' => 1,
             'temperature' => 100
         ];
 
-        $transitionResult = $this->engine->makeTransition('water', 'exhalation', $water2, $water1);
+        $transitionResult = $this->engine->makeTransition('water', 'exhalation', $hotWater, $coldWater);
         $this->assertFalse($transitionResult->isSuccess());
         $this->assertEquals(1, count($transitionResult->getErrors()));
         $this->assertInstanceOf(GtRuleExecutionError::class, $transitionResult->getErrors()[0]);
@@ -199,7 +199,7 @@ class temperatureOfWaterTest extends \PHPUnit_Framework_TestCase{
      *
      * @return true
      */
-    public function testIceWaterLimitOfTemperature()
+    public function testWaterToIceLimitOfTemperature()
     {
         $water = [
             'id' => 1,
@@ -224,7 +224,7 @@ class temperatureOfWaterTest extends \PHPUnit_Framework_TestCase{
      *
      * @return false
      */
-    public function testWrongIceWaterLimitOfTemperature()
+    public function testWrongWaterToIceLimitOfTemperature()
     {
         $water = [
             'id' => 1,
