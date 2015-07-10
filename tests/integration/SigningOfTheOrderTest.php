@@ -5,6 +5,7 @@ namespace integration;
 
 
 use dicom\workflow\config\WorkflowDescription;
+use dicom\workflow\rules\error\LteRuleExecutionError;
 use dicom\workflow\rules\error\LteRuleExecutionResult;
 use dicom\workflow\rules\exception\RuleExecutionException;
 use dicom\workflow\WorkflowEngine;
@@ -85,7 +86,7 @@ class SigningOfTheOrderTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(1, $transition->getErrors());
 
         $ruleExecutionError = $transition->getErrors()[0];
-        $this->assertInstanceOf(LteRuleExecutionResult::class, $ruleExecutionError);
+        $this->assertInstanceOf(LteRuleExecutionError::class, $ruleExecutionError);
         $this->assertEquals('creationDate', $ruleExecutionError->getPropertyName());
     }
 }
