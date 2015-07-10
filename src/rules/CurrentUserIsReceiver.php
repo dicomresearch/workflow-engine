@@ -1,9 +1,10 @@
 <?php
 
 namespace dicom\workflow\rules;
+
 use dicom\workflow\rules\error\RuleExecutionError;
 use dicom\workflow\rules\executionResult\RuleExecutionResult;
-use dicom\workflow\rules\RuleInterface\IRuleCheckingOneValue;;
+use dicom\workflow\rules\RuleInterface\IRuleCheckingOneValue;
 
 /**
  * CurrentUserIsReceiver
