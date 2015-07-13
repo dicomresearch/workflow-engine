@@ -3,7 +3,6 @@
 
 namespace integration;
 
-
 use dicom\workflow\config\WorkflowDescription;
 use dicom\workflow\WorkflowEngine;
 

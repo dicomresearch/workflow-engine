@@ -2,24 +2,19 @@
 /**
  * Created by PhpStorm.
  * User: rinat
- * Date: 01.07.15
- * Time: 13:35
+ * Date: 13.07.15
+ * Time: 14:19
  */
 
 namespace dicom\workflow\rules\error;
 
 
-class EqRuleExecutionError extends RuleExecutionError
+class NotEqRuleExecutionError extends RuleExecutionError
 {
-    /**
-     * @param $valueGiven
-     * @param $valueExpected
-     * @return static
-     */
     public static function create($valueGiven, $valueExpected)
     {
         $error =  new static(sprintf(
-            'Value must be equally %s. Given: %s',
+            'Value not must be equally %s. Given: %s',
             var_export($valueExpected, true),
             var_export($valueGiven, true)
         ));
