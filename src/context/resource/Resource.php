@@ -9,7 +9,6 @@
 namespace dicom\workflow\context\resource;
 
 use dicom\workflow\context\resource\executionResult\ResourceExecutionResult;
-use dicom\workflow\entity\property\executionResult\PropertyExecutionResult;
 use dicom\workflow\rules\adapter\RuleAdapter;
 use dicom\workflow\rules\Rule;
 use dicom\workflow\rules\RuleInterface\IRule;
@@ -34,7 +33,7 @@ class Resource
     /**
      * @param string $name
      */
-    public function  __construct($name)
+    public function __construct($name)
     {
         $this->setName($name);
     }

@@ -9,12 +9,13 @@
 namespace dicom\workflow\context;
 
 use dicom\workflow\context\executionResult\ContextExecutionResult;
+use dicom\workflow\context\resource\executionResult\ResourceExecutionResult;
 use dicom\workflow\context\resource\Resource;
 
 class Context
 {
     /**
-     * @var Resource
+     * @var Resource[]
      */
     protected $resource;
 

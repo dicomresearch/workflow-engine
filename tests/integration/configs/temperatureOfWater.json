@@ -2,21 +2,21 @@
     "states":
     {
         "water": {
-            "properties": {
+            "entity": {
                 "id": ["required"],
                 "volume": ["required"]
             }
         },
 
         "ice": {
-            "properties": {
+            "entity": {
                 "id": ["required"],
                 "volume": ["required"]
             }
         },
 
         "exhalation": {
-            "properties": {
+            "entity": {
                 "id": ["required"],
                 "volume": ["required"]
             }
@@ -27,20 +27,30 @@
             {
                 "oldState": "water",
                 "newState": "water",
-                "rules": [
-                ],
-                "properties": {
-                    "temperature": [{"between": [0, 100]}]
+                "rules": {
+                    "entity": {
+                        "temperature": [{"between": [0, 100]}]
+                    },
+                    "context": {
+
+                    },
+                    "other": {
+                    }
                 },
                 "actionName": "yet water"
             },
             {
                 "oldState": "water",
                 "newState": "exhalation",
-                "rules": [
-                ],
-                "properties": {
-                    "temperature": [{"gt": 100}]
+                "rules": {
+                    "entity": {
+                        "temperature": [{"gt": 100}]
+                    },
+                    "context": {
+
+                    },
+                    "other": {
+                    }
                 },
                 "actionName": "water to exhalation"
             },
@@ -48,10 +58,15 @@
             {
                 "oldState": "water",
                 "newState": "ice",
-                "rules": [
-                ],
-                "properties": {
-                    "temperature": [{"lt": 0}]
+                "rules": {
+                    "entity": {
+                        "temperature": [{"lt": 0}]
+                    },
+                    "context": {
+
+                    },
+                    "other": {
+                    }
                 },
                 "actionName": "water to ice"
             }
