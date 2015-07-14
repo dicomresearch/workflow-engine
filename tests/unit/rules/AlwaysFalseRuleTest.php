@@ -18,9 +18,5 @@ class AlwaysFalseRuleTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($ruleExecutionResult->isSuccess());
         $this->assertTrue($ruleExecutionResult->getError() instanceof AlwaysFalseRuleExecutionError);
     }
-
-    public function testWrong()
-    {
-        $this->assertTrue(false, 'this is bad test');
-    }
+    
 }
