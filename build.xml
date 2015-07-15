@@ -49,7 +49,7 @@
         <echo message="composer ${composer.command} complete" level="debug"/>
     </target>
 
-    <target name="tests" description="Run unit tests">
+    <target name="tests">
         <exec dir="${basedir}" executable="bash" failonerror="true">
             <arg value="-c"/>
             <arg line="php vendor/bin/phpunit --bootstrap vendor/autoload.php --log-junit build/logs/test-results.xml tests" />
