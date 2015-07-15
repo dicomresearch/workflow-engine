@@ -38,7 +38,7 @@
                     "entity": {
                     },
                     "context": {
-                        "colorOfTrafficLights": [{"neq": "red"}]
+                        "colorOfTrafficLights": [{"in": ["green", "yellow"]}]
                     },
                     "other": {
                     }

@@ -51,17 +51,17 @@ class CarsOnTrafficLightsTest extends \PHPUnit_Framework_TestCase
     {
         $go = [
             'id' => 1,
-            'model' => 'policy crown victory',
-            'colorOfTrafficLights' => 'green'
+            'model' => 'policy crown victory'
         ];
 
         $passWithoutStopping = [
             'id' => 1,
-            'model' => 'policy crown victory',
-            'colorOfTrafficLights' => 'yellow'
+            'model' => 'policy crown victory'
         ];
 
-        $transitionResult = $this->engine->makeTransition('go', 'passWithoutStopping', $passWithoutStopping, $go);
+        $context = ['colorOfTrafficLights' => 'yellow'];
+
+        $transitionResult = $this->engine->makeTransition('go', 'passWithoutStopping', $passWithoutStopping, $go, $context);
         $this->assertTrue($transitionResult->isSuccess());
     }
 
@@ -94,7 +94,7 @@ class CarsOnTrafficLightsTest extends \PHPUnit_Framework_TestCase
         );
         $this->assertFalse($transitionResult->isSuccess());
         $this->assertEquals(1, count($transitionResult->getErrors()));
-        $this->assertInstanceOf(NotEqRuleExecutionError::class, $transitionResult->getErrors()[0]);
+        $this->assertInstanceOf(InRuleExecutionError::class, $transitionResult->getErrors()[0]);
     }
 
 
@@ -132,17 +132,17 @@ class CarsOnTrafficLightsTest extends \PHPUnit_Framework_TestCase
     {
         $go = [
             'id' => 1,
-            'model' => 'policy crown victory',
-            'colorOfTrafficLights' => 'green'
+            'model' => 'policy crown victory'
         ];
 
         $stop = [
             'id' => 1,
-            'model' => 'policy crown victory',
-            'colorOfTrafficLights' => 'yellow'
+            'model' => 'policy crown victory'
         ];
 
-        $transitionResult = $this->engine->makeTransition('go', 'stop', $stop, $go);
+        $context = ['colorOfTrafficLights' => 'yellow'];
+
+        $transitionResult = $this->engine->makeTransition('go', 'stop', $stop, $go, $context);
         $this->assertFalse($transitionResult->isSuccess());
         $this->assertEquals(1, count($transitionResult->getErrors()));
         $this->assertInstanceOf(EqRuleExecutionError::class, $transitionResult->getErrors()[0]);
