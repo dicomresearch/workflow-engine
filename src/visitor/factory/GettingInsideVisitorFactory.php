@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: sergey
- * Date: 18.11.14
- * Time: 17:27
- */
 
 namespace dicom\workflow\visitor\factory;
 
