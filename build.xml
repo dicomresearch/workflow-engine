@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+
+
+<project name="Workflow engine" description="Workflow engine building" default="test">
+    <target name="test">
+        <mkdir dir="reports"/>
+
+        <phpunit haltonfailure="true" printsummary="true" bootstrap="vendor/autoload.php">
+            <formatter outfile="reports/testsuites.xml" type="xml"> </formatter>
+            <batchtest>
+                <fileset dir="tests">
+                    <include name="**/*Test.php"/>
+                </fileset>
+            </batchtest>
+        </phpunit>
+    </target>
+
+    <target name="report">
+        <delete dir="reports"/>
+        <mkdir dir="reports/tests"/>
+        <phpunit codecoverage="false">
+            <formatter type="xml" todir="reports"/>
+            <batchtest>
+                <fileset dir="src">
+                    <include name="**/*Test.php"/>
+                </fileset>
+            </batchtest>
+        </phpunit>
+        <phpunitreport infile="reports/testsuites.xml" format="frames" todir="reports/tests"/>
+    </target>
+</project>
