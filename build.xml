@@ -35,7 +35,7 @@
         <echo message="composer self-install complete" level="debug"/>
     </target>
 
-    <target name="composer" depends="init, self-install, self-update" if="composer.run">
+    <target name="composer-get-dependencies" depends="init, self-install, self-update" if="composer.run">
         <condition property="composer.command" value="update" else="install">
             <available file="${composer.lock}"/>
         </condition>
@@ -49,5 +49,12 @@
         <echo message="composer ${composer.command} complete" level="debug"/>
     </target>
 
-    <target name="build" depends="init,self-update,self-install,composer"/>
+    <target name="tests" description="Run unit tests">
+        <exec dir="${basedir}" executable="bash" failonerror="true">
+            <arg value="-c"/>
+            <arg line="php vendor/bin/phpunit --bootstrap vendor/autoload.php --log-junit build/logs/test-results.xml tests" />
+        </exec>
+    </target>
+
+    <target name="build" depends="init,self-update,self-install,composer-get-dependencies,tests"/>
 </project>
