@@ -2,29 +2,26 @@
     "states":
     {
         "new": {
-            "properties": {
+            "entity": {
                 "id": ["required"],
                 "stuffing": ["required", "readonly"],
-                "pastry": ["required", "readonly"],
-                "baking_time": [{"eq": 0}]
+                "pastry": ["required", "readonly"]
             }
         },
 
         "baked": {
-            "properties": {
+            "entity": {
                 "id": ["required"],
                 "stuffing": ["required", "readonly"],
-                "pastry": ["required", "readonly"],
-                "baking_time": ["required"]
+                "pastry": ["required", "readonly"]
             }
         },
 
         "burnt": {
-            "properties": {
+            "entity": {
                 "id": ["required"],
                 "stuffing": ["required", "readonly"],
-                "pastry": ["required", "readonly"],
-                "baking_time": ["required"]
+                "pastry": ["required", "readonly"]
             }
         }
     },
@@ -33,20 +30,29 @@
             {
                 "oldState": "new",
                 "newState": "baked",
-                "rules": [
-                ],
-                "properties": {
-                    "baking_time": [{"eq": 50}]
+                "rules": {
+                    "entity": {
+
+                    },
+                    "context": {
+                        "baking_time": [{"eq": 50}]
+                    },
+                    "other": {
+
+                    }
                 },
                 "actionName": "yammee"
             },
             {
                 "oldState": "new",
                 "newState": "burnt",
-                "rules": [
-                ],
-                "properties": {
-                    "baking_time": [{"gt": 50}]
+                "rules": {
+                    "entity": {
+                        "baking_time": [{"gt": 50}]
+                    },
+                    "other": {
+
+                    }
                 },
                 "actionName": "wow(("
             },
@@ -54,10 +60,13 @@
             {
                 "oldState": "baked",
                 "newState": "burnt",
-                "rules": [
-                ],
-                "properties": {
-                    "baking_time": [{"gt": 50}]
+                "rules": {
+                    "entity": {
+                        "baking_time": [{"gt": 50}]
+                    },
+                    "other": {
+
+                    }
                 },
                 "actionName": "burnt pie"
             }

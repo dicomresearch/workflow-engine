@@ -8,7 +8,6 @@
 
 namespace dicom\workflow\rules\compare;
 
-
 use dicom\workflow\rules\ConfiguredRule;
 use dicom\workflow\rules\error\GteRuleExecutionError;
 use dicom\workflow\rules\RuleCheckingOneValue;

@@ -24,6 +24,7 @@ class RuleAliasMapping
         'between'               => 'dicom\workflow\rules\BetweenRule',
         'notbetween'            => 'dicom\workflow\rules\NotBetweenRule',
         'eq'                    => 'dicom\workflow\rules\compare\EqRule',
+        'neq'                    => 'dicom\workflow\rules\compare\NotEqRule',
         'gte'                   => 'dicom\workflow\rules\compare\GteRule',
         'gt'                    => 'dicom\workflow\rules\compare\GtRule',
         'lte'                   => 'dicom\workflow\rules\compare\LteRule',

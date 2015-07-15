@@ -2,28 +2,28 @@
     "states":
     {
         "norm": {
-            "properties": {
+            "entity": {
                 "id": ["required"],
                 "sex": ["required", {"eq": "man"}]
             }
         },
 
         "belowNorm": {
-            "properties": {
+            "entity": {
                 "id": ["required"],
                 "sex": ["required", {"eq": "man"}]
             }
         },
 
         "aboveNorm": {
-            "properties": {
+            "entity": {
                 "id": ["required"],
                 "sex": ["required", {"eq": "man"}]
             }
         },
 
         "notNorm": {
-            "properties": {
+            "entity": {
                 "id": ["required"],
                 "sex": ["required", {"eq": "man"}]
             }
@@ -34,30 +34,45 @@
             {
                 "oldState": "norm",
                 "newState": "belowNorm",
-                "rules": [
-                ],
-                "properties": {
-                    "fasting": [{"lte": 3.2}]
+                "rules": {
+                    "entity": {
+                        "fasting": [{"lte": 3.2}]
+                    },
+                    "context": {
+
+                    },
+                    "other": {
+                    }
                 },
                 "actionName": "below norm"
             },
             {
                 "oldState": "norm",
                 "newState": "notNorm",
-                "rules": [
-                ],
-                "properties": {
-                    "fasting": [{"notbetween": [3.3, 5.5]}]
+                "rules": {
+                    "entity": {
+                        "fasting": [{"notbetween": [3.3, 5.5]}]
+                    },
+                    "context": {
+
+                    },
+                    "other": {
+                    }
                 },
                 "actionName": "not norm"
             },
             {
                 "oldState": "norm",
                 "newState": "aboveNorm",
-                "rules": [
-                ],
-                "properties": {
-                    "fasting": [{"gte": 5.6}]
+                "rules": {
+                    "entity": {
+                        "fasting": [{"gte": 5.6}]
+                    },
+                    "context": {
+
+                    },
+                    "other": {
+                    }
                 },
                 "actionName": "above norm"
             }

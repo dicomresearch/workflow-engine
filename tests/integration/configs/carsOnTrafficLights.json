@@ -2,28 +2,28 @@
     "states":
     {
         "go": {
-            "properties": {
+            "entity": {
                 "id": ["required"],
                 "model": ["required", "readonly"]
             }
         },
 
         "passWithoutStopping": {
-            "properties": {
+            "entity": {
                 "id": ["required"],
                 "model": ["required", "readonly"]
             }
         },
 
         "stop": {
-            "properties": {
+            "entity": {
                 "id": ["required"],
                 "model": ["required", "readonly"]
             }
         },
 
         "attention": {
-            "properties": {
+            "entity": {
                 "id": ["required"],
                 "model": ["required", "readonly"]
             }
@@ -34,10 +34,14 @@
             {
                 "oldState": "go",
                 "newState": "passWithoutStopping",
-                "rules": [
-                ],
-                "properties": {
-                    "colorOfTrafficLights": [{"in": ["green", "yellow"]}]
+                "rules": {
+                    "entity": {
+                    },
+                    "context": {
+                        "colorOfTrafficLights": [{"neq": "red"}]
+                    },
+                    "other": {
+                    }
                 },
                 "actionName": "pass without stopping"
             },
@@ -45,10 +49,14 @@
             {
                 "oldState": "go",
                 "newState": "stop",
-                "rules": [
-                ],
-                "properties": {
-                    "colorOfTrafficLights": [{"eq": "red"}]
+                "rules": {
+                    "entity": {
+                    },
+                    "context": {
+                        "colorOfTrafficLights": [{"eq": "red"}]
+                    },
+                    "other": {
+                    }
                 },
                 "actionName": "stop"
             },
@@ -56,10 +64,14 @@
             {
                 "oldState": "stop",
                 "newState": "attention",
-                "rules": [
-                ],
-                "properties": {
-                    "colorOfTrafficLights": [{"eq": "yellow"}]
+                "rules": {
+                    "entity": {
+                    },
+                    "context": {
+                        "colorOfTrafficLights": [{"eq": "yellow"}]
+                    },
+                    "other": {
+                    }
                 },
                 "actionName": "attention"
             },
@@ -67,10 +79,14 @@
             {
                 "oldState": "attention",
                 "newState": "go",
-                "rules": [
-                ],
-                "properties": {
-                    "colorOfTrafficLights": [{"eq": "green"}]
+                "rules": {
+                    "entity": {
+                    },
+                    "context": {
+                        "colorOfTrafficLights": [{"eq": "green"}]
+                    },
+                    "other": {
+                    }
                 },
                 "actionName": "go"
             }

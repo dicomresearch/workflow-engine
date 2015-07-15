@@ -8,6 +8,7 @@
 
 namespace dicom\workflow\transition;
 
+use dicom\workflow\context\Context;
 use dicom\workflow\entity\Entity;
 use dicom\workflow\rules\adapter\RuleAdapter;
 use dicom\workflow\rules\RuleInterface\IRule;
@@ -59,6 +60,11 @@ class TransitionSpecification
      */
     private $entity;
 
+    /**
+     * @var Context
+     */
+    private $context;
+
 
     /**
      * @param State $newState
@@ -76,16 +82,18 @@ class TransitionSpecification
      *
      * @param array $newEntityValues
      * @param array $oldEntityValues
+     * @param array $context key-value array, where key - entity attribute name, value - its value
      *
      * @return Transition
      * @throws \dicom\workflow\rules\adapter\exception\RuleAdapterException
      */
-    public function makeTransition($newEntityValues, $oldEntityValues)
+    public function makeTransition($newEntityValues, $oldEntityValues, $context = [])
     {
         $transition = $this->createTransition();
         $transition = $this->executeTransitionRules($newEntityValues, $oldEntityValues, $transition);
         $transition = $this->executeStateRules($newEntityValues, $oldEntityValues, $transition);
         $transition = $this->executeEntityRules($newEntityValues, $oldEntityValues, $transition);
+        $transition = $this->executeContextRules($context, $transition);
 
         return $transition;
     }
@@ -146,6 +154,23 @@ class TransitionSpecification
         if ($this->getEntity() !== null) {
             $entityExecuteResult = $this->getEntity()->executeRules($newEntityValues, $oldEntityValues);
             $transition->setEntityRulesExecutionResult($entityExecuteResult);
+        }
+
+        return $transition;
+    }
+
+    /**
+     * @param $context
+     * @param Transition $transition
+     * @return Transition
+     */
+    public function executeContextRules($context, Transition $transition = null)
+    {
+        $transition = null !== $transition ? $transition: $this->createTransition();
+
+        if ($this->getContext() !== null) {
+            $contextExecuteResult = $this->getContext()->executeRules($context);
+            $transition->setContextRuleExecutionResult($contextExecuteResult);
         }
 
         return $transition;
@@ -320,6 +345,22 @@ class TransitionSpecification
     public function setEntity($value)
     {
         $this->entity = $value;
+    }
+
+    /**
+     * @return Context
+     */
+    public function getContext()
+    {
+        return $this->context;
+    }
+
+    /**
+     * @param Context $context
+     */
+    public function setContext(Context $context)
+    {
+        $this->context = $context;
     }
 
 }

@@ -11,9 +11,11 @@ namespace integration;
 use dicom\workflow\config\WorkflowDescription;
 use dicom\workflow\rules\error\EqRuleExecutionError;
 use dicom\workflow\rules\error\InRuleExecutionError;
+use dicom\workflow\rules\error\NotEqRuleExecutionError;
 use dicom\workflow\WorkflowEngine;
 
-class CarsOnTrafficLightsTest extends \PHPUnit_Framework_TestCase{
+class CarsOnTrafficLightsTest extends \PHPUnit_Framework_TestCase
+{
 
     /**
      * Название конфиг файла
@@ -73,20 +75,26 @@ class CarsOnTrafficLightsTest extends \PHPUnit_Framework_TestCase{
     {
         $go = [
             'id' => 1,
-            'model' => 'policy crown victory',
-            'colorOfTrafficLights' => 'green'
+            'model' => 'policy crown victory'
         ];
 
         $passWithoutStopping = [
             'id' => 1,
-            'model' => 'policy crown victory',
-            'colorOfTrafficLights' => 'red'
+            'model' => 'policy crown victory'
         ];
 
-        $transitionResult = $this->engine->makeTransition('go', 'passWithoutStopping', $passWithoutStopping, $go);
+        $context = ['colorOfTrafficLights' => 'red'];
+
+        $transitionResult = $this->engine->makeTransition(
+            'go',
+            'passWithoutStopping',
+            $passWithoutStopping,
+            $go,
+            $context
+        );
         $this->assertFalse($transitionResult->isSuccess());
         $this->assertEquals(1, count($transitionResult->getErrors()));
-        $this->assertInstanceOf(InRuleExecutionError::class, $transitionResult->getErrors()[0]);
+        $this->assertInstanceOf(NotEqRuleExecutionError::class, $transitionResult->getErrors()[0]);
     }
 
 
@@ -100,17 +108,17 @@ class CarsOnTrafficLightsTest extends \PHPUnit_Framework_TestCase{
     {
         $go = [
             'id' => 1,
-            'model' => 'policy crown victory',
-            'colorOfTrafficLights' => 'green'
+            'model' => 'policy crown victory'
         ];
 
         $stop = [
             'id' => 1,
-            'model' => 'policy crown victory',
-            'colorOfTrafficLights' => 'red'
+            'model' => 'policy crown victory'
         ];
 
-        $transitionResult = $this->engine->makeTransition('go', 'stop', $stop, $go);
+        $context = ['colorOfTrafficLights' => 'red'];
+
+        $transitionResult = $this->engine->makeTransition('go', 'stop', $stop, $go, $context);
         $this->assertTrue($transitionResult->isSuccess());
     }
 

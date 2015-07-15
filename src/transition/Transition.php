@@ -8,7 +8,7 @@
 
 namespace dicom\workflow\transition;
 
-
+use dicom\workflow\context\executionResult\ContextExecutionResult;
 use dicom\workflow\entity\executionResult\EntityExecutionResult;
 use dicom\workflow\rules\error\RuleExecutionError;
 use dicom\workflow\rules\executionResult\RuleExecutionResult;
@@ -43,6 +43,11 @@ class Transition
      * @var EntityExecutionResult
      */
     protected $entityRuleExecutionResult;
+
+    /**
+     * @var ContextExecutionResult
+     */
+    protected $contextRuleExecutionResult;
 
     /**
      * Добавить результат выполнения правила перехода
@@ -95,6 +100,22 @@ class Transition
     }
 
     /**
+     * @param ContextExecutionResult $contextRuleExecutionResult
+     */
+    public function setContextRuleExecutionResult(ContextExecutionResult $contextRuleExecutionResult)
+    {
+        $this->contextRuleExecutionResult = $contextRuleExecutionResult;
+    }
+
+    /**
+     * @return ContextExecutionResult
+     */
+    public function getContextRuleExecutionResult()
+    {
+        return $this->contextRuleExecutionResult;
+    }
+
+    /**
      * @return TransitionSpecification
      */
     public function getTransitionSpecification()
@@ -125,6 +146,10 @@ class Transition
             return false;
         }
 
+        if ($this->getContextRuleExecutionResult() !== null && !$this->getContextRuleExecutionResult()->isSuccess()) {
+            return false;
+        }
+
         foreach ($this->getTransitionRulesExecutionResult() as $ruleResult) {
             if (!$ruleResult->isSuccess()) {
                 return false;
@@ -147,6 +172,10 @@ class Transition
 
         if (null !== $this->getEntityRuleExecutionResult()) {
             $errors = array_merge_recursive($errors, $this->getEntityRuleExecutionResult()->getErrors());
+        }
+
+        if (null !== $this->getContextRuleExecutionResult()) {
+            $errors = array_merge_recursive($errors, $this->getContextRuleExecutionResult()->getErrors());
         }
 
         foreach ($this->getTransitionRulesExecutionResult() as $ruleResult) {

@@ -18,10 +18,10 @@ class EntityFactory
     {
         $entity = new Entity();
 
-        if (!array_key_exists('properties', $entityDescription)) {
+        if (!array_key_exists('entity', $entityDescription)) {
             throw EntityFactoryException::descriptionMustContainsProperty();
         }
-        foreach ($entityDescription['properties'] as $propertyName => $rules) {
+        foreach ($entityDescription['entity'] as $propertyName => $rules) {
             $entity->addProperty(PropertyFactory::create($propertyName, $rules));
         }
 
