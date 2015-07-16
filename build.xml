@@ -57,5 +57,26 @@
         </exec>
     </target>
 
-    <target name="build" depends="init,self-update,self-install,composer-get-dependencies,tests"/>
+    <target name="phploc" description="Measure project size using PHPLOC">
+        <exec dir="${basedir}" executable="vendor/bin/phploc">
+            <arg value="--log-xml" />
+            <arg value="${basedir}/build/logs/phploc.xml" />
+            <arg path="${basedir}" />
+        </exec>
+    </target>
+
+    <target name="phpcs" description="Find coding standard violations using PHP_CodeSniffer">
+        <exec dir="${basedir}" executable="vendor/bin/phpcs">
+            <arg value="--standard=PSR2" />
+            <arg value="--tab-width=4" />
+            <arg value="--encoding=utf-8" />
+            <arg value="--extensions=php" />
+            <arg value="--report=checkstyle" />
+            <arg value="--report-file=build/logs/checkstyle.xml" />
+            <arg path="src" />
+            <arg path="tests" />
+        </exec>
+    </target>
+
+    <target name="build" depends="init,self-update,self-install,composer-get-dependencies,tests,phploc,phpcs"/>
 </project>
