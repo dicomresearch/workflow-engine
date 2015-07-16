@@ -20,7 +20,10 @@
       "phpunit/phpunit": "4.*",
       "phing/phing": "^2.11",
       "phploc/phploc": "^2.1",
-      "squizlabs/php_codesniffer": "^2.3"
+      "squizlabs/php_codesniffer": "^2.3",
+      "mayflower/php-codebrowser": "^1.1",
+      "sebastian/phpcpd": "^2.0",
+      "phpmd/phpmd": "^2.2"
     },
     "autoload": {
         "psr-4": {
