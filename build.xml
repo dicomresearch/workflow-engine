@@ -50,9 +50,10 @@
     </target>
 
     <target name="tests" depends='composer-get-dependencies' description="run unit-tests">
-        <exec dir="${basedir}" executable="bash" failonerror="true">
-            <arg value="-c"/>
-            <arg line="php vendor/bin/phpunit --bootstrap vendor/autoload.php --log-junit build/logs/test-results.xml tests" />
+        <exec dir="${basedir}" executable="vendor/bin/phpunit" failonerror="true" output="build/logs/test-log.log">
+            <arg line="--bootstrap vendor/autoload.php --log-junit build/logs/test-results.xml tests" />
+            <arg line="--log-junit build/logs/test-results.xml tests" />
+            <arg line="tests" />
         </exec>
     </target>
 
