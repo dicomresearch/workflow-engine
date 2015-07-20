@@ -2,7 +2,6 @@
 
 namespace dicom\workflow;
 
-
 use dicom\workflow\config\WorkflowDescription;
 use dicom\workflow\state\State;
 use dicom\workflow\state\StateEngine;
@@ -65,7 +64,12 @@ class WorkflowEngine
      */
     public function makeTransition($oldStateName, $newStateName, $newEntityValues, $oldEntityValues)
     {
-        return $this->getTransitionEngine()->makeTransition($oldStateName, $newStateName, $newEntityValues, $oldEntityValues);
+        return $this->getTransitionEngine()->makeTransition(
+            $oldStateName,
+            $newStateName,
+            $newEntityValues,
+            $oldEntityValues
+        );
     }
 
     /**
@@ -204,5 +208,4 @@ class WorkflowEngine
 
         return $result;
     }
-
-} 
+}
