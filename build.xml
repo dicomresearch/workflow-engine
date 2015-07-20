@@ -146,6 +146,7 @@
             description="Calculate software metrics using PHP_Depend">
         <mkdir dir="build/pdepend" />
         <exec dir="${basedir}" executable="vendor/bin/pdepend">
+            <arg value="--summary-xml=${basedir}/build/logs/summary.xml"/>
             <arg value="--jdepend-xml=${basedir}/build/logs/jdepend.xml"/>
             <arg value="--jdepend-chart=${basedir}/build/pdepend/dependencies.svg"/>
             <arg value="--overview-pyramid=${basedir}/build/pdepend/overview-pyramid.svg"/>
