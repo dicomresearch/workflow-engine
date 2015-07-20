@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="composer" basedir=".">
+<project name="workflow-engine" basedir=".">
     <dirname property="composer.basedir" file="${ant.file.composer}"/>
 
     <target name="clean" description="Cleanup build artifacts">
@@ -10,14 +10,14 @@
         <delete dir="${basedir}/build/report.html"/>
     </target>
 
-    <target name="init" unless="composer.properties">
-        <property name="composer.file" value="composer.properties" />
-        <property name="composer.properties" location="${composer.basedir}/${composer.file}" />
-        <property file="${composer.properties}" />
-        <echo message="using composer properties from ${composer.properties}" level="debug"/>
-        <property name="composer.properties.filter" location="${composer.properties.tmp}" />
-        <echoproperties destfile="${composer.properties.filter}" prefix="composer."/>
-        <echo message="Expanded properties put into ${composer.properties.filter}" />
+    <target name="init" unless="workflow-engine.properties">
+        <property name="composer.file" value="workflow-engine.properties" />
+        <property name="workflow-engine.properties" location="${composer.basedir}/${composer.file}" />
+        <property file="${workflow-engine.properties}" />
+        <echo message="using workflow-engine properties from ${workflow-engine.properties}" level="debug"/>
+        <property name="workflow-engine.properties.filter" location="${workflow-engine.properties.tmp}" />
+        <echoproperties destfile="${workflow-engine.properties.filter}" prefix="composer."/>
+        <echo message="Expanded properties put into ${workflow-engine.properties.filter}" />
     </target>
     <target name="exists" description="Check that composer exists">
         <available property="composer.run" file="${composer.phar}" />
@@ -63,16 +63,14 @@
             <arg line="--bootstrap vendor/autoload.php --log-junit build/logs/test-results.xml tests" />
             <arg line="--log-junit build/logs/test-results.xml tests" />
             <arg line="tests" />
-            <arg line="--bootstrap vendor/autoload.php --coverage-html build/report.html tests" />
-            <arg line="--colors --coverage-html build/report.html tests" />
-            <arg line="tests" />
         </exec>
     </target>
 
     <target name="coverage-html" depends='composer-get-dependencies' description="run unit-tests">
+        <mkdir dir="build/report" />
         <exec dir="${basedir}" executable="vendor/bin/phpunit" failonerror="true">
-            <arg line="--bootstrap vendor/autoload.php --coverage-html build/report.html tests" />
-            <arg line="--colors --coverage-html build/report.html tests" />
+            <arg line="--bootstrap vendor/autoload.php --coverage-html build/report tests" />
+            <arg line="--colors --coverage-html build/report tests" />
             <arg line="tests" />
         </exec>
     </target>
