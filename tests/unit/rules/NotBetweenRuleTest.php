@@ -8,9 +8,8 @@
 
 namespace unit\rules;
 
-
-use dicom\workflow\rules\error\NotBetweenRuleExecutionError;
-use dicom\workflow\rules\NotBetweenRule;
+use dicom\workflow\engine\rules\error\NotBetweenRuleExecutionError;
+use dicom\workflow\engine\rules\NotBetweenRule;
 
 class NotBetweenRuleTest extends \PHPUnit_Framework_TestCase
 {

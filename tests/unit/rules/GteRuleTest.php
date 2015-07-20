@@ -3,9 +3,8 @@
 
 namespace unit\rules;
 
-
-use dicom\workflow\rules\compare\GteRule;
-use dicom\workflow\rules\error\GteRuleExecutionError;
+use dicom\workflow\engine\rules\compare\GteRule;
+use dicom\workflow\engine\rules\error\GteRuleExecutionError;
 
 class GteRuleTest extends \PHPUnit_Framework_TestCase
 {
@@ -44,7 +43,10 @@ class GteRuleTest extends \PHPUnit_Framework_TestCase
 
         $ruleExecutionResult = $rule->execute($value);
 
-        $this->assertTrue($ruleExecutionResult->isSuccess(), var_export($value, true) . 'must be greater or equally than '. var_export($configuredValue, true) );
+        $this->assertTrue(
+            $ruleExecutionResult->isSuccess(),
+            var_export($value, true) . 'must be greater or equally than '. var_export($configuredValue, true)
+        );
     }
 
     /**
@@ -60,7 +62,10 @@ class GteRuleTest extends \PHPUnit_Framework_TestCase
 
         $ruleExecutionResult = $rule->execute($value);
 
-        $this->assertFalse($ruleExecutionResult->isSuccess(), var_export($value, true) . 'not must be greater or equally than '. var_export($configuredValue, true));
+        $this->assertFalse(
+            $ruleExecutionResult->isSuccess(),
+            var_export($value, true) . 'not must be greater or equally than '. var_export($configuredValue, true)
+        );
         $this->assertInstanceOf(GteRuleExecutionError::class, $ruleExecutionResult->getError());
     }
 }

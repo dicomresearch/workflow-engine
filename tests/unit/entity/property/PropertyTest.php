@@ -1,22 +1,29 @@
 <?php
 
-class PropertyTest extends PHPUnit_Framework_TestCase
+namespace unit\entity\property;
+
+use dicom\workflow\engine\entity\property\Property;
+use dicom\workflow\engine\rules\AlwaysFalseRule;
+use dicom\workflow\engine\rules\AlwaysTrueRule;
+use dicom\workflow\engine\rules\PropertyIsRequiredRule;
+
+class PropertyTest extends \PHPUnit_Framework_TestCase
 {
     public function testAddRulesToProperty()
     {
-        $property = new \dicom\workflow\entity\property\Property('property');
-        $property->addPropertyRule(new \dicom\workflow\rules\PropertyIsRequiredRule());
+        $property = new Property('property');
+        $property->addPropertyRule(new PropertyIsRequiredRule());
 
         $this->assertArrayHasKey(
-            (new \dicom\workflow\rules\PropertyIsRequiredRule())->getName(),
+            (new PropertyIsRequiredRule())->getName(),
             $property->getRules()
         );
     }
 
     public function testPropertyExecutionResultIsTrue()
     {
-        $property = new \dicom\workflow\entity\property\Property('property');
-        $property->addPropertyRule(new \dicom\workflow\rules\AlwaysTrueRule());
+        $property = new Property('property');
+        $property->addPropertyRule(new AlwaysTrueRule());
 
         $executionResult = $property->executeRules();
         $this->assertTrue($executionResult->isSuccess());
@@ -25,8 +32,8 @@ class PropertyTest extends PHPUnit_Framework_TestCase
 
     public function testPropertyExecutionResultIsFalse()
     {
-        $property = new \dicom\workflow\entity\property\Property('property');
-        $property->addPropertyRule(new \dicom\workflow\rules\AlwaysFalseRule());
+        $property = new Property('property');
+        $property->addPropertyRule(new AlwaysFalseRule());
 
         $executionResult = $property->executeRules();
         $this->assertFalse($executionResult->isSuccess());
@@ -35,11 +42,10 @@ class PropertyTest extends PHPUnit_Framework_TestCase
 
     public function testGetErrors()
     {
-        $property = new \dicom\workflow\entity\property\Property('property');
-        $property->addPropertyRule(new \dicom\workflow\rules\AlwaysFalseRule());
+        $property = new Property('property');
+        $property->addPropertyRule(new AlwaysFalseRule());
         $executionResult = $property->executeRules('some value', 'other some value');
 
         $this->assertCount(1, $executionResult->getErrors());
     }
 }
- 

@@ -3,8 +3,7 @@
 
 namespace unit\rules;
 
-
-use dicom\workflow\rules\PropertyIsReadOnlyRule;
+use dicom\workflow\engine\rules\PropertyIsReadOnlyRule;
 
 class PropertyIsReadOnlyRuleTest extends \PHPUnit_Framework_TestCase
 {

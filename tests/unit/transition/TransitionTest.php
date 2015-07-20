@@ -8,9 +8,8 @@
 
 namespace dicom\workflow\tests\unit\transition;
 
-
-use dicom\workflow\transition\Transition;
-use dicom\workflow\transition\TransitionSpecification;
+use dicom\workflow\engine\transition\Transition;
+use dicom\workflow\engine\transition\TransitionSpecification;
 
 class TransitionTest extends \PHPUnit_Framework_TestCase
 {
@@ -40,6 +39,4 @@ class TransitionTest extends \PHPUnit_Framework_TestCase
 //        $transition = new Transition();
 //        $transition->getPropperty($propertyName)->getErrors();
     }
-
-
 }

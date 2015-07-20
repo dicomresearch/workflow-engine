@@ -3,10 +3,8 @@
 
 namespace unit\rules;
 
-
-
-use dicom\workflow\rules\compare\EqRule;
-use dicom\workflow\rules\error\EqRuleExecutionError;
+use dicom\workflow\engine\rules\compare\EqRule;
+use dicom\workflow\engine\rules\error\EqRuleExecutionError;
 
 class EqRuleTest extends \PHPUnit_Framework_TestCase
 {
@@ -49,7 +47,10 @@ class EqRuleTest extends \PHPUnit_Framework_TestCase
 
         $ruleExecutionResult = $rule->execute($value);
 
-        $this->assertTrue($ruleExecutionResult->isSuccess(), var_export($configuredValue, true) . 'must be equally '. var_export($value, true));
+        $this->assertTrue(
+            $ruleExecutionResult->isSuccess(),
+            var_export($configuredValue, true) . 'must be equally '. var_export($value, true)
+        );
     }
 
     /**
@@ -65,8 +66,10 @@ class EqRuleTest extends \PHPUnit_Framework_TestCase
 
         $ruleExecutionResult = $rule->execute($value);
 
-        $this->assertFalse($ruleExecutionResult->isSuccess(), var_export($configuredValue, true) . 'must be not equally '. var_export($value, true));
+        $this->assertFalse(
+            $ruleExecutionResult->isSuccess(),
+            var_export($configuredValue, true) . 'must be not equally '. var_export($value, true)
+        );
         $this->assertInstanceOf(EqRuleExecutionError::class, $ruleExecutionResult->getError());
     }
-
 }

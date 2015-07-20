@@ -3,8 +3,7 @@
 
 namespace unit\rules;
 
-
-use dicom\workflow\rules\IsEmptyRule;
+use dicom\workflow\engine\rules\IsEmptyRule;
 
 class IsEmptyRuleTest extends \PHPUnit_Framework_TestCase
 {
@@ -31,5 +30,4 @@ class IsEmptyRuleTest extends \PHPUnit_Framework_TestCase
 
         $this->assertTrue($executionResult->isSuccess());
     }
-
 }

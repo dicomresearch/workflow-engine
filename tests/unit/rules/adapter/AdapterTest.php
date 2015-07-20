@@ -8,11 +8,10 @@
 
 namespace dicom\workflow\tests\unit\rules\adapter;
 
-
-use dicom\workflow\rules\adapter\RuleAdapter;
-use dicom\workflow\rules\AlwaysTrueRule;
-use dicom\workflow\rules\executionResult\RuleExecutionResult;
-use dicom\workflow\rules\PropertyIsRequiredRule;
+use dicom\workflow\engine\rules\adapter\RuleAdapter;
+use dicom\workflow\engine\rules\AlwaysTrueRule;
+use dicom\workflow\engine\rules\executionResult\RuleExecutionResult;
+use dicom\workflow\engine\rules\PropertyIsRequiredRule;
 
 class AdapterTest extends \PHPUnit_Framework_TestCase
 {
@@ -38,5 +37,4 @@ class AdapterTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf(RuleExecutionResult::class, $result, 'Rule must return RuleExecutionResult object');
         $this->assertTrue($result->isSuccess());
     }
-
 }

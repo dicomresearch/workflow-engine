@@ -3,9 +3,7 @@
 
 namespace unit\rules;
 
-
-use dicom\workflow\rules\PropertyIsReadOnlyRule;
-use dicom\workflow\rules\PropertyIsRequiredRule;
+use dicom\workflow\engine\rules\PropertyIsRequiredRule;
 
 class PropertyIsRequiredRuleTest extends \PHPUnit_Framework_TestCase
 {
@@ -50,5 +48,4 @@ class PropertyIsRequiredRuleTest extends \PHPUnit_Framework_TestCase
 
         $this->assertFalse($executionResult->isSuccess());
     }
-
 }

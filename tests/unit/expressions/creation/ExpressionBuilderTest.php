@@ -3,9 +3,8 @@
 
 namespace unit\expressions\creation;
 
-
-
-use dicom\workflow\expressions\creation\ExpressionBuilder;
+use dicom\workflow\building\expressions\creation\ExpressionBuilder;
+use dicom\workflow\engine\expressions\CurrentDateExpression;
 
 class ExpressionBuilderTest extends \PHPUnit_Framework_TestCase
 {
@@ -15,7 +14,7 @@ class ExpressionBuilderTest extends \PHPUnit_Framework_TestCase
 
         $expression = ExpressionBuilder::buildExpression($config);
 
-        $this->assertInstanceOf('dicom\workflow\expressions\CurrentDateExpression', $expression);
+        $this->assertInstanceOf(CurrentDateExpression::class, $expression);
     }
 
     public function testBuildByExtendedConfig()
@@ -28,7 +27,7 @@ class ExpressionBuilderTest extends \PHPUnit_Framework_TestCase
 
         $expression = ExpressionBuilder::buildExpression($config);
 
-        $this->assertInstanceOf('dicom\workflow\expressions\CurrentDateExpression', $expression);
+        $this->assertInstanceOf(CurrentDateExpression::class, $expression);
     }
 
     public function testShortToExtendedConfig()
@@ -36,24 +35,23 @@ class ExpressionBuilderTest extends \PHPUnit_Framework_TestCase
         $shortConfig = ['expr' => 'currentDate'];
         $actualExtendedConfig = ExpressionBuilder::toExtendedConfig($shortConfig);
 
-        $correctExtendedConfig =
-            [
+        $correctExtendedConfig = [
                 'expr' => [
                     'name' => 'currentDate'
-            ]
-        ];
+                ]
+            ];
 
         $this->assertEquals($correctExtendedConfig, $actualExtendedConfig);
     }
 
     public function testExtendedToExtendedConfig()
     {
-        $defaultExtendedConfig =
-            [
+        $defaultExtendedConfig = [
                 'expr' => [
                     'name' => 'currentDate'
                 ]
             ];
+
         $actualExtendedConfig = ExpressionBuilder::toExtendedConfig($defaultExtendedConfig);
 
         $this->assertEquals($defaultExtendedConfig, $actualExtendedConfig);

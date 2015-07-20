@@ -3,10 +3,8 @@
 
 namespace unit\rules;
 
-
-use dicom\workflow\expressions\CurrentDateExpression;
-use dicom\workflow\rules\compare\LteRule;
-
+use dicom\workflow\engine\expressions\CurrentDateExpression;
+use dicom\workflow\engine\rules\compare\LteRule;
 
 class LteRuleTest extends \PHPUnit_Framework_TestCase
 {
@@ -70,6 +68,4 @@ class LteRuleTest extends \PHPUnit_Framework_TestCase
 
         $this->assertFalse($ruleExecutionResult->isSuccess());
     }
-
-
 }

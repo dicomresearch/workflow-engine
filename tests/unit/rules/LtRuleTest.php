@@ -8,9 +8,8 @@
 
 namespace unit\rules;
 
-
-use dicom\workflow\expressions\CurrentDateExpression;
-use dicom\workflow\rules\compare\LtRule;
+use dicom\workflow\engine\expressions\CurrentDateExpression;
+use dicom\workflow\engine\rules\compare\LtRule;
 
 class LtRuleTest extends \PHPUnit_Framework_TestCase
 {

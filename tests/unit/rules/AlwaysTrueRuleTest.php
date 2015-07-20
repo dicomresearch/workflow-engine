@@ -8,9 +8,8 @@
 
 namespace dicom\workflow\tests\unit\rules;
 
-
-use dicom\workflow\rules\AlwaysTrueRule;
-use dicom\workflow\rules\executionResult\RuleExecutionResult;
+use dicom\workflow\engine\rules\AlwaysTrueRule;
+use dicom\workflow\engine\rules\executionResult\RuleExecutionResult;
 
 class AlwaysTrueRuleTest extends \PHPUnit_Framework_TestCase
 {

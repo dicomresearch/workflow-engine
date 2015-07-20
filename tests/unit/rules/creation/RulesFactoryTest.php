@@ -8,12 +8,11 @@
 
 namespace dicom\workflow\tests\unit\rules\creation;
 
-
-use dicom\workflow\rules\AlwaysTrueRule;
-use dicom\workflow\rules\compare\GtRule;
-use dicom\workflow\rules\creation\RulesFactory;
-use dicom\workflow\rules\executionResult\RuleExecutionResult;
-use dicom\workflow\rules\RuleInterface\IRule;
+use dicom\workflow\building\rules\creation\RulesFactory;
+use dicom\workflow\engine\rules\AlwaysTrueRule;
+use dicom\workflow\engine\rules\compare\GtRule;
+use dicom\workflow\engine\rules\executionResult\RuleExecutionResult;
+use dicom\workflow\building\rules\RuleInterface\IRule;
 
 class RulesFactoryTest extends \PHPUnit_Framework_TestCase
 {
@@ -76,5 +75,4 @@ class RulesFactoryTest extends \PHPUnit_Framework_TestCase
             ['lessThen' => null],
         ], $convertedRules, 'need to convert');
     }
-
 }

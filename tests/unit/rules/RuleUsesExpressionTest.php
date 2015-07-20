@@ -3,9 +3,8 @@
 
 namespace unit\rules;
 
-
-use dicom\workflow\expressions\CurrentDateExpression;
-use dicom\workflow\rules\compare\EqRule;
+use dicom\workflow\engine\expressions\CurrentDateExpression;
+use dicom\workflow\engine\rules\compare\EqRule;
 
 class RuleUsesExpressionTest extends \PHPUnit_Framework_TestCase
 {

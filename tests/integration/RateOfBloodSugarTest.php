@@ -8,15 +8,15 @@
 
 namespace integration;
 
-use dicom\workflow\config\WorkflowDescription;
-use dicom\workflow\rules\error\EqRuleExecutionError;
-use dicom\workflow\rules\error\GteRuleExecutionError;
-use dicom\workflow\rules\error\LteRuleExecutionError;
-use dicom\workflow\rules\error\LtRuleExecutionError;
-use dicom\workflow\rules\error\NotBetweenRuleExecutionError;
-use dicom\workflow\WorkflowEngine;
+use dicom\workflow\building\config\WorkflowDescription;
+use dicom\workflow\engine\rules\error\EqRuleExecutionError;
+use dicom\workflow\engine\rules\error\GteRuleExecutionError;
+use dicom\workflow\engine\rules\error\LteRuleExecutionError;
+use dicom\workflow\engine\rules\error\NotBetweenRuleExecutionError;
+use dicom\workflow\engine\WorkflowEngine;
 
-class RateOfBloodSugarTest extends \PHPUnit_Framework_TestCase{
+class RateOfBloodSugarTest extends \PHPUnit_Framework_TestCase
+{
 
     /**
      * Название конфиг файла
@@ -210,5 +210,4 @@ class RateOfBloodSugarTest extends \PHPUnit_Framework_TestCase{
         $this->assertEquals(1, count($transitionResult->getErrors()));
         $this->assertInstanceOf(GteRuleExecutionError::class, $transitionResult->getErrors()[0]);
     }
-
-} 
+}

@@ -8,12 +8,13 @@
 
 namespace integration;
 
-use dicom\workflow\config\WorkflowDescription;
-use dicom\workflow\rules\error\EqRuleExecutionError;
-use dicom\workflow\rules\error\InRuleExecutionError;
-use dicom\workflow\WorkflowEngine;
+use dicom\workflow\building\config\WorkflowDescription;
+use dicom\workflow\engine\rules\error\EqRuleExecutionError;
+use dicom\workflow\engine\rules\error\InRuleExecutionError;
+use dicom\workflow\engine\WorkflowEngine;
 
-class CarsOnTrafficLightsTest extends \PHPUnit_Framework_TestCase{
+class CarsOnTrafficLightsTest extends \PHPUnit_Framework_TestCase
+{
 
     /**
      * Название конфиг файла
@@ -89,7 +90,6 @@ class CarsOnTrafficLightsTest extends \PHPUnit_Framework_TestCase{
         $this->assertInstanceOf(InRuleExecutionError::class, $transitionResult->getErrors()[0]);
     }
 
-
     /**
      * Возможности перевести из одного статуса в другой
      * все условия выполняются
@@ -139,5 +139,4 @@ class CarsOnTrafficLightsTest extends \PHPUnit_Framework_TestCase{
         $this->assertEquals(1, count($transitionResult->getErrors()));
         $this->assertInstanceOf(EqRuleExecutionError::class, $transitionResult->getErrors()[0]);
     }
-
-} 
+}

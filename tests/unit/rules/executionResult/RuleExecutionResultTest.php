@@ -3,10 +3,9 @@
 
 namespace unit\rules\executionResult;
 
-
-use dicom\workflow\rules\AlwaysFalseRule;
-use dicom\workflow\rules\error\RuleExecutionError;
-use dicom\workflow\rules\executionResult\RuleExecutionResult;
+use dicom\workflow\engine\rules\AlwaysFalseRule;
+use dicom\workflow\engine\rules\error\RuleExecutionError;
+use dicom\workflow\engine\rules\executionResult\RuleExecutionResult;
 
 class RuleExecutionResultTest extends \PHPUnit_Framework_TestCase
 {

@@ -3,8 +3,7 @@
 
 namespace unit\rules;
 
-
-use dicom\workflow\rules\InRule;
+use dicom\workflow\engine\rules\InRule;
 
 class InRuleTest extends \PHPUnit_Framework_TestCase
 {

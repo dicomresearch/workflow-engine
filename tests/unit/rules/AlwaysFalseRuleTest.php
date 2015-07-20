@@ -3,10 +3,8 @@
 
 namespace unit\rules;
 
-
-use dicom\workflow\rules\AlwaysFalseRule;
-use dicom\workflow\rules\error\AlwaysFalseRuleExecutionError;
-use dicom\workflow\rules\error\RuleExecutionError;
+use dicom\workflow\engine\rules\AlwaysFalseRule;
+use dicom\workflow\engine\rules\error\AlwaysFalseRuleExecutionError;
 
 class AlwaysFalseRuleTest extends \PHPUnit_Framework_TestCase
 {
@@ -18,5 +16,4 @@ class AlwaysFalseRuleTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($ruleExecutionResult->isSuccess());
         $this->assertTrue($ruleExecutionResult->getError() instanceof AlwaysFalseRuleExecutionError);
     }
-    
 }

@@ -3,9 +3,8 @@
 
 namespace unit\rules;
 
-
-use dicom\workflow\rules\compare\GtRule;
-use dicom\workflow\rules\error\GtRuleExecutionError;
+use dicom\workflow\engine\rules\compare\GtRule;
+use dicom\workflow\engine\rules\error\GtRuleExecutionError;
 
 class GtRuleTest extends \PHPUnit_Framework_TestCase
 {
@@ -44,7 +43,10 @@ class GtRuleTest extends \PHPUnit_Framework_TestCase
 
         $ruleExecutionResult = $rule->execute($value);
 
-        $this->assertTrue($ruleExecutionResult->isSuccess(), var_export($value, true) . ' must be greater than '. var_export($configuredValue, true) );
+        $this->assertTrue(
+            $ruleExecutionResult->isSuccess(),
+            var_export($value, true) . ' must be greater than '. var_export($configuredValue, true)
+        );
     }
 
     /**
@@ -60,8 +62,10 @@ class GtRuleTest extends \PHPUnit_Framework_TestCase
 
         $ruleExecutionResult = $rule->execute($value);
 
-        $this->assertFalse($ruleExecutionResult->isSuccess(), var_export($value, true) . ' not must be greater than '. var_export($configuredValue, true));
+        $this->assertFalse(
+            $ruleExecutionResult->isSuccess(),
+            var_export($value, true) . ' not must be greater than '. var_export($configuredValue, true)
+        );
         $this->assertInstanceOf(GtRuleExecutionError::class, $ruleExecutionResult->getError());
     }
-    
 }

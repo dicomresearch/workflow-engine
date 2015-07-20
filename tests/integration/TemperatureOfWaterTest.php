@@ -8,13 +8,14 @@
 
 namespace integration;
 
-use dicom\workflow\config\WorkflowDescription;
-use dicom\workflow\rules\error\BetweenRuleExecutionError;
-use dicom\workflow\rules\error\GtRuleExecutionError;
-use dicom\workflow\rules\error\LtRuleExecutionError;
-use dicom\workflow\WorkflowEngine;
+use dicom\workflow\building\config\WorkflowDescription;
+use dicom\workflow\engine\rules\error\BetweenRuleExecutionError;
+use dicom\workflow\engine\rules\error\GtRuleExecutionError;
+use dicom\workflow\engine\rules\error\LtRuleExecutionError;
+use dicom\workflow\engine\WorkflowEngine;
 
-class temperatureOfWaterTest extends \PHPUnit_Framework_TestCase{
+class temperatureOfWaterTest extends \PHPUnit_Framework_TestCase
+{
 
     /**
      * Название конфиг файла
@@ -243,5 +244,4 @@ class temperatureOfWaterTest extends \PHPUnit_Framework_TestCase{
         $this->assertEquals(1, count($transitionResult->getErrors()));
         $this->assertInstanceOf(LtRuleExecutionError::class, $transitionResult->getErrors()[0]);
     }
-
-} 
+}

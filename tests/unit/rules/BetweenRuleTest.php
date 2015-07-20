@@ -8,9 +8,8 @@
 
 namespace unit\rules;
 
-
-use dicom\workflow\rules\BetweenRule;
-use dicom\workflow\rules\error\BetweenRuleExecutionError;
+use dicom\workflow\engine\rules\BetweenRule;
+use dicom\workflow\engine\rules\error\BetweenRuleExecutionError;
 
 class BetweenRuleTest extends \PHPUnit_Framework_TestCase
 {

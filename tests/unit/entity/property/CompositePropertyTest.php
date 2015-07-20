@@ -3,12 +3,10 @@
 
 namespace unit\entity\property;
 
-
-use dicom\workflow\entity\property\CompositeProperty;
-use dicom\workflow\entity\property\Property;
-use dicom\workflow\rules\AlwaysTrueRule;
-use dicom\workflow\rules\compare\GtRule;
-
+use dicom\workflow\engine\entity\property\CompositeProperty;
+use dicom\workflow\engine\entity\property\Property;
+use dicom\workflow\engine\rules\AlwaysTrueRule;
+use dicom\workflow\engine\rules\compare\GtRule;
 
 class CompositePropertyTest extends \PHPUnit_Framework_TestCase
 {
