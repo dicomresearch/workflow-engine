@@ -76,12 +76,13 @@ class TransitionEngine
      * where key - property name of entity, value - property value of new entity
      * @param array $oldEntityValues key=>value,
      * where key - property name of entity, value - property value of old entity
+     * @param array $context key-value array, where key - entity attribute name, value - its value
      * @return Transition
      */
-    public function makeTransition($oldStateName, $newStateName, $newEntityValues, $oldEntityValues)
+    public function makeTransition($oldStateName, $newStateName, $newEntityValues, $oldEntityValues, $context = [])
     {
         $transitionSpecification = $this->getTransitionSpecification($oldStateName, $newStateName);
-        return $transitionSpecification->makeTransition($newEntityValues, $oldEntityValues);
+        return $transitionSpecification->makeTransition($newEntityValues, $oldEntityValues, $context);
     }
 
     /**

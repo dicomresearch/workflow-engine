@@ -50,17 +50,23 @@ class CarsOnTrafficLightsTest extends \PHPUnit_Framework_TestCase
     {
         $go = [
             'id' => 1,
-            'model' => 'policy crown victory',
-            'colorOfTrafficLights' => 'green'
+            'model' => 'policy crown victory'
         ];
 
         $passWithoutStopping = [
             'id' => 1,
-            'model' => 'policy crown victory',
-            'colorOfTrafficLights' => 'yellow'
+            'model' => 'policy crown victory'
         ];
 
-        $transitionResult = $this->engine->makeTransition('go', 'passWithoutStopping', $passWithoutStopping, $go);
+        $context = ['colorOfTrafficLights' => 'yellow'];
+
+        $transitionResult = $this->engine->makeTransition(
+            'go',
+            'passWithoutStopping',
+            $passWithoutStopping,
+            $go,
+            $context
+        );
         $this->assertTrue($transitionResult->isSuccess());
     }
 
@@ -100,17 +106,17 @@ class CarsOnTrafficLightsTest extends \PHPUnit_Framework_TestCase
     {
         $go = [
             'id' => 1,
-            'model' => 'policy crown victory',
-            'colorOfTrafficLights' => 'green'
+            'model' => 'policy crown victory'
         ];
 
         $stop = [
             'id' => 1,
-            'model' => 'policy crown victory',
-            'colorOfTrafficLights' => 'red'
+            'model' => 'policy crown victory'
         ];
 
-        $transitionResult = $this->engine->makeTransition('go', 'stop', $stop, $go);
+        $context = ['colorOfTrafficLights' => 'red'];
+
+        $transitionResult = $this->engine->makeTransition('go', 'stop', $stop, $go, $context);
         $this->assertTrue($transitionResult->isSuccess());
     }
 
