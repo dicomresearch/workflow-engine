@@ -93,7 +93,7 @@ class CarsOnTrafficLightsTest extends \PHPUnit_Framework_TestCase
             $context
         );
         $this->assertFalse($transitionResult->isSuccess());
-        $this->assertEquals(1, count($transitionResult->getErrors()));
+        $this->assertCount(1, $transitionResult->getErrors());
         $this->assertInstanceOf(InRuleExecutionError::class, $transitionResult->getErrors()[0]);
     }
 
