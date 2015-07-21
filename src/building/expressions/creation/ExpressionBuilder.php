@@ -5,7 +5,6 @@ namespace dicom\workflow\building\expressions\creation;
 
 use dicom\workflow\building\expressions\creation\exceptions\ExpressionBuildException;
 
-//todo вынести создание в корень, вотдельную папку
 //todo сделать этот конфиг объектно-ориентированным
 class ExpressionBuilder
 {
