@@ -17,14 +17,14 @@ class Context
     /**
      * @var Resource[]
      */
-    protected $resource;
+    protected $resources;
 
     /**
      * @param Resource $resource
      */
-    public function addResource(Resource $resource)
+    public function addResources(Resource $resource)
     {
-        $this->resource[$resource->getName()] = $resource;
+        $this->resources[$resource->getName()] = $resource;
     }
 
     /**
@@ -32,19 +32,19 @@ class Context
      */
     public function removeResource($resourceName)
     {
-        if (!array_key_exists($resourceName, $this->resource)) {
+        if (!array_key_exists($resourceName, $this->resources)) {
             return;
         }
 
-        unset($this->resource[$resourceName]);
+        unset($this->resources[$resourceName]);
     }
 
     /**
      * @return Resource
      */
-    public function getResource()
+    public function getResources()
     {
-        return $this->resource;
+        return $this->resources;
     }
 
     /**
@@ -56,7 +56,7 @@ class Context
     public function executeRules(array $context = [])
     {
         $contextExecutionResult = new ContextExecutionResult($this);
-        foreach ($this->getResource() as $resourceName => $resource) {
+        foreach ($this->getResources() as $resourceName => $resource) {
             if (!array_key_exists($resourceName, $context)) {
                 $context[$resourceName] = null;
             }

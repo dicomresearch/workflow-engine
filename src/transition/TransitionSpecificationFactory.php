@@ -103,7 +103,7 @@ class TransitionSpecificationFactory
         if ($this->isSetRule($transitionDescription, 'context')) {
             $context = new Context();
             foreach ($transitionDescription['rules']['context'] as $contextName => $rules) {
-                $context->addResource(ResourceFactory::create($contextName, $rules));
+                $context->addResources(ResourceFactory::create($contextName, $rules));
                 $this->getTransitionSpecification()->setContext($context);
             }
         }

@@ -216,5 +216,4 @@ class WorkflowEngine
 
         return $result;
     }
-
-} 
+}

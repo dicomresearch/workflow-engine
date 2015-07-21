@@ -23,7 +23,7 @@ class ContextFactory
         }
 
         foreach ($contextDescription['context'] as $contextName => $rules) {
-            $context->addResource(ResourceFactory::create($contextName, $rules));
+            $context->addResources(ResourceFactory::create($contextName, $rules));
         }
 
         return $context;

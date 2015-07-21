@@ -14,24 +14,24 @@ class CompositeResourceExecutionResult extends ResourceExecutionResult
     /**
      * @var ResourceExecutionResult[]
      */
-    private $subResource = [];
+    private $subResources = [];
 
     public function addSubResourceResult(ResourceExecutionResult $resourceExecutionResult)
     {
-        $this->subResource[$resourceExecutionResult->getName()] = $resourceExecutionResult;
+        $this->subResources[$resourceExecutionResult->getName()] = $resourceExecutionResult;
     }
 
     /**
      * @return ResourceExecutionResult[]
      */
-    public function getSubResource()
+    public function getSubResources()
     {
-        return $this->subResource;
+        return $this->subResources;
     }
 
     public function isSuccess()
     {
-        foreach ($this->getSubResource() as $subResourceExecutionResult) {
+        foreach ($this->getSubResources() as $subResourceExecutionResult) {
             if (! $subResourceExecutionResult->isSuccess()) {
                 return false;
             }
@@ -43,8 +43,8 @@ class CompositeResourceExecutionResult extends ResourceExecutionResult
     public function getErrors()
     {
         $errors = [];
-        foreach ($this->getSubResource() as $subResourceExecutionResult) {
-            $errors = array_merge($errors , $subResourceExecutionResult->getErrors());
+        foreach ($this->getSubResources() as $subResourceExecutionResult) {
+            $errors = array_merge($errors, $subResourceExecutionResult->getErrors());
         }
 
         return $errors;

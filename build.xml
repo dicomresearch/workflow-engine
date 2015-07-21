@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="workflow-engine" basedir=".">
+    <dirname property="composer.basedir" file="${ant.file.composer}"/>
+
+    <target name="clean" description="Cleanup build artifacts">
+        <delete dir="${basedir}/build/coverage"/>
+        <delete dir="${basedir}/build/logs"/>
+        <delete dir="${basedir}/build/api"/>
+        <delete dir="${basedir}/build/code-browser"/>
+        <delete dir="${basedir}/build/report.html"/>
+    </target>
+
+    <target name="init" unless="workflow-engine.properties">
+        <property name="composer.file" value="workflow-engine.properties" />
+        <property name="workflow-engine.properties" location="${composer.basedir}/${composer.file}" />
+        <property file="${workflow-engine.properties}" />
+        <echo message="using workflow-engine properties from ${workflow-engine.properties}" level="debug"/>
+        <property name="workflow-engine.properties.filter" location="${workflow-engine.properties.tmp}" />
+        <echoproperties destfile="${workflow-engine.properties.filter}" prefix="composer."/>
+        <echo message="Expanded properties put into ${workflow-engine.properties.filter}" />
+    </target>
+    <target name="exists" description="Check that composer exists">
+        <available property="composer.run" file="${composer.phar}" />
+    </target>
+    <!-- Self-update composer -->
+    <target name="self-update" if="composer.self-update" unless="composer.installed" description="Self-update Composer">
+        <echo message="Self-updating composer" level="debug"/>
+        <exec executable="${composer.phar}">
+            <arg value="self-update" />
+            <arg value="--quiet" />
+            <arg value="--no-interaction" />
+        </exec>
+        <echo message="composer self-update complete" level="debug"/>
+    </target>
+
+    <target name="self-install" unless="composer.run" depends='exists' description="Fetch Composer if it doesn't exist">
+        <echo message="Self-installing composer" level="debug"/>
+        <property name="composer.installed" value="1"/>
+        <property name="composer.run" value="1" />
+        <exec executable="/bin/bash">
+            <arg value="-c" />
+            <arg value="curl -s https://getcomposer.org/installer | php" />
+        </exec>
+        <echo message="composer self-install complete" level="debug"/>
+    </target>
+
+    <target name="composer-get-dependencies" depends="init, self-install, self-update" if="composer.run">
+        <condition property="composer.command" value="update" else="install">
+            <available file="${composer.lock}"/>
+        </condition>
+        <echo message="Beginning composer ${composer.command}" level="debug" />
+        <exec executable="${composer.phar}">
+            <arg value="${composer.command}" />
+            <arg value="--no-interaction" />
+            <arg value="--optimize-autoloader" />
+            <arg value="--dev" />
+        </exec>
+        <echo message="composer ${composer.command} complete" level="debug"/>
+    </target>
+
+    <target name="tests" depends='composer-get-dependencies' description="run unit-tests">
+        <exec dir="${basedir}" executable="vendor/bin/phpunit" failonerror="true" output="build/logs/test-log.log">
+            <arg line="--bootstrap vendor/autoload.php --log-junit build/logs/test-results.xml tests" />
+            <arg line="--log-junit build/logs/test-results.xml tests" />
+            <arg line="tests" />
+        </exec>
+    </target>
+
+    <target name="coverage-html" depends='composer-get-dependencies' description="run unit-tests">
+        <mkdir dir="build/report" />
+        <exec dir="${basedir}" executable="vendor/bin/phpunit" failonerror="true">
+            <arg line="--bootstrap vendor/autoload.php --coverage-html build/report tests" />
+            <arg line="--colors --coverage-html build/report tests" />
+            <arg line="tests" />
+        </exec>
+    </target>
+
+    <target name="tools-parallel" description="Run tools in parallel">
+        <parallel threadCount="2">
+            <antcall target="phpcs"/>
+            <antcall target="phploc"/>
+            <antcall target="phpcpd"/>
+            <antcall target="pdepend"/>
+            <antcall target="phpmd"/>
+            <sequential>
+                <antcall target="phpcb"/>
+            </sequential>
+        </parallel>
+    </target>
+
+    <target name="phploc" description="Measure project size using PHPLOC">
+        <exec dir="${basedir}" executable="vendor/bin/phploc">
+            <arg value="--log-xml" />
+            <arg value="${basedir}/build/logs/phploc.xml" />
+            <arg path="src" />
+            <arg path="tests" />
+        </exec>
+    </target>
+
+    <target name="phpcs" description="Find coding standard violations using PHP_CodeSniffer">
+        <exec dir="${basedir}" executable="vendor/bin/phpcs">
+            <arg value="--standard=PSR2" />
+            <arg value="--tab-width=4" />
+            <arg value="--encoding=utf-8" />
+            <arg value="--extensions=php" />
+            <arg value="--report=checkstyle" />
+            <arg value="--report-file=build/logs/checkstyle.xml" />
+            <arg path="src" />
+            <arg path="tests" />
+        </exec>
+    </target>
+
+    <target name="phpcb" description="Aggregate tool output using PHP_CodeBrowser">
+        <exec dir="${basedir}" executable="vendor/bin/phpcb">
+            <arg value="--log" />
+            <arg path="${basedir}/build/logs" />
+            <arg value="--source" />
+            <arg path="${basedir}/src" />
+            <arg value="--output" />
+            <arg path="build/code-browser" />
+        </exec>
+    </target>
+
+    <target name="phpcpd" description="Find duplicate code using PHPCPD">
+        <exec dir="${basedir}" executable="vendor/bin/phpcpd">
+            <arg value="--log-pmd" />
+            <arg value="${basedir}/build/logs/pmd-cpd.xml" />
+            <arg path="${basedir}/src" />
+            <arg path="tests" />
+        </exec>
+    </target>
+
+    <target name="phpmd" description="Perform project mess detection using PHPMD creating a log file for the continuous integration server">
+        <exec dir="${basedir}" executable="vendor/bin/phpmd">
+            <arg path="${basedir}" />
+            <arg value="xml" />
+            <arg value="codesize,unusedcode,naming" />
+            <arg value="--reportfile" />
+            <arg value="${basedir}/build/logs/pmd.xml" />
+            <arg value="--exclude"/>
+            <arg value="${basedir}/vendor"/>
+        </exec>
+    </target>
+
+    <target name="pdepend"
+            description="Calculate software metrics using PHP_Depend">
+        <mkdir dir="build/pdepend" />
+        <exec dir="${basedir}" executable="vendor/bin/pdepend">
+            <arg value="--summary-xml=${basedir}/build/logs/summary.xml"/>
+            <arg value="--jdepend-xml=${basedir}/build/logs/jdepend.xml"/>
+            <arg value="--jdepend-chart=${basedir}/build/pdepend/dependencies.svg"/>
+            <arg value="--overview-pyramid=${basedir}/build/pdepend/overview-pyramid.svg"/>
+            <arg path="tests"/>
+        </exec>
+    </target>
+
+    <target name="build"
+            depends="clean,init,self-update,self-install,composer-get-dependencies,tests,
+            coverage-html,phploc,phpcs,phpcpd,phpmd,pdepend,phpcb"/>
+    <target name="build-parallel"
+            depends="clean,init,self-update,self-install,composer-get-dependencies,tests,tools-parallel"/>
+</project>

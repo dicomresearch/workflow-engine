@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: sergey
- * Date: 08.10.14
- * Time: 13:05
- */
 
 namespace dicom\workflow\state;
 
