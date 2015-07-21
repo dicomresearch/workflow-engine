@@ -35,6 +35,7 @@ class WorkflowEngine
      */
     private $stateEngine;
 
+
     /**
      * Инициализировать WorkflowEngine
      *
