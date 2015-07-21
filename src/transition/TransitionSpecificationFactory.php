@@ -8,6 +8,9 @@
 
 namespace dicom\workflow\transition;
 
+use dicom\workflow\context\Context;
+use dicom\workflow\context\ContextFactory;
+use dicom\workflow\context\resource\ResourceFactory;
 use dicom\workflow\entity\Entity;
 use dicom\workflow\entity\property\PropertyFactory;
 use dicom\workflow\rules\creation\RulesFactory;
@@ -55,7 +58,8 @@ class TransitionSpecificationFactory
         $this->setActionName($this->getTransitionDescription());
         $this->addRulesToTransitionSpecification($this->getTransitionDescription());
         $this->addClientActionToTransitionSpecification($this->getTransitionDescription());
-        $this->addPropertiesToTransitionSpecification($this->getTransitionDescription());
+        $this->addEntityRulesToTransitionSpecification($this->getTransitionDescription());
+        $this->addContextRulesToTransitionSpecification($this->getTransitionDescription());
 
         return $this->getTransitionSpecification();
     }
@@ -67,24 +71,40 @@ class TransitionSpecificationFactory
      */
     protected function addRulesToTransitionSpecification($transitionDescription)
     {
-        if (array_key_exists('rules', $transitionDescription)) {
-            $rules = RulesFactory::createBatchByShortNames($transitionDescription['rules']);
+        if ($this->isSetRule($transitionDescription, 'other')) {
+            $rules = RulesFactory::createBatchByShortNames($transitionDescription['rules']['other']);
             $this->getTransitionSpecification()->setRules($rules);
         }
     }
 
     /**
-     * parse and add properties to transition specification
+     * parse and add entity rules to transition specification
      *
      * @param array $transitionDescription
      */
-    protected function addPropertiesToTransitionSpecification($transitionDescription)
+    protected function addEntityRulesToTransitionSpecification($transitionDescription)
     {
-        if (array_key_exists('properties', $transitionDescription)) {
+        if ($this->isSetRule($transitionDescription, 'entity')) {
             $entity = new Entity();
-            foreach ($transitionDescription['properties'] as $propertyName => $rules) {
+            foreach ($transitionDescription['rules']['entity'] as $propertyName => $rules) {
                 $entity->addProperty(PropertyFactory::create($propertyName, $rules));
                 $this->getTransitionSpecification()->setEntity($entity);
+            }
+        }
+    }
+
+    /**
+     * parse and add context rules to transition specification
+     *
+     * @param $transitionDescription
+     */
+    protected function addContextRulesToTransitionSpecification($transitionDescription)
+    {
+        if ($this->isSetRule($transitionDescription, 'context')) {
+            $context = new Context();
+            foreach ($transitionDescription['rules']['context'] as $contextName => $rules) {
+                $context->addResources(ResourceFactory::create($contextName, $rules));
+                $this->getTransitionSpecification()->setContext($context);
             }
         }
     }
@@ -194,6 +214,19 @@ class TransitionSpecificationFactory
         $this->workflowEngine = $workflowEngine;
     }
 
+    /**
+     * @param $transitionDescription
+     * @param $ruleName
+     *
+     * @return bool
+     */
+    protected function isSetRule($transitionDescription, $ruleName)
+    {
+        if (!array_key_exists('rules', $transitionDescription)) {
+            return false;
+        }
 
+        return  array_key_exists($ruleName, $transitionDescription['rules']);
+    }
 
-} 
+}

@@ -1,4 +1,10 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: sergey
+ * Date: 03.10.14
+ * Time: 16:28
+ */
 
 namespace dicom\workflow;
 
@@ -60,15 +66,17 @@ class WorkflowEngine
      * @param string $newStateName Entity target state name
      * @param array $newEntityValues key-value array, where key - entity attribute name, value - its value
      * @param array $oldEntityValues key-value array, where key - entity attribute name, value - its value
+     * @param array $context key-value array, where key - entity attribute name, value - its value
      * @return Transition
      */
-    public function makeTransition($oldStateName, $newStateName, $newEntityValues, $oldEntityValues)
+    public function makeTransition($oldStateName, $newStateName, $newEntityValues, $oldEntityValues, $context = [])
     {
         return $this->getTransitionEngine()->makeTransition(
             $oldStateName,
             $newStateName,
             $newEntityValues,
-            $oldEntityValues
+            $oldEntityValues,
+            $context
         );
     }
 

@@ -13,7 +13,8 @@ use dicom\workflow\rules\error\EqRuleExecutionError;
 use dicom\workflow\rules\error\InRuleExecutionError;
 use dicom\workflow\WorkflowEngine;
 
-class CarsOnTrafficLightsTest extends \PHPUnit_Framework_TestCase{
+class CarsOnTrafficLightsTest extends \PHPUnit_Framework_TestCase
+{
 
     /**
      * Название конфиг файла

@@ -1,7 +1,7 @@
 {
   "states": {
     "draft": {
-      "properties": {
+      "entity": {
         "id": ["required"],
         "creatorSignature": ["empty"],
         "bossSignature": ["empty"],
@@ -9,7 +9,7 @@
       }
     },
     "new": {
-      "properties": {
+      "entity": {
         "id": ["required"],
         "title": ["required"],
         "description": ["required"],
@@ -23,7 +23,7 @@
       }
     },
     "bossSigned": {
-      "properties": {
+      "entity": {
         "id": [
           "required",
           "readonly"
@@ -48,7 +48,7 @@
       }
     },
     "bigBossSigned": {
-      "properties": {
+      "entity": {
         "id": [
           "required",
           "readonly"
@@ -73,15 +73,15 @@
       }
     },
     "published": {
-      "properties": {
+      "entity": {
       }
     },
     "removed": {
-      "properties": {
+      "entity": {
       }
     },
     "reject": {
-      "properties": {
+      "entity": {
       }
     }
   },
@@ -90,8 +90,14 @@
     {
       "oldState": "draft",
       "newState": "new",
-      "rules": [
-      ],
+      "rules": {
+        "entity": {
+        },
+        "context": {
+        },
+        "other": {
+        }
+      },
       "properties": {
 
       },
@@ -100,8 +106,14 @@
     {
       "oldState": "new",
       "newState": "bossSigned",
-      "rules": [
-      ],
+      "rules": {
+        "entity": {
+        },
+        "context": {
+        },
+        "other": {
+        }
+      },
       "properties": {
 
       },
@@ -111,8 +123,14 @@
     {
       "oldState": "draft",
       "newState": "removed",
-      "rules": [
-      ],
+      "rules": {
+        "entity": {
+        },
+        "context": {
+        },
+        "other": {
+        }
+      },
       "properties": {
 
       },

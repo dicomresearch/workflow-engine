@@ -8,7 +8,6 @@
 
 namespace dicom\workflow\rules\error;
 
-
 class BetweenRuleExecutionError extends RuleExecutionError
 {
     /**
@@ -18,7 +17,9 @@ class BetweenRuleExecutionError extends RuleExecutionError
      */
     public static function create($valueGiven, $config)
     {
-        $error =  new static(sprintf('value should be in the interval from %d to %d. Given: %d', $config[0], $config[1], $valueGiven));
+        $error =  new static(
+            sprintf('value should be in the interval from %d to %d. Given: %d', $config[0], $config[1], $valueGiven)
+        );
 
         return $error;
     }
