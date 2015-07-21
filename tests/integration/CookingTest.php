@@ -5,7 +5,7 @@ namespace integration;
 
 use dicom\workflow\building\config\WorkflowDescription;
 use dicom\workflow\engine\rules\error\EqRuleExecutionError;
-use dicom\workflow\engine\WorkflowEngine;
+use dicom\workflow\WorkflowEngine;
 
 class CookingTest extends \PHPUnit_Framework_TestCase
 {
