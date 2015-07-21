@@ -13,7 +13,7 @@ use dicom\workflow\engine\rules\error\EqRuleExecutionError;
 use dicom\workflow\engine\rules\error\GteRuleExecutionError;
 use dicom\workflow\engine\rules\error\LteRuleExecutionError;
 use dicom\workflow\engine\rules\error\NotBetweenRuleExecutionError;
-use dicom\workflow\engine\WorkflowEngine;
+use dicom\workflow\WorkflowEngine;
 
 class RateOfBloodSugarTest extends \PHPUnit_Framework_TestCase
 {

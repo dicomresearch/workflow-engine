@@ -12,7 +12,7 @@ use dicom\workflow\building\rules\creation\RulesFactory;
 use dicom\workflow\engine\entity\Entity;
 use dicom\workflow\building\entity\property\PropertyFactory;
 use dicom\workflow\engine\transition\exceptions\TransitionSpecificationNotValid;
-use dicom\workflow\engine\WorkflowEngine;
+use dicom\workflow\WorkflowEngine;
 use dicom\workflow\engine\transition\TransitionSpecification;
 
 /**

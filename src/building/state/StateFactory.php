@@ -6,7 +6,7 @@
  * Time: 16:14
  */
 
-namespace dicom\workflow\building\factory;
+namespace dicom\workflow\building\state;
 
 use dicom\workflow\building\entity\EntityFactory;
 use dicom\workflow\engine\state\State;

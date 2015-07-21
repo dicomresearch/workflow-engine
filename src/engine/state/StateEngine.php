@@ -4,7 +4,7 @@ namespace dicom\workflow\engine\state;
 
 use dicom\workflow\building\config\WorkflowDescription;
 use dicom\workflow\engine\exception\WorkflowEngineException;
-use dicom\workflow\building\factory\StateFactory;
+use dicom\workflow\building\state\StateFactory;
 use dicom\workflow\building\visitor\factory\GettingInsideVisitorFactory;
 use dicom\workflow\engine\visitor\state\entity\property\rule\GetNameRuleVisitor;
 

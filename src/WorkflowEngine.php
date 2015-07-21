@@ -1,6 +1,6 @@
 <?php
 
-namespace dicom\workflow\engine;
+namespace dicom\workflow;
 
 use dicom\workflow\building\config\WorkflowDescription;
 use dicom\workflow\engine\state\State;

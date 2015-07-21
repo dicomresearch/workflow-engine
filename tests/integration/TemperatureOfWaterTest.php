@@ -12,7 +12,7 @@ use dicom\workflow\building\config\WorkflowDescription;
 use dicom\workflow\engine\rules\error\BetweenRuleExecutionError;
 use dicom\workflow\engine\rules\error\GtRuleExecutionError;
 use dicom\workflow\engine\rules\error\LtRuleExecutionError;
-use dicom\workflow\engine\WorkflowEngine;
+use dicom\workflow\WorkflowEngine;
 
 class temperatureOfWaterTest extends \PHPUnit_Framework_TestCase
 {
