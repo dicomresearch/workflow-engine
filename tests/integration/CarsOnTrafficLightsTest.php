@@ -8,10 +8,9 @@
 
 namespace integration;
 
-use dicom\workflow\config\WorkflowDescription;
-use dicom\workflow\rules\error\EqRuleExecutionError;
-use dicom\workflow\rules\error\InRuleExecutionError;
-use dicom\workflow\rules\error\NotEqRuleExecutionError;
+use dicom\workflow\building\config\WorkflowDescription;
+use dicom\workflow\engine\rules\error\EqRuleExecutionError;
+use dicom\workflow\engine\rules\error\InRuleExecutionError;
 use dicom\workflow\WorkflowEngine;
 
 class CarsOnTrafficLightsTest extends \PHPUnit_Framework_TestCase
@@ -56,12 +55,19 @@ class CarsOnTrafficLightsTest extends \PHPUnit_Framework_TestCase
 
         $passWithoutStopping = [
             'id' => 1,
-            'model' => 'policy crown victory'
+            'model' => 'policy crown victory',
+            'colorOfTrafficLights' => 'yellow'
         ];
 
         $context = ['colorOfTrafficLights' => 'yellow'];
 
-        $transitionResult = $this->engine->makeTransition('go', 'passWithoutStopping', $passWithoutStopping, $go, $context);
+        $transitionResult = $this->engine->makeTransition(
+            'go',
+            'passWithoutStopping',
+            $passWithoutStopping,
+            $go,
+            $context
+        );
         $this->assertTrue($transitionResult->isSuccess());
     }
 
@@ -96,7 +102,6 @@ class CarsOnTrafficLightsTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(1, $transitionResult->getErrors());
         $this->assertInstanceOf(InRuleExecutionError::class, $transitionResult->getErrors()[0]);
     }
-
 
     /**
      * Возможности перевести из одного статуса в другой
@@ -147,5 +152,4 @@ class CarsOnTrafficLightsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(1, count($transitionResult->getErrors()));
         $this->assertInstanceOf(EqRuleExecutionError::class, $transitionResult->getErrors()[0]);
     }
-
-} 
+}

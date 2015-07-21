@@ -8,12 +8,12 @@
 
 namespace dicom\workflow;
 
-use dicom\workflow\config\WorkflowDescription;
-use dicom\workflow\state\State;
-use dicom\workflow\state\StateEngine;
-use dicom\workflow\transition\Transition;
-use dicom\workflow\transition\TransitionEngine;
-use dicom\workflow\transition\TransitionSpecification;
+use dicom\workflow\building\config\WorkflowDescription;
+use dicom\workflow\engine\state\State;
+use dicom\workflow\engine\state\StateEngine;
+use dicom\workflow\engine\transition\Transition;
+use dicom\workflow\engine\transition\TransitionEngine;
+use dicom\workflow\engine\transition\TransitionSpecification;
 
 /**
  * Class WorkflowEngine
@@ -108,7 +108,7 @@ class WorkflowEngine
     /**
      * Отдать список возможных состояния
      *
-     * @return \dicom\workflow\state\State[]
+     * @return \dicom\workflow\engine\state\State[]
      */
     public function getStateList()
     {

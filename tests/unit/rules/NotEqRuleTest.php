@@ -9,8 +9,8 @@
 namespace unit\rules;
 
 
-use dicom\workflow\rules\compare\NotEqRule;
-use dicom\workflow\rules\error\NotEqRuleExecutionError;
+use dicom\workflow\engine\rules\compare\NotEqRule;
+use dicom\workflow\engine\rules\error\NotEqRuleExecutionError;
 
 class NotEqRuleTest extends \PHPUnit_Framework_TestCase
 {
