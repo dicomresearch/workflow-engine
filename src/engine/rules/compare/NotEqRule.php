@@ -1,24 +1,26 @@
 <?php
-
+/**
+ * Created by PhpStorm.
+ * User: rinat
+ * Date: 13.07.15
+ * Time: 14:17
+ */
 
 namespace dicom\workflow\engine\rules\compare;
 
-use dicom\workflow\engine\rules\ConfiguredRule;
-use dicom\workflow\engine\rules\error\EqRuleExecutionError;
-use dicom\workflow\engine\rules\RuleCheckingOneValue;
 use dicom\workflow\building\rules\RuleInterface\IConfiguredRule;
+use dicom\workflow\engine\rules\ConfiguredRule;
+use dicom\workflow\engine\rules\RuleCheckingOneValue;
+use dicom\workflow\engine\rules\error\NotEqRuleExecutionError;
 use SebastianBergmann\Comparator\ComparisonFailure;
 use SebastianBergmann\Comparator\Factory;
 
-/**
- * Class EqRule
- * @package dicom\workflow\rules\compare
- */
-class EqRule extends RuleCheckingOneValue implements IConfiguredRule
+class NotEqRule extends RuleCheckingOneValue implements IConfiguredRule
 {
     use ConfiguredRule {
         ConfiguredRule::validateConfig as configuratorValidateConfig;
     }
+
 
     /**
      * Проверить удовлятеворяют ли переданые значения правилу
@@ -36,9 +38,9 @@ class EqRule extends RuleCheckingOneValue implements IConfiguredRule
 
         try {
             $comparator->assertEquals($expectedValue, $entityNewValue);
-            return true;
-        } catch (ComparisonFailure $failure) {
             return false;
+        } catch (ComparisonFailure $failure) {
+            return true;
         }
     }
 
@@ -51,8 +53,9 @@ class EqRule extends RuleCheckingOneValue implements IConfiguredRule
      */
     protected function constructValidationError($value = null)
     {
-        return EqRuleExecutionError::create($value, $this->getConfig());
+        return NotEqRuleExecutionError::create($value, $this->getConfig());
     }
+
 
     protected function validateConfig($config)
     {

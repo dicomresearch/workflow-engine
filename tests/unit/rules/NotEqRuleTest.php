@@ -1,31 +1,20 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: rinat
+ * Date: 13.07.15
+ * Time: 15:21
+ */
+
+namespace unit\rules;
 
 
-namespace unit\engine\rules;
+use dicom\workflow\engine\rules\compare\NotEqRule;
+use dicom\workflow\engine\rules\error\NotEqRuleExecutionError;
 
-use dicom\workflow\engine\rules\compare\EqRule;
-use dicom\workflow\engine\rules\error\EqRuleExecutionError;
-
-class EqRuleTest extends \PHPUnit_Framework_TestCase
+class NotEqRuleTest extends \PHPUnit_Framework_TestCase
 {
-
     public function trueDataProvider()
-    {
-        $date1 = new \DateTime();
-        $date2 = $date1;
-        return [
-            //[testValue, configuredValue]
-            [1, 1],
-            [0, 0],
-            [2.3, 2.3],
-            ['string', 'string'],
-            [ [1,2,3], [1,2,3] ],
-            [$date1, $date2],
-            [(object) ['value' => 2], (object) ['value' => 2]]
-        ];
-    }
-
-    public function falseDataProvider()
     {
         $date1 = new \DateTime();
         $date2 = new \DateTime();
@@ -43,6 +32,23 @@ class EqRuleTest extends \PHPUnit_Framework_TestCase
         ];
     }
 
+    public function falseDataProvider()
+    {
+        $date1 = new \DateTime();
+        $date2 = $date1;
+
+        return [
+            //[testValue, configuredValue]
+            [1, 1],
+            [0, 0],
+            [2.3, 2.3],
+            ['string', 'string'],
+            [ [1,2,3], [1,2,3] ],
+            [$date1, $date2],
+            [(object) ['value' => 2], (object) ['value' => 2]]
+        ];
+    }
+
     /**
      *
      * @param $value
@@ -52,7 +58,7 @@ class EqRuleTest extends \PHPUnit_Framework_TestCase
      */
     public function testTrue($value, $configuredValue)
     {
-        $rule = new EqRule();
+        $rule = new NotEqRule();
         $rule->setConfig($configuredValue);
 
         $ruleExecutionResult = $rule->execute($value);
@@ -71,7 +77,7 @@ class EqRuleTest extends \PHPUnit_Framework_TestCase
      */
     public function testFalse($value, $configuredValue)
     {
-        $rule = new EqRule();
+        $rule = new NotEqRule();
         $rule->setConfig($configuredValue);
 
         $ruleExecutionResult = $rule->execute($value);
@@ -80,6 +86,6 @@ class EqRuleTest extends \PHPUnit_Framework_TestCase
             $ruleExecutionResult->isSuccess(),
             var_export($configuredValue, true) . 'must be not equally '. var_export($value, true)
         );
-        $this->assertInstanceOf(EqRuleExecutionError::class, $ruleExecutionResult->getError());
+        $this->assertInstanceOf(NotEqRuleExecutionError::class, $ruleExecutionResult->getError());
     }
 }
