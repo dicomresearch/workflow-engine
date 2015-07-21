@@ -7,7 +7,8 @@
         <delete dir="${basedir}/build/logs"/>
         <delete dir="${basedir}/build/api"/>
         <delete dir="${basedir}/build/code-browser"/>
-        <delete dir="${basedir}/build/report.html"/>
+        <delete dir="${basedir}/build/report"/>
+        <delete dir="${basedir}/build/pdepend"/>
     </target>
 
     <target name="init" unless="workflow-engine.properties">
@@ -146,11 +147,11 @@
             description="Calculate software metrics using PHP_Depend">
         <mkdir dir="build/pdepend" />
         <exec dir="${basedir}" executable="vendor/bin/pdepend">
-            <arg value="--summary-xml=${basedir}/build/logs/summary.xml"/>
-            <arg value="--jdepend-xml=${basedir}/build/logs/jdepend.xml"/>
+            <arg value="--summary-xml=${basedir}/build/pdepend/summary.xml"/>
+            <arg value="--jdepend-xml=${basedir}/build/pdepend/jdepend.xml"/>
             <arg value="--jdepend-chart=${basedir}/build/pdepend/dependencies.svg"/>
             <arg value="--overview-pyramid=${basedir}/build/pdepend/overview-pyramid.svg"/>
-            <arg path="tests"/>
+            <arg path="src"/>
         </exec>
     </target>
 
