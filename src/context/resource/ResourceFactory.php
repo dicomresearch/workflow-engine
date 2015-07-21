@@ -58,7 +58,7 @@ class ResourceFactory
         $resource = new CompositeResource($contextName);
         foreach ($definitions['context'] as $contextName => $contextDefinition) {
             $subResource = ResourceFactory::create($contextName, $contextDefinition);
-            $resource->addProperty($subResource);
+            $resource->addResource($subResource);
         }
 
         return $resource;

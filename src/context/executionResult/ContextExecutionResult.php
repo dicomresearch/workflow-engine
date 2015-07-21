@@ -29,7 +29,7 @@ class ContextExecutionResult
     }
 
     /**
-     * does resource rules execute success?
+     * does resources rules execute success?
      *
      * @return bool
      */
@@ -47,7 +47,7 @@ class ContextExecutionResult
     /**
      * Get errors for rules execution
      *
-     * @return array of key => value, where key = resource name, value - array of errors
+     * @return array of key => value, where key = resources name, value - array of errors
      */
     public function getErrors()
     {

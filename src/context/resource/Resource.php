@@ -16,7 +16,9 @@ use dicom\workflow\rules\RuleInterface\IRule;
 /**
  * Class Resource
  *
- * @package dicom\workflow\context\resource
+ * Класс описывает одно из свойств контекста. Содержит правила валидации свойства
+ *
+ * @package dicom\workflow\context\resources
  */
 class Resource
 {

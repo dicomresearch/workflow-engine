@@ -11,12 +11,20 @@ namespace dicom\workflow\context\resource;
 
 use dicom\workflow\context\resource\executionResult\CompositeResourceExecutionResult;
 
+/**
+ * Class CompositeResource
+ *
+ * Описывает свойство, представляющее из себя объект (context),
+ * который в свою очередь содержит вложеные свойства
+ *
+ * @package dicom\workflow\context\resources
+ */
 class CompositeResource extends Resource
 {
     /**
      * @var Resource []
      */
-    protected $resource = [];
+    protected $resources = [];
 
     /**
      * проверяет, что все правила данного свойства удовлетворены
@@ -29,7 +37,7 @@ class CompositeResource extends Resource
     {
         $resourceExecutionResult = new CompositeResourceExecutionResult($this);
 
-        foreach ($this->resource as $subResource) {
+        foreach ($this->resources as $subResource) {
             $subResourceExecutionResult = $subResource->executeRules(
                 (isset ($contextValue[$subResource->getName()]) ? $contextValue[$subResource->getName()] : null)
             );
@@ -41,22 +49,22 @@ class CompositeResource extends Resource
     }
 
     /**
-     * app sub resource
+     * app sub resources
      *
      * @param Resource $resource
      */
-    public function addProperty(Resource $resource)
+    public function addResource(Resource $resource)
     {
-        $this->$resource[$resource->getName()] = $resource;
+        $this->resources[$resource->getName()] = $resource;
     }
 
     /**
-     * Get list of resource
+     * Get list of resources
      *
      * @return Resource[]
      */
-    public function getResource()
+    public function getResources()
     {
-        return $this->resource;
+        return $this->resources;
     }
 }
