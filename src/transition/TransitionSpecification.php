@@ -151,7 +151,7 @@ class TransitionSpecification
     {
         $transition = null !== $transition ? $transition: $this->createTransition();
 
-        if ($this->getEntity() !== null) {
+        if ($this->hasEntity()) {
             $entityExecuteResult = $this->getEntity()->executeRules($newEntityValues, $oldEntityValues);
             $transition->setEntityRulesExecutionResult($entityExecuteResult);
         }
@@ -168,7 +168,7 @@ class TransitionSpecification
     {
         $transition = null !== $transition ? $transition: $this->createTransition();
 
-        if ($this->getContext() !== null) {
+        if ($this->hasContext()) {
             $contextExecuteResult = $this->getContext()->executeRules($context);
             $transition->setContextRuleExecutionResult($contextExecuteResult);
         }
@@ -348,6 +348,14 @@ class TransitionSpecification
     }
 
     /**
+     * @return bool
+     */
+    public function hasEntity()
+    {
+        return $this->getEntity() !== null;
+    }
+
+    /**
      * @return Context
      */
     public function getContext()
@@ -361,6 +369,14 @@ class TransitionSpecification
     public function setContext(Context $context)
     {
         $this->context = $context;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasContext()
+    {
+        return $this->getContext() !== null;
     }
 
 }
