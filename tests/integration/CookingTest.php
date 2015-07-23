@@ -3,8 +3,8 @@
 
 namespace integration;
 
-
-use dicom\workflow\config\WorkflowDescription;
+use dicom\workflow\building\config\WorkflowDescription;
+use dicom\workflow\engine\rules\error\EqRuleExecutionError;
 use dicom\workflow\WorkflowEngine;
 
 class CookingTest extends \PHPUnit_Framework_TestCase
@@ -44,18 +44,19 @@ class CookingTest extends \PHPUnit_Framework_TestCase
         $rawPie = [
             'id' => 1,
             'stuffing' => 'cherry',
-            'pastry' => 'yeast dough',
-            'baking_time' => 0
+            'pastry' => 'yeast dough'
         ];
 
         $bakedPie = [
             'id' => 1,
             'stuffing' => 'cherry',
-            'pastry' => 'yeast dough',
-            'baking_time' => 50
+            'pastry' => 'yeast dough'
         ];
 
-        $transitionResult = $this->engine->makeTransition('new', 'baked', $bakedPie, $rawPie);
+        $context = ['baking_time' => 50];
+
+        $transitionResult = $this->engine->makeTransition('new', 'baked', $bakedPie, $rawPie, $context);
+
         $this->assertTrue($transitionResult->isSuccess());
     }
 
@@ -69,19 +70,19 @@ class CookingTest extends \PHPUnit_Framework_TestCase
         $rawPie = [
             'id' => 1,
             'stuffing' => 'cherry',
-            'pastry' => 'yeast dough',
-            'baking_time' => 0
+            'pastry' => 'yeast dough'
         ];
 
         $bakedPie = [
             'id' => 1,
             'stuffing' => 'strawberry', // меняем параметр, который нельзя менять.
                                         // в результате transitions не должна быть выполнена
-            'pastry' => 'yeast dough',
-            'baking_time' => 50
+            'pastry' => 'yeast dough'
         ];
 
-        $transitionResult = $this->engine->makeTransition('new', 'baked', $bakedPie, $rawPie);
+        $context = ['baking_time' => 50];
+
+        $transitionResult = $this->engine->makeTransition('new', 'baked', $bakedPie, $rawPie, $context);
         $this->assertFalse($transitionResult->isSuccess());
 
         $this->assertCount(1, $transitionResult->getErrors());
@@ -114,7 +115,7 @@ class CookingTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($transitionResult->isSuccess());
 
         $this->assertCount(1, $transitionResult->getErrors());
-        $this->assertInstanceOf('dicom\workflow\rules\error\EqRuleExecutionError', $transitionResult->getErrors()[0]);
+        $this->assertInstanceOf(EqRuleExecutionError::class, $transitionResult->getErrors()[0]);
     }
 
     /**

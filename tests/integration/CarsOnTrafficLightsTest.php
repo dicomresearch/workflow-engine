@@ -8,12 +8,13 @@
 
 namespace integration;
 
-use dicom\workflow\config\WorkflowDescription;
-use dicom\workflow\rules\error\EqRuleExecutionError;
-use dicom\workflow\rules\error\InRuleExecutionError;
+use dicom\workflow\building\config\WorkflowDescription;
+use dicom\workflow\engine\rules\error\EqRuleExecutionError;
+use dicom\workflow\engine\rules\error\InRuleExecutionError;
 use dicom\workflow\WorkflowEngine;
 
-class CarsOnTrafficLightsTest extends \PHPUnit_Framework_TestCase{
+class CarsOnTrafficLightsTest extends \PHPUnit_Framework_TestCase
+{
 
     /**
      * Название конфиг файла
@@ -49,8 +50,7 @@ class CarsOnTrafficLightsTest extends \PHPUnit_Framework_TestCase{
     {
         $go = [
             'id' => 1,
-            'model' => 'policy crown victory',
-            'colorOfTrafficLights' => 'green'
+            'model' => 'policy crown victory'
         ];
 
         $passWithoutStopping = [
@@ -59,7 +59,15 @@ class CarsOnTrafficLightsTest extends \PHPUnit_Framework_TestCase{
             'colorOfTrafficLights' => 'yellow'
         ];
 
-        $transitionResult = $this->engine->makeTransition('go', 'passWithoutStopping', $passWithoutStopping, $go);
+        $context = ['colorOfTrafficLights' => 'yellow'];
+
+        $transitionResult = $this->engine->makeTransition(
+            'go',
+            'passWithoutStopping',
+            $passWithoutStopping,
+            $go,
+            $context
+        );
         $this->assertTrue($transitionResult->isSuccess());
     }
 
@@ -73,22 +81,27 @@ class CarsOnTrafficLightsTest extends \PHPUnit_Framework_TestCase{
     {
         $go = [
             'id' => 1,
-            'model' => 'policy crown victory',
-            'colorOfTrafficLights' => 'green'
+            'model' => 'policy crown victory'
         ];
 
         $passWithoutStopping = [
             'id' => 1,
-            'model' => 'policy crown victory',
-            'colorOfTrafficLights' => 'red'
+            'model' => 'policy crown victory'
         ];
 
-        $transitionResult = $this->engine->makeTransition('go', 'passWithoutStopping', $passWithoutStopping, $go);
+        $context = ['colorOfTrafficLights' => 'red'];
+
+        $transitionResult = $this->engine->makeTransition(
+            'go',
+            'passWithoutStopping',
+            $passWithoutStopping,
+            $go,
+            $context
+        );
         $this->assertFalse($transitionResult->isSuccess());
-        $this->assertEquals(1, count($transitionResult->getErrors()));
+        $this->assertCount(1, $transitionResult->getErrors());
         $this->assertInstanceOf(InRuleExecutionError::class, $transitionResult->getErrors()[0]);
     }
-
 
     /**
      * Возможности перевести из одного статуса в другой
@@ -100,17 +113,17 @@ class CarsOnTrafficLightsTest extends \PHPUnit_Framework_TestCase{
     {
         $go = [
             'id' => 1,
-            'model' => 'policy crown victory',
-            'colorOfTrafficLights' => 'green'
+            'model' => 'policy crown victory'
         ];
 
         $stop = [
             'id' => 1,
-            'model' => 'policy crown victory',
-            'colorOfTrafficLights' => 'red'
+            'model' => 'policy crown victory'
         ];
 
-        $transitionResult = $this->engine->makeTransition('go', 'stop', $stop, $go);
+        $context = ['colorOfTrafficLights' => 'red'];
+
+        $transitionResult = $this->engine->makeTransition('go', 'stop', $stop, $go, $context);
         $this->assertTrue($transitionResult->isSuccess());
     }
 
@@ -124,20 +137,19 @@ class CarsOnTrafficLightsTest extends \PHPUnit_Framework_TestCase{
     {
         $go = [
             'id' => 1,
-            'model' => 'policy crown victory',
-            'colorOfTrafficLights' => 'green'
+            'model' => 'policy crown victory'
         ];
 
         $stop = [
             'id' => 1,
-            'model' => 'policy crown victory',
-            'colorOfTrafficLights' => 'yellow'
+            'model' => 'policy crown victory'
         ];
 
-        $transitionResult = $this->engine->makeTransition('go', 'stop', $stop, $go);
+        $context = ['colorOfTrafficLights' => 'yellow'];
+
+        $transitionResult = $this->engine->makeTransition('go', 'stop', $stop, $go, $context);
         $this->assertFalse($transitionResult->isSuccess());
         $this->assertEquals(1, count($transitionResult->getErrors()));
         $this->assertInstanceOf(EqRuleExecutionError::class, $transitionResult->getErrors()[0]);
     }
-
-} 
+}

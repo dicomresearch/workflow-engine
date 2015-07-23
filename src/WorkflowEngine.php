@@ -1,14 +1,19 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: sergey
+ * Date: 03.10.14
+ * Time: 16:28
+ */
 
 namespace dicom\workflow;
 
-
-use dicom\workflow\config\WorkflowDescription;
-use dicom\workflow\state\State;
-use dicom\workflow\state\StateEngine;
-use dicom\workflow\transition\Transition;
-use dicom\workflow\transition\TransitionEngine;
-use dicom\workflow\transition\TransitionSpecification;
+use dicom\workflow\building\config\WorkflowDescription;
+use dicom\workflow\engine\state\State;
+use dicom\workflow\engine\state\StateEngine;
+use dicom\workflow\engine\transition\Transition;
+use dicom\workflow\engine\transition\TransitionEngine;
+use dicom\workflow\engine\transition\TransitionSpecification;
 
 /**
  * Class WorkflowEngine
@@ -61,11 +66,18 @@ class WorkflowEngine
      * @param string $newStateName Entity target state name
      * @param array $newEntityValues key-value array, where key - entity attribute name, value - its value
      * @param array $oldEntityValues key-value array, where key - entity attribute name, value - its value
+     * @param array $context key-value array, where key - entity attribute name, value - its value
      * @return Transition
      */
-    public function makeTransition($oldStateName, $newStateName, $newEntityValues, $oldEntityValues)
+    public function makeTransition($oldStateName, $newStateName, $newEntityValues, $oldEntityValues, $context = [])
     {
-        return $this->getTransitionEngine()->makeTransition($oldStateName, $newStateName, $newEntityValues, $oldEntityValues);
+        return $this->getTransitionEngine()->makeTransition(
+            $oldStateName,
+            $newStateName,
+            $newEntityValues,
+            $oldEntityValues,
+            $context
+        );
     }
 
     /**
@@ -96,7 +108,7 @@ class WorkflowEngine
     /**
      * Отдать список возможных состояния
      *
-     * @return \dicom\workflow\state\State[]
+     * @return \dicom\workflow\engine\state\State[]
      */
     public function getStateList()
     {
@@ -204,5 +216,4 @@ class WorkflowEngine
 
         return $result;
     }
-
-} 
+}
